@@ -1,0 +1,6 @@
+Source Url: 
+* https://assetstore.unity.com/packages/essentials/tutorial-projects/ui-toolkit-sample-dragon-crashers-231178
+
+Changelog: 
+* Some assets may have been removed to reduce file size
+* Moved to /Assets/3rdParty/

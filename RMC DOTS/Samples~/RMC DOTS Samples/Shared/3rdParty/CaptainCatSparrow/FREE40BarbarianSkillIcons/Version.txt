@@ -1,0 +1,6 @@
+Source Url: 
+* https://assetstore.unity.com/packages/2d/gui/icons/40-free-barbarian-skill-icons-248514
+
+Changelog: 
+* Some assets may have been removed to reduce file size
+* Moved to /Assets/3rdParty/

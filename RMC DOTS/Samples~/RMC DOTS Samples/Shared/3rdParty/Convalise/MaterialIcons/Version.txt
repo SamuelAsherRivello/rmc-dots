@@ -1,0 +1,6 @@
+Source Url: 
+* https://github.com/convalise/unity-material-icons
+
+Changelog: 
+* Some assets may have been removed to reduce file size
+* Moved to /Assets/3rdParty/

@@ -1,0 +1,64 @@
+.screen {
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+}
+
+.content {
+    flex-grow: 1;
+    flex-direction: row;
+    margin-top: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+}
+
+.dialog-view {
+    flex-grow: 1;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.39);
+}
+
+.dialog-view-window {
+    flex-grow: 1;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 20%;
+    margin-bottom: 20%;
+    background-color: rgba(0, 0, 0, 0.78);
+}
+
+.unity-label {
+    font-size: 60px;
+    color: rgb(255, 255, 255);
+    -unity-font-style: normal;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Games/Playground2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
+    -unity-text-align: middle-center;
+}
+
+.score-label {
+    font-size: 200px;
+}
+
+.unity-button {
+    font-size: 50px;
+    transition-duration: 0.1s;
+    -unity-font-definition: initial;
+    -unity-font: url("project://database/Assets/Games/Playground2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
+    -unity-text-align: middle-center;
+}
+
+.unity-button:hover {
+    scale: 1.05 1.05;
+    transition-duration: 0.1s;
+}

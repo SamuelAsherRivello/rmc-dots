@@ -1,0 +1,40 @@
+{
+  "name": "com.rmc.rmc-dots",
+  "displayName": "RMC DOTS",
+  "version": "0.0.1",
+  "unity": "2022.3",
+  "description": "DOTS library for Unity Development by Rivello Multimedia Consulting",
+  "keywords": [
+	"unity",
+	"unity3d",
+	"upm",
+	"rmc",
+	"utility",
+  "dots",
+  "ecs",
+  "jobs"
+  ],
+  "dependencies": {
+	"com.rmc.rmc-core" : "1.4.2"
+  },
+  "homepage": "https://github.com/SamuelAsherRivello/rmc-dots.git",
+  "bugs": {
+	"url": "https://github.com/SamuelAsherRivello/rmc-dots/issues"
+  },
+  "repository": {
+	"type": "git",
+	"url": "git+ssh://git@github.com/SamuelAsherRivello/rmc-dots.git"
+  },
+  "license": "MIT",
+  "author": "rmc (github.com/SamuelAsherRivello)",
+  "scripts": {
+	"test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "samples": [
+    {
+      "displayName": "RMC DOTS Samples",
+      "description": "Demonstrate the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/RMC DOTS Samples"
+    }
+  ]
+}

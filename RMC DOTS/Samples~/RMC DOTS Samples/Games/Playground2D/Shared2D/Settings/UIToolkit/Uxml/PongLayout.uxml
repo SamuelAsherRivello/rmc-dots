@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Games/Playground2D/Shared2D/Settings/UIToolkit/Uss/PongStyles.uss?fileID=7433441132597879392&amp;guid=0260f67d91efe5a4db368621aeeb029d&amp;type=3#PongStyles" />
+    <ui:VisualElement name="Screen" class="screen">
+        <ui:VisualElement name="Content" class="content">
+            <ui:VisualElement name="Status" style="flex-grow: 0.5;">
+                <ui:Label tabindex="-1" text="Status" display-tooltip-when-elided="true" name="StatusLabel" style="-unity-text-align: middle-right; right: 20px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Score01">
+                <ui:Label tabindex="-1" text="00" display-tooltip-when-elided="true" name="Score01Label" class="score-label" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Spacer" style="flex-grow: 0.1; flex-shrink: 1;" />
+            <ui:VisualElement name="Score02">
+                <ui:Label tabindex="-1" text="00" display-tooltip-when-elided="true" name="Score02Label" class="score-label" style="align-self: center;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Restart" style="flex-grow: 0.5;">
+                <ui:Button text="Restart" display-tooltip-when-elided="true" name="RestartButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="DialogVisualElement" class="dialog-view" style="opacity: 1; display: none;">
+        <ui:VisualElement name="DialogViewWindow" class="dialog-view-window" style="display: flex; visibility: visible;">
+            <ui:Label tabindex="-1" text="BodyLabel" display-tooltip-when-elided="true" name="BodyLabel" style="-unity-text-align: middle-center; flex-basis: 50%; font-size: 60px;" />
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); flex-direction: row; justify-content: center; align-self: stretch; align-items: center; flex-basis: 50%; margin-left: 30px; margin-right: 30px; margin-top: 10px; margin-bottom: 10px;">
+                <ui:Button text="Cancel" display-tooltip-when-elided="true" name="CancelButton" style="align-items: auto; width: 50%; height: 80%;" />
+                <ui:Button text="Confirm" display-tooltip-when-elided="true" name="ConfirmButton" style="align-items: auto; width: 50%; height: 80%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
