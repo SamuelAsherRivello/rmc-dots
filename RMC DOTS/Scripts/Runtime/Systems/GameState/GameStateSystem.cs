@@ -1,9 +1,10 @@
 ﻿using System;
+using RMC.DOTS.SystemGroups;
 using Unity.Entities;
 
 namespace RMC.DOTS.Systems.GameState
 {
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
     public partial class GameStateSystem : SystemBase
     {
         public Action<bool> OnIsGameOverChanged;

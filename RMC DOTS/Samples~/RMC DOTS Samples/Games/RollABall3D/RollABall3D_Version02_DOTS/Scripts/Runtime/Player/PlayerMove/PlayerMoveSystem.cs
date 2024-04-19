@@ -1,18 +1,17 @@
-﻿using RMC.DOTS.Systems.Input;
+﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.Input;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Extensions;
-using Unity.Physics.Systems;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
     /// <summary>
     /// This system moves the player in 3D space.
     /// </summary>
-    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
-    [UpdateBefore(typeof(PhysicsSystemGroup))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

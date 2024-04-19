@@ -1,4 +1,4 @@
-using RMC.DOTS.Systems.GameState;
+using RMC.DOTS.SystemGroups;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -8,8 +8,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Spawner
 {
-    [UpdateBefore(typeof(GameStateSystem))]
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     [BurstCompile]
     public partial class SpawnerSystem : SystemBase
     {

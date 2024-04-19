@@ -398,6 +398,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 0
+  MemberOfLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  CollidesWithLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!65 &1263140877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1254,6 +1260,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 1
+  MemberOfLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  CollidesWithLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!65 &2079734270
 BoxCollider:
   m_ObjectHideFlags: 0

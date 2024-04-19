@@ -1,14 +1,11 @@
-﻿using RMC.DOTS.Systems.PhysicsTrigger;
+﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.PhysicsTrigger;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Physics.Systems;
-using UnityEngine;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
-    [UpdateBefore(typeof(ExportPhysicsWorld))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct PickupWasCollectedSystem : ISystem
     {

@@ -3,15 +3,16 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Physics.Systems;
+using UnityEngine;
 
 namespace RMC.DOTS.Systems.PhysicsTrigger
 {
+    [BurstCompile]
     [UpdateInGroup(typeof(PhysicsSystemGroup))]
     [UpdateAfter(typeof(PhysicsSimulationGroup))]
     [UpdateBefore(typeof(ExportPhysicsWorld))]
     public partial struct PhysicsTriggerSystem : ISystem
     {
-        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
@@ -27,8 +28,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
 
             var job = new PickupTriggerJob
             {
-                PhysicsTriggerInput1TagLookup = SystemAPI.GetComponentLookup<PhysicsTriggerInput1Tag>(),
-                PhysicsTriggerInput2TagLookup = SystemAPI.GetComponentLookup<PhysicsTriggerInput2Tag>(),
+                PhysicsTriggerComponentLookup = SystemAPI.GetComponentLookup<PhysicsTriggerComponent>(),
                 PhysicsTriggerOutputTagLookup = SystemAPI.GetComponentLookup<PhysicsTriggerOutputTag>(),
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
                 TimeFrameCount = UnityEngine.Time.frameCount
@@ -37,62 +37,72 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
             state.Dependency = job.Schedule(simSingleton, state.Dependency);
         }
     }
-    
+     
+    [BurstCompile]
     public struct PickupTriggerJob : ITriggerEventsJob
     {
-        [ReadOnly] public ComponentLookup<PhysicsTriggerInput1Tag> PhysicsTriggerInput1TagLookup;
-        [ReadOnly] public ComponentLookup<PhysicsTriggerInput2Tag> PhysicsTriggerInput2TagLookup;
+        [ReadOnly] public ComponentLookup<PhysicsTriggerComponent> PhysicsTriggerComponentLookup;
         [ReadOnly] public ComponentLookup<PhysicsTriggerOutputTag> PhysicsTriggerOutputTagLookup;
         [ReadOnly] public int TimeFrameCount;
+        public EntityCommandBuffer ECB; 
         
-        public EntityCommandBuffer ECB;
-        
+        [BurstCompile]
         public void Execute(TriggerEvent triggerEvent)
         {
             var entityA = triggerEvent.EntityA;
             var entityB = triggerEvent.EntityB;
                 
-            bool isEntityAInput1 = PhysicsTriggerInput1TagLookup.HasComponent(entityA);
-            bool isEntityAInput2 = PhysicsTriggerInput2TagLookup.HasComponent(entityA);
-            
-            bool isEntityBInput1 = PhysicsTriggerInput1TagLookup.HasComponent(entityB);
-            bool isEntityBInput2 = PhysicsTriggerInput2TagLookup.HasComponent(entityB);
+            PhysicsTriggerComponentLookup.TryGetComponent(entityA, out PhysicsTriggerComponent physicsTriggerComponentA);
+            PhysicsTriggerComponentLookup.TryGetComponent(entityB, out PhysicsTriggerComponent physicsTriggerComponentB);
 
+            /*
+             *
+             *
+             * This system works, but has bugs.
+             *
+             * I would expect if the latermasks are set to collide with each other, that the system would
+             * run TWICE. Once for a hitting b and once for b hitting a.
+             *
+             * However, when I play with the masks to have ONLY a hit b, it is unpredictable.
+             *
+             *
+             *
+             * 
+             */
+            bool isCollidingAWithB = (physicsTriggerComponentA.CollidesWithLayerMask &
+                                      physicsTriggerComponentB.MemberOfLayerMask) != 0;
+            
+            bool isCollidingBWithA = (physicsTriggerComponentB.CollidesWithLayerMask &
+                                       physicsTriggerComponentA.MemberOfLayerMask) != 0;
 
-            //Detect a-b. Detect b-a. But do not detect a-a nor b-b
-            if (isEntityAInput1 && isEntityBInput1)
+            if (isCollidingAWithB)
             {
-                return;
+                if (!PhysicsTriggerOutputTagLookup.HasComponent(entityA))
+                {
+                    AddComponentForEnter(entityA, entityB);
+                }
+                else
+                {
+                    SetComponentForStay(entityA, entityB);;
+                }
             }
-            
-            if (isEntityAInput2 && isEntityBInput2)
+            if (isCollidingAWithB)
             {
-                return;
-            }
-            
-            if (!PhysicsTriggerOutputTagLookup.HasComponent(entityA))
-            {
-                AddComponentForEnter(entityA, entityB);
-            }
-           else
-            {
-                SetComponentForStay(entityA, entityB);;
-            }
-            
-            if (!PhysicsTriggerOutputTagLookup.HasComponent(entityB))
-            {
-                AddComponentForEnter(entityB, entityA);
-            }
-            else
-            {
-                SetComponentForStay(entityB, entityA);
+                if (!PhysicsTriggerOutputTagLookup.HasComponent(entityB))
+                {
+                    AddComponentForEnter(entityB, entityA);
+                }
+                else
+                {
+                    SetComponentForStay(entityB, entityA);
+                }
             }
         }
 
         private void AddComponentForEnter(Entity theEntity, Entity theOtherEntity)
-        {
+        { 
             // Handle enter 
-            //Debug.Log($"PhysicsTriggerSystem ({theEntity.Index}) Set To Enter on TimeFrameCount: {TimeFrameCount}");
+            //Debug.Log($"PhysicsTriggerSystem theEntity=({theEntity.Index}) hitby theOtherEntity=({theOtherEntity.Index})");
             ECB.AddComponent<PhysicsTriggerOutputTag>(theEntity,
                 new PhysicsTriggerOutputTag
                 {

@@ -7,6 +7,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
+    [BurstCompile]
     [UpdateInGroup(typeof(PhysicsSystemGroup))]
     [UpdateAfter(typeof(PhysicsSimulationGroup))]
     [UpdateBefore(typeof(ExportPhysicsWorld))]
@@ -18,17 +19,19 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<ScoringComponent>();
+            state.RequireForUpdate<ProjectileTag>();
             state.RequireForUpdate<ProjectileHasScoredComponent>();
             _pickupQuery = SystemAPI.QueryBuilder().WithAll<ProjectileHasScoredComponent, ProjectileTag>().Build();
+            state.RequireForUpdate(_pickupQuery);
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
-                GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>().
+                GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
             var scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
@@ -40,22 +43,16 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                 {
                     scoringComponent.ScoreComponent01.ScoreCurrent += 1;
                 }
-                else
+                else 
                 {
                     scoringComponent.ScoreComponent02.ScoreCurrent += 1;
                 }
 
                 ecb.RemoveComponent<ProjectileHasScoredComponent>(entity);
             }
-
+    
             SystemAPI.SetSingleton(scoringComponent);
 
-            // If we have reached or surpassed the target pickup count, begin the game over state.
-            if (scoringComponent.ScoreComponent01.ScoreCurrent >= scoringComponent.ScoreComponent01.ScoreMax)
-            {
-                var gameStateSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<GameStateSystem>();
-                gameStateSystem.IsGameOver = true;
-            }
         }
     }
 }

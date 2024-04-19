@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
+    [BurstCompile]
     [UpdateInGroup(typeof(PhysicsSystemGroup))]
     [UpdateAfter(typeof(PhysicsSimulationGroup))]
     [UpdateBefore(typeof(ExportPhysicsWorld))]
@@ -44,6 +45,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                 if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
                     physicsTriggerOutputTag.TimeFrameCountForLastCollision <= timeFrameCount - framesToWait)
                 {
+                   // Debug.Log($"GamePickup ({entity.Index}) Set To ADD on TimeFrameCount: {Time.frameCount}");
                     var goalComponent = _goalComponentLookup.GetRefRO(physicsTriggerOutputTag.TheOtherEntity);
                     ecb.AddComponent<ProjectileHasScoredComponent>(entity, 
                             new ProjectileHasScoredComponent { PlayerType = goalComponent.ValueRO.PlayerType});

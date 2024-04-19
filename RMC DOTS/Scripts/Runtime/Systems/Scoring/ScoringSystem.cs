@@ -1,12 +1,10 @@
 ﻿using System;
-using RMC.DOTS.Systems.GameState;
+using RMC.DOTS.SystemGroups;
 using Unity.Entities;
-using UnityEngine;
 
 namespace RMC.DOTS.Systems.Scoring
 {
-    [UpdateBefore(typeof(GameStateSystem))]
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial class ScoringSystem : SystemBase
     {

@@ -1,15 +1,12 @@
-﻿using Unity.Burst;
+﻿using RMC.DOTS.SystemGroups;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    /// <summary>
-    /// This system schedules a job to rotate all pickups in the world
-    /// </summary>
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateBefore(typeof(TransformSystemGroup))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial struct PickupRotationSystem : ISystem
     {
         [BurstCompile]

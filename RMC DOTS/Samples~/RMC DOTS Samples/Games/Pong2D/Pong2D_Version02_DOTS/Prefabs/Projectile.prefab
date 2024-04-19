@@ -147,6 +147,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a84f0dfef132e4418a4f3577cda333e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MemberOfLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  CollidesWithLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   IsSupportNegative: 0
   MinLinearImpulse: {x: 10, y: 10, z: 0}
   MaxLinearImpulse: {x: 15, y: 15, z: 0}

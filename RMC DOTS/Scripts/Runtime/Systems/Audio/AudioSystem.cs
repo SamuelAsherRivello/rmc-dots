@@ -1,15 +1,15 @@
 ﻿using RMC.Core.Audio;
-using RMC.DOTS.Systems.GameState;
+using RMC.DOTS.SystemGroups;
 using Unity.Entities;
 using UnityEngine;
 
 namespace RMC.DOTS.Systems.Audio
 {
+   
     /// <summary>
     /// This system plays the pickup sound effect when a pickup has been picked up
     /// </summary>
-    [UpdateBefore(typeof(GameStateSystem))]
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
     public partial class AudioSystem : SystemBase
     {
         // Query all sound request components

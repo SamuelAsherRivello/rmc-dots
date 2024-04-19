@@ -18,11 +18,11 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 
     public class PaddleMoveBaker : Baker<PaddleMoveAuthoring>
     {
-        public override void Bake(PaddleMoveAuthoring moveAuthoring)
+        public override void Bake(PaddleMoveAuthoring authoring)
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             
-            switch (moveAuthoring.PlayerType)
+            switch (authoring.PlayerType)
             {
                 case PlayerType.Human:
                     AddComponent<PaddleHumanTag>(entity);
@@ -33,7 +33,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             }
 
 
-            AddComponent(entity, new PaddleMoveComponent { Value = moveAuthoring.Speed });
+            AddComponent(entity, new PaddleMoveComponent { Value = authoring.Speed });
         }
     }
 

@@ -114,6 +114,9 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                     _gameStateSystem.IsGamePaused = false;
                     _gameStateSystem.IsGameOver = false;
                     break;
+                case GameState.GameEnded: 
+                    _gameStateSystem.IsGameOver = true;
+                    break;
             }
         }
         
@@ -140,6 +143,11 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         {
             _common.MainUI.ScoreLabel.text = 
                 $"Score: {scoringComponent.ScoreComponent01.ScoreCurrent}/{scoringComponent.ScoreComponent01.ScoreMax}";
+            
+            if (scoringComponent.ScoreComponent01.ScoreCurrent >= scoringComponent.ScoreComponent01.ScoreMax)
+            {
+                _gameStateSystem.GameState = GameState.GameEnded;
+            }
         }
         
         private void MainUI_OnRestartRequest()

@@ -1,13 +1,12 @@
 ﻿#if ENABLE_INPUT_SYSTEM
-using RMC.DOTS.Systems.GameState;
+using RMC.DOTS.SystemGroups;
 using RMCDotsInputActionNamespace;
 using Unity.Entities;
 using UnityEngine;
 
 namespace RMC.DOTS.Systems.Input
 {
-    [UpdateBefore(typeof(GameStateSystem))]
-    [UpdateInGroup(typeof(SimulationSystemGroup))]
+    [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial class InputSystem : SystemBase
     {
         // Reference to our custom input asset
