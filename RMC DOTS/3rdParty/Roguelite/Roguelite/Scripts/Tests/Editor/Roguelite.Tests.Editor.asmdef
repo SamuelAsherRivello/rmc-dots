@@ -1,0 +1,29 @@
+{
+    "name": "Roguelite.Tests.Editor",
+    "rootNamespace": "",
+    "references": [
+        "Roguelite.EcsTestUtility",
+        "Unity.Collections",
+        "Unity.Entities",
+        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner",
+        "Unity.Mathematics",
+        "Unity.Entities.Tests",
+        "Roguelite.Core"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

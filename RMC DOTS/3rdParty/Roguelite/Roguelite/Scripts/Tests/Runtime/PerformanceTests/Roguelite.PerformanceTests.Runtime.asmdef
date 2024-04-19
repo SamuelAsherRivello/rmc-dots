@@ -1,0 +1,31 @@
+{
+  "name": "Roguelite.PerformanceTests.Runtime",
+  "rootNamespace": "",
+  "references": [
+    "Roguelite.Core",
+    "Roguelite.EcsTestUtility",
+    "Unity.Burst",
+    "Unity.Collections",
+    "Unity.Entities",
+    "Unity.Mathematics",
+    "Unity.PerformanceTesting",
+    "Unity.PerformanceTesting.Editor",
+    "Unity.Transforms",
+    "UnityEditor.TestRunner",
+    "UnityEngine.TestRunner",
+    "Unity.Entities.Tests"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

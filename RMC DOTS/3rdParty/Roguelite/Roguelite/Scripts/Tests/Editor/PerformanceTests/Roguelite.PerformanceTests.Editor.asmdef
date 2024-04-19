@@ -1,0 +1,30 @@
+{
+  "name": "Roguelite.PerformanceTests.Editor",
+  "rootNamespace": "",
+  "references": [
+    "Roguelite.Core",
+    "Roguelite.EcsTestUtility",
+    "Unity.Collections",
+    "Unity.Entities",
+    "Unity.PerformanceTesting",
+    "Unity.PerformanceTesting.Editor",
+    "UnityEditor.TestRunner",
+    "UnityEngine.TestRunner",
+    "Unity.Entities.Tests"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": true,
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "autoReferenced": false,
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
