@@ -35,6 +35,11 @@
       "displayName": "RMC DOTS Game Samples",
       "description": "Games using the RMC DOTS library.",
       "path": "RMC DOTS/Samples~/RMC DOTS Game Samples"
+    },
+    {
+      "displayName": "RMC DOTS Game Template",
+      "description": "Game Template using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/RMC DOTS Game Template"
     }
   ]
 }
