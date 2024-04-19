@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using RMC.Core.Audio;
 using RMC.DOTS.Samples.RollABall3D.Shared;
 using RMC.DOTS.Systems.GameState;
+using RMC.DOTS.Systems.PhysicsTrigger;
 using RMC.DOTS.Systems.Scoring;
 using RMC.DOTS.Utilities;
 using Unity.Entities;

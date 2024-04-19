@@ -32,9 +32,9 @@
   },
   "samples": [
     {
-      "displayName": "RMC DOTS Samples",
-      "description": "Demonstrate the RMC DOTS library.",
-      "path": "RMC DOTS/Samples~/RMC DOTS Samples"
+      "displayName": "RMC DOTS Game Samples",
+      "description": "Games using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/RMC DOTS Game Samples"
     }
   ]
 }
