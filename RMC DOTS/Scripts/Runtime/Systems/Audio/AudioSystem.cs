@@ -9,7 +9,7 @@ namespace RMC.DOTS.Systems.Audio
     /// <summary>
     /// This system plays the pickup sound effect when a pickup has been picked up
     /// </summary>
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseableSystemGroup), OrderFirst = true)]
     public partial class AudioSystem : SystemBase
     {
         // Query all sound request components
@@ -20,7 +20,7 @@ namespace RMC.DOTS.Systems.Audio
 
         protected override void OnCreate()
         {
-            _commandBufferSystem = this.World.GetOrCreateSystemManaged<BeginPresentationEntityCommandBufferSystem>();
+            _commandBufferSystem = World.GetOrCreateSystemManaged<BeginPresentationEntityCommandBufferSystem>();
             RequireForUpdate<AudioComponent>();
             RequireForUpdate<AudioSystemAuthoring.AudioSystemConfigurationComponent>();
             RequireForUpdate<AudioSystemAuthoring.AudioSystemIsEnabledTag>();
@@ -28,9 +28,15 @@ namespace RMC.DOTS.Systems.Audio
 
         protected override void OnUpdate()
         {
-            var ecb = _commandBufferSystem.CreateCommandBuffer();
             var audioSystemConfigurationComponent = SystemAPI.GetSingleton<AudioSystemAuthoring.AudioSystemConfigurationComponent>();
-           
+            var ecb = _commandBufferSystem.CreateCommandBuffer();
+            
+            if (audioSystemConfigurationComponent.IsDebug)
+            {
+                Debug.Log($"Update");
+            }
+     
+       
             // Iterate over the entities
             Entities
                 .ForEach((Entity entity, ref AudioComponent audioComponent) =>

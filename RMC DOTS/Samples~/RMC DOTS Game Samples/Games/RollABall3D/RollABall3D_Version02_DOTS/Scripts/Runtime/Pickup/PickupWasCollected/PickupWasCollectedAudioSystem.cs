@@ -1,14 +1,11 @@
-﻿using RMC.DOTS.Systems.Audio;
+﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.Audio;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Physics.Systems;
-using UnityEngine;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
-    [UpdateBefore(typeof(ExportPhysicsWorld))]
+    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct PickupWasCollectedAudioSystem : ISystem
     {
