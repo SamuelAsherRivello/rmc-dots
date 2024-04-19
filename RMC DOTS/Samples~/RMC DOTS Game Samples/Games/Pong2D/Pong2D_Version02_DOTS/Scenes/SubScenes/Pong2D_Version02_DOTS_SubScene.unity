@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 1263140878}
   - component: {fileID: 1263140877}
   - component: {fileID: 1263140876}
+  - component: {fileID: 1263140880}
   m_Layer: 0
   m_Name: Goal (1)
   m_TagString: Untagged
@@ -398,12 +399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 0
-  MemberOfLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  CollidesWithLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!65 &1263140877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -504,6 +499,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1263140880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263140874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5c42dce4224191acab0d4f06646a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MemberOfLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  CollidesWithLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1370772493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1225,6 +1238,7 @@ GameObject:
   - component: {fileID: 2079734271}
   - component: {fileID: 2079734270}
   - component: {fileID: 2079734269}
+  - component: {fileID: 2079734273}
   m_Layer: 0
   m_Name: Goal (2)
   m_TagString: Untagged
@@ -1260,12 +1274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerType: 1
-  MemberOfLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  CollidesWithLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!65 &2079734270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1366,6 +1374,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2079734273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2079734267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5c42dce4224191acab0d4f06646a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MemberOfLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  CollidesWithLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

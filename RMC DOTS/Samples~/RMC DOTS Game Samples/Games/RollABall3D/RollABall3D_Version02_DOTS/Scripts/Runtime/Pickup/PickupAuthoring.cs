@@ -10,9 +10,6 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
     /// </summary>
     public class PickupAuthoring : MonoBehaviour
     {
-        public LayerMask MemberOfLayerMask;
-        public LayerMask CollidesWithLayerMask;
-        
         public class PickupAuthoringBaker : Baker<PickupAuthoring>
         {
             public override void Bake(PickupAuthoring authoring)
@@ -20,14 +17,6 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                           
                 AddComponent<PickupTag>(entity);
-                
-                AddComponent<PhysicsTriggerComponent>(entity,
-                    new PhysicsTriggerComponent
-                    {
-                        MemberOfLayerMask = authoring.MemberOfLayerMask,
-                        CollidesWithLayerMask = authoring.CollidesWithLayerMask
-                    });
-
             }
         }
     }
