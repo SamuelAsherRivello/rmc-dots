@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 19101, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: PanelSettings3D
   m_EditorClassIdentifier: 
-  themeUss: {fileID: -4733365628477956816, guid: d81ff8cef4e6566408dcd7a8959b3aad, type: 3}
+  themeUss: {fileID: -4733365628477956816, guid: 1c6be560c2e7daa4f958b726a56813b4, type: 3}
   m_TargetTexture: {fileID: 0}
   m_ScaleMode: 2
   m_ReferenceSpritePixelsPerUnit: 100
@@ -35,4 +35,4 @@ MonoBehaviour:
   m_AtlasBlitShader: {fileID: 9101, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeShader: {fileID: 9100, guid: 0000000000000000f000000000000000, type: 0}
   m_RuntimeWorldShader: {fileID: 9102, guid: 0000000000000000f000000000000000, type: 0}
-  textSettings: {fileID: 11400000, guid: 1c9422e642beba9419f3bea076542ae9, type: 2}
+  textSettings: {fileID: 11400000, guid: da45a0f06d108f348b8294db411b84e7, type: 2}

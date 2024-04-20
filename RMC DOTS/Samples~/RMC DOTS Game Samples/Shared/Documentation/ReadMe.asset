@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36cf3b74950b299408cc642cd2423789, type: 3}
   m_Name: ReadMe
   m_EditorClassIdentifier: 
-  Title: Unity Dots 2D/3D Playground
+  Title: RMC DOTS Game Samples
   Icon: {fileID: 2800000, guid: da997c8ba50248944a8f07dceac48d75, type: 3}
   Sections:
   - TextHeading: Welcome
     TextSubheading: 
     TextBody: The source for this project is on GitHub.
-    LinkName: GitHub.com/SamuelAsherRivello/unity-dots-2d-3d-playground
-    LinkUrl: https://github.com/SamuelAsherRivello/unity-dots-2d-3d-playground
+    LinkName: GitHub.com/SamuelAsherRivello/rmc-dots/
+    LinkUrl: https://github.com/SamuelAsherRivello/rmc-dots/
     PingObjectName: 
     PingObjectGuid: 
     MenuItemName: 

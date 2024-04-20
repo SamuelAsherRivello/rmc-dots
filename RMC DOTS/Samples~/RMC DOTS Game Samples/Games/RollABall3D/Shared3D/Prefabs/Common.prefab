@@ -320,6 +320,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainUI
       objectReference: {fileID: 0}
+    - target: {fileID: 6444184920915571040, guid: 480407e16b2aa024dadf93af3f2410f0, type: 3}
+      propertyPath: sourceAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: c2361e10c15c5a54a9fdecfbb8639dc5, type: 3}
+    - target: {fileID: 6444184920915571040, guid: 480407e16b2aa024dadf93af3f2410f0, type: 3}
+      propertyPath: m_PanelSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f2b832eda3d37a47b19be44682bea3e, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

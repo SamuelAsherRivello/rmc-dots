@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Shared/Settings/UIToolkit/Uss/RollABallStyles.uss?fileID=7433441132597879392&amp;guid=3b602a5b224b9184aab28f428174ee3b&amp;type=3#RollABallStyles" />
+    <Style src="project://database/Assets/Samples/RMC%20DOTS/0.0.5/RMC%20DOTS%20Game%20Samples/Games/RollABall3D/Shared3D/Settings/UIToolkit/Uss/RollABallStyles.uss?fileID=7433441132597879392&amp;guid=6b17a1211c92b14478178bacedebd04f&amp;type=3#RollABallStyles" />
     <ui:VisualElement name="Screen" class="screen">
         <ui:VisualElement name="Content" class="content">
             <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0;">
