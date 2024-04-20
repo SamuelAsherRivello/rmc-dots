@@ -3,7 +3,7 @@
 
 <img width = "400" src="https://raw.githubusercontent.com/SamuelAsherRivello/rmc-core/main/RMC%20Core/Documentation~/com.rmc_namespace_logo.png" />
 
-# RMC Core
+# RMC DOTS
 
 - [How To Use](#how-to-use)
 - [Install](#install)
@@ -18,7 +18,7 @@
 
 ## How to use
 
-This is the **Core** library for Unity Development by Rivello Multimedia Consulting.
+This is the **DOTS** library for Unity Development by Rivello Multimedia Consulting.
 
 It includes functionality for audio, custom data types, reusable Unity UI elements, visual transitions, and more.
 
@@ -52,7 +52,7 @@ Or to edit the `Packages/manifest.json` directly with your favorite text editor,
     }
   ],
   "dependencies": {
-    "com.rmc.rmc-core": "1.3.5"
+    "com.rmc.rmc-dots": "1.4.3" //Use the latest "version" in the https://github.com/SamuelAsherRivello/rmc-dots/blob/main/package.json
   }
 }
 ```
@@ -73,7 +73,7 @@ Or to edit the `Packages/manifest.json` directly with your favorite text editor,
 ```json
 {
   "dependencies": {
-      "com.rmc.rmc-core": "https://github.com/SamuelAsherRivello/rmc-core.git"
+      "com.rmc.rmc-dots": "https://github.com/SamuelAsherRivello/rmc-dots.git"
   }
 }
 ```
@@ -90,7 +90,7 @@ Open `Packages/manifest.json` with your favorite text editor. Add following line
 {
   "dependencies": {
   },
-  "testables": [ "com.rmc.rmc-core" ]
+  "testables": [ "com.rmc.rmc-dots" ]
 }
 ```
 
