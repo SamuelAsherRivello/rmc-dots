@@ -22,9 +22,7 @@ namespace RMC.DOTS.Demos.PhysicsTriggerSystem
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            
             int timeFrameCount = UnityEngine.Time.frameCount;
-            int framesToWait = 2; //TODO: why not lower it to '0'? I guess this sysetm runs one frame after the last one?
             
             //Remove any existing tags
             foreach (var (playerTag, goalWasReachedTag, entity) in SystemAPI.Query<PlayerTag, PlayerWasTriggeredTag>().WithEntityAccess())

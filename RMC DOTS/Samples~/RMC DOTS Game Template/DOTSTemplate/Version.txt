@@ -1,9 +1,0 @@
-Overview:
-* This repo contains multiple versions of the "RollABall" game
-
-Approach:
-* Has Unity DOTS
-
-Features:
-* Has Unity UI Toolkit
-* Has Unity Input System
