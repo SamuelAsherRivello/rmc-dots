@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using RMC.DOTS.Systems.Input;
-using Unity.Burst;
-using Unity.Collections;
+﻿using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
@@ -14,27 +11,43 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
     [UpdateBefore(typeof(PhysicsSystemGroup))]
     public partial struct PaddleCPUMoveSystem : ISystem
     {
+        private ComponentLookup<LocalTransform> _localTransformLookup;
+        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<ProjectileTag>();
+            state.RequireForUpdate<PaddleCPUTag>();
+            _localTransformLookup = state.GetComponentLookup<LocalTransform>();
         }
 
         public void OnUpdate(ref SystemState state)
         {
-            // There may be more than one projectile, but we only need one
-            var firstProjectileTag = SystemAPI.QueryBuilder().WithAll<ProjectileTag>().Build().ToEntityArray(Allocator.Temp)[0];
-
-            //
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var localTransformHuman = state.EntityManager.GetComponentData<LocalTransform>(firstProjectileTag);
-;
-            foreach (var (velocity, localTransformCPU, mass, paddleMoveComponent) in 
-                     SystemAPI.Query<RefRW<PhysicsVelocity>, LocalTransform, PhysicsMass, PaddleMoveComponent>().WithAll<PaddleCPUTag>())
+            _localTransformLookup.Update(ref state);
+            float closestDistance = float.MaxValue;
+            
+            // Query for all projectiles
+            var projectileTagEntities = state.EntityManager.CreateEntityQuery(
+                ComponentType.ReadOnly<LocalTransform>(),
+                ComponentType.ReadOnly<ProjectileTag>()).ToEntityArray(Allocator.Temp);
+
+            // Loop through all cpuPaddles
+            foreach (var (velocity, cpuLocalTransform, paddleMoveComponent) in 
+                     SystemAPI.Query<RefRW<PhysicsVelocity>, LocalTransform, PaddleMoveComponent>().WithAll<PaddleCPUTag>())
             {
-                // How far away from target?
-                var deltaY = localTransformHuman.Position.y - localTransformCPU.Position.y;
+                // Find closests projectile
+                LocalTransform closestLocalTransform = new LocalTransform();
+                foreach (var projectileTagEntity in projectileTagEntities)
+                {
+                    var newDistance = math.distance(_localTransformLookup[projectileTagEntity].Position, cpuLocalTransform.Position);
+                    if (newDistance < closestDistance )
+                    {
+                        closestLocalTransform = _localTransformLookup[projectileTagEntity];
+                    }
+                }
                 
-                // Only move in the y
+                // Move towards closest projectile
+                var deltaY = closestLocalTransform.Position.y - cpuLocalTransform.Position.y;
                 float currentMoveInput = deltaY * paddleMoveComponent.Value * deltaTime;
                 velocity.ValueRW.Linear.y = velocity.ValueRW.Linear.x + currentMoveInput;
             }

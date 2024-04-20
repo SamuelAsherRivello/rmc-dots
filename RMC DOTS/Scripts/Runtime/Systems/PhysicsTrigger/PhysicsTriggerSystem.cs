@@ -29,7 +29,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
             var job = new PickupTriggerJob
             {
                 PhysicsTriggerComponentLookup = SystemAPI.GetComponentLookup<PhysicsTriggerComponent>(),
-                PhysicsTriggerOutputTagLookup = SystemAPI.GetComponentLookup<PhysicsTriggerOutputTag>(),
+                PhysicsTriggerOutputTagLookup = SystemAPI.GetComponentLookup<PhysicsTriggerOutputComponent>(),
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
                 TimeFrameCount = UnityEngine.Time.frameCount
             };
@@ -42,7 +42,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
     public struct PickupTriggerJob : ITriggerEventsJob
     {
         [ReadOnly] public ComponentLookup<PhysicsTriggerComponent> PhysicsTriggerComponentLookup;
-        [ReadOnly] public ComponentLookup<PhysicsTriggerOutputTag> PhysicsTriggerOutputTagLookup;
+        [ReadOnly] public ComponentLookup<PhysicsTriggerOutputComponent> PhysicsTriggerOutputTagLookup;
         [ReadOnly] public int TimeFrameCount;
         public EntityCommandBuffer ECB; 
         
@@ -103,8 +103,8 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
         { 
             // Handle enter 
             //Debug.Log($"PhysicsTriggerSystem theEntity=({theEntity.Index}) hitby theOtherEntity=({theOtherEntity.Index})");
-            ECB.AddComponent<PhysicsTriggerOutputTag>(theEntity,
-                new PhysicsTriggerOutputTag
+            ECB.AddComponent<PhysicsTriggerOutputComponent>(theEntity,
+                new PhysicsTriggerOutputComponent
                 {
                     TheEntity = theEntity, 
                     TheOtherEntity = theOtherEntity, 
@@ -120,8 +120,8 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
                 PhysicsTriggerType.Enter)
             {
                 //Debug.Log($"PhysicsTriggerSystem ({theEntity.Index}) Set1 To Stay on TimeFrameCount: {TimeFrameCount}");
-                ECB.SetComponent<PhysicsTriggerOutputTag>(theEntity,
-                    new PhysicsTriggerOutputTag
+                ECB.SetComponent<PhysicsTriggerOutputComponent>(theEntity,
+                    new PhysicsTriggerOutputComponent
                     {
                         TheEntity = theEntity,
                         TheOtherEntity = theOtherEntity,
@@ -133,8 +133,8 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
             else if ( PhysicsTriggerOutputTagLookup.GetRefRO(theEntity).ValueRO.PhysicsTriggerType == PhysicsTriggerType.Stay)
             {
                 //Debug.Log($"PhysicsTriggerSystem ({theEntity.Index}) Set2 To Stay on TimeFrameCount: {TimeFrameCount}");
-                ECB.SetComponent<PhysicsTriggerOutputTag>(theEntity,
-                    new PhysicsTriggerOutputTag
+                ECB.SetComponent<PhysicsTriggerOutputComponent>(theEntity,
+                    new PhysicsTriggerOutputComponent
                     {
                         TheEntity = theEntity,
                         TheOtherEntity = theOtherEntity,

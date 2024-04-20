@@ -1,7 +1,7 @@
 {
   "name": "com.rmc.rmc-dots",
   "displayName": "RMC DOTS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "unity": "2022.3",
   "description": "DOTS library for Unity Development by Rivello Multimedia Consulting",
   "keywords": [
@@ -37,9 +37,15 @@
       "path": "RMC DOTS/Samples~/RMC DOTS Game Samples"
     },
     {
-      "displayName": "RMC DOTS Game Template",
-      "description": "Game Template using the RMC DOTS library.",
-      "path": "RMC DOTS/Samples~/RMC DOTS Game Template"
+      "displayName": "RMC DOTS Game Templates",
+      "description": "Game Templates using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/RMC DOTS Game Templates"
+    }
+    ,
+    {
+      "displayName": "RMC DOTS Library Demos",
+      "description": "Feature-specific demos using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/RMC DOTS Library Demos"
     }
   ]
 }

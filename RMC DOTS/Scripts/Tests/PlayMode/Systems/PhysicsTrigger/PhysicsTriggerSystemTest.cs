@@ -33,7 +33,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
             UpdateSystem<PhysicsTriggerSystem>();
  
             // Assert that data is modified according to the test case
-            var hasComponent = Manager.HasComponent<PhysicsTriggerOutputTag>(entity);
+            var hasComponent = Manager.HasComponent<PhysicsTriggerOutputComponent>(entity);
             Assert.That(hasComponent, Is.False);
         }
     }

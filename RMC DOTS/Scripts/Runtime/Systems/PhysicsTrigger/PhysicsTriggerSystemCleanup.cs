@@ -21,26 +21,26 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
         {
             // Create a command buffer from the ECB system, which is specifically designed to be executed later
             var commandBuffer = _ecbSystem.CreateCommandBuffer();
-            var physicsTriggerOutputTagLookup = GetComponentLookup<PhysicsTriggerOutputTag>();
+            var physicsTriggerOutputTagLookup = GetComponentLookup<PhysicsTriggerOutputComponent>();
             int timeFrameCount = UnityEngine.Time.frameCount;
 
             int framesToWait = 10; //TODO: why not lower it to '1'? Theoretically that's good, but it triggers too fast
             
-            Entities.WithAll<PhysicsTriggerOutputTag>().ForEach((Entity entity) =>
+            Entities.WithAll<PhysicsTriggerOutputComponent>().ForEach((Entity entity) =>
             {
                 var physicsTriggerOutputTag = physicsTriggerOutputTagLookup.GetRefRO(entity);
                 if (physicsTriggerOutputTag.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Stay && 
                     physicsTriggerOutputTag.ValueRO.TimeFrameCountForLastCollision < timeFrameCount - framesToWait)
                 {
                     //Debug.Log($"PhysicsTriggerSystem ({entity.Index}) Set To Exit on TimeFrameCount: {timeFrameCount} and last was {physicsTriggerOutputTag.ValueRO.TimeFrameCountForLastCollision}");
-                    commandBuffer.SetComponent<PhysicsTriggerOutputTag>(entity, new PhysicsTriggerOutputTag
+                    commandBuffer.SetComponent<PhysicsTriggerOutputComponent>(entity, new PhysicsTriggerOutputComponent
                     {
                         TheEntity = physicsTriggerOutputTag.ValueRO.TheEntity,
                         TheOtherEntity = physicsTriggerOutputTag.ValueRO.TheOtherEntity,
                         PhysicsTriggerType = PhysicsTriggerType.Exit,
                         TimeFrameCountForLastCollision = physicsTriggerOutputTag.ValueRO.TimeFrameCountForLastCollision
                     });
-                    commandBuffer.RemoveComponent<PhysicsTriggerOutputTag>(entity);
+                    commandBuffer.RemoveComponent<PhysicsTriggerOutputComponent>(entity);
                 }
 
             }).Schedule(); // Schedule this job instead of running it immediately
