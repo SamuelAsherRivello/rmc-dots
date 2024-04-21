@@ -3,6 +3,7 @@ using RMC.DOTS.Systems.DestroyEntity;
 using RMC.DOTS.Systems.PhysicsTrigger;
 using Unity.Burst;
 using Unity.Entities;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
@@ -38,7 +39,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
                     physicsTriggerOutputTag.TimeFrameCountForLastCollision <= timeFrameCount - framesToWait)
                 { 
-                    //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
+                    Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<PickupWasCollectedTag>(entity);
                     ecb.AddComponent<DestroyEntityTag>(entity);
                   

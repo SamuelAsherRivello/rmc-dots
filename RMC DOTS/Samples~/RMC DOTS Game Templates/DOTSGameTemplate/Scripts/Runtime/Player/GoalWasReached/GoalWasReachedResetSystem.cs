@@ -1,4 +1,5 @@
 ﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.Player;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -12,6 +13,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
 

@@ -1,0 +1,27 @@
+{
+    "name": "RMC.DOTS.Demos.PhysicsTrigger.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8d0b5587a0a8ae741afbfe3a79c2872a",
+        "GUID:d28bf24cef16ed84cb4cb180b9c77ac3",
+        "GUID:330ce21097b4d554fa95a74295bc3b8f",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:5f3cf485eb0554709a8abbeace890c86",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

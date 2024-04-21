@@ -1,5 +1,6 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.PhysicsTrigger;
+using RMC.DOTS.Systems.Player;
 using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
         }
 

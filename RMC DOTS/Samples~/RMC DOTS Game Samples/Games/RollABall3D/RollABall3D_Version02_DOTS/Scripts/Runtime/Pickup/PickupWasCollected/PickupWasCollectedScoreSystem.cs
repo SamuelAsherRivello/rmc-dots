@@ -1,5 +1,4 @@
 ﻿using RMC.DOTS.SystemGroups;
-using RMC.DOTS.Systems.GameState;
 using RMC.DOTS.Systems.Scoring;
 using Unity.Burst;
 using Unity.Entities;

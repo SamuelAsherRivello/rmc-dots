@@ -1,4 +1,5 @@
 ﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.GameState;
 using Unity.Burst;
 using Unity.Entities;
 
@@ -10,6 +11,7 @@ namespace RMC.DOTS.Systems.DestroyEntity
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<GameStateSystemAuthoring.GameStateSystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
 

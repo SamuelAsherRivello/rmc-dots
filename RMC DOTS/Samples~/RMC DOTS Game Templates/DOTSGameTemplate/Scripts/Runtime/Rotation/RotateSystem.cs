@@ -12,6 +12,8 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            state.RequireForUpdate<RotateSystemAuthoring.RotateSystemIsEnabledTag>();
+            
             // Although we get deltaTime in a different way than in Unity MonoBehaviours, it still works the same
             float deltaTime = SystemAPI.Time.DeltaTime;
             

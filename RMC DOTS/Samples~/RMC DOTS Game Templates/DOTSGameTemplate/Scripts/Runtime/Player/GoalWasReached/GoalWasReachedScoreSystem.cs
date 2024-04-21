@@ -1,4 +1,5 @@
 ﻿using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.Player;
 using RMC.DOTS.Systems.Scoring;
 using Unity.Burst;
 using Unity.Entities;
@@ -14,6 +15,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<ScoringComponent>();
             _pickupQuery = SystemAPI.QueryBuilder().WithAll<PlayerTag,GoalWasReachedTag>().Build();
         }
