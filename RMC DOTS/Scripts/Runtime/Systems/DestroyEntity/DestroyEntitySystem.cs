@@ -2,6 +2,7 @@
 using RMC.DOTS.Systems.GameState;
 using Unity.Burst;
 using Unity.Entities;
+using UnityEngine;
 
 namespace RMC.DOTS.Systems.DestroyEntity
 {
@@ -11,7 +12,7 @@ namespace RMC.DOTS.Systems.DestroyEntity
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<GameStateSystemAuthoring.GameStateSystemIsEnabledTag>();
+            state.RequireForUpdate<DestroyEntitySystemAuthoring.DestroyEntitySystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
 
@@ -21,12 +22,18 @@ namespace RMC.DOTS.Systems.DestroyEntity
             var ecb = SystemAPI.
                 GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
+
+            var deltaTime = SystemAPI.Time.DeltaTime;
             
-            foreach (var (destroyEntityTag, entity) in SystemAPI.Query<RefRO<DestroyEntityTag>>().WithEntityAccess())
+            foreach (var (destroyEntityComponent, entity) in SystemAPI.Query<RefRW<DestroyEntityComponent>>().WithEntityAccess())
             {
-                // This command doesn't immediately destroy the entity. Rather it schedules the deletion of the entity
-                // for later and Unity does the actual destruction when the commands of this ECB are played back.
-                ecb.DestroyEntity(entity);
+                destroyEntityComponent.ValueRW.TimeTillDestroyInSeconds -= deltaTime;
+                if (destroyEntityComponent.ValueRW.TimeTillDestroyInSeconds <= 0)
+                {
+                    // This command doesn't immediately destroy the entity. Rather it schedules the deletion of the entity
+                    // for later and Unity does the actual destruction when the commands of this ECB are played back.
+                    ecb.DestroyEntity(entity);
+                }
             }
         }
     }

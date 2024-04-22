@@ -25,12 +25,8 @@ namespace RMC.DOTS.Demos.PhysicsTrigger
         {
             // Get the number of entities we picked up this frame.
             var pickupsThisFrame = _pickupQuery.CalculateEntityCount();
-            Debug.Log("pickupsThisFrame: " + pickupsThisFrame);
             if(pickupsThisFrame <= 0) return;
-            
-            Debug.Log("Hit");
-            
-
+            Debug.Log("Hit! with pickupsThisFrame = " + pickupsThisFrame);
         }
     }
 }
