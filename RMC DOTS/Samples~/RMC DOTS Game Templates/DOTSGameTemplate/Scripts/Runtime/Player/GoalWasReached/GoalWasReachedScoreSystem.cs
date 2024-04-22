@@ -17,20 +17,18 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         {
             state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<ScoringComponent>();
-            _pickupQuery = SystemAPI.QueryBuilder().WithAll<PlayerTag,GoalWasReachedTag>().Build();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            // Get the number of entities we picked up this frame.
-            var pickupsThisFrame = _pickupQuery.CalculateEntityCount();
-            if(pickupsThisFrame <= 0) return;
-            
-            var pickupCounter = SystemAPI.GetSingleton<ScoringComponent>();
-            pickupCounter.ScoreComponent01.ScoreCurrent += pickupsThisFrame;
-            SystemAPI.SetSingleton(pickupCounter);
-
+            foreach (var (playerTag, goalWasReached) in 
+                     SystemAPI.Query<PlayerTag, GoalWasReachedTag>())
+            {
+                var pickupCounter = SystemAPI.GetSingleton<ScoringComponent>();
+                pickupCounter.ScoreComponent01.ScoreCurrent += 1;
+                SystemAPI.SetSingleton(pickupCounter);
+            }
         }
     }
 }

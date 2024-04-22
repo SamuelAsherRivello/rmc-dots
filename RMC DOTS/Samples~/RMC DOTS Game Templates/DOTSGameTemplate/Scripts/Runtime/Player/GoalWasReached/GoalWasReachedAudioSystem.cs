@@ -13,14 +13,14 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
-            state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
-                GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>().
+                GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (playerTag, goalWasReachedTag, entity) in SystemAPI.Query<PlayerTag, GoalWasReachedTag>().WithEntityAccess())

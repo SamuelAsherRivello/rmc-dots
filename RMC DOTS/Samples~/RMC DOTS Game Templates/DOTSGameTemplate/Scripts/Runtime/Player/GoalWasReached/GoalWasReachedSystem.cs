@@ -25,7 +25,9 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             
             
             int timeFrameCount = UnityEngine.Time.frameCount;
-            int framesToWait = 2; //TODO: why not lower it to '0'? I guess this sysetm runs one frame after the last one?
+            
+            //KLUGE: Still the PhysicsTriggerSystem is not right. So we need to wait a few frames
+            int framesToWait = 5; 
             
             //Remove any existing tags
             foreach (var (playerTag, goalWasReachedTag, entity) in SystemAPI.Query<PlayerTag, GoalWasReachedTag>().WithEntityAccess())
@@ -36,7 +38,8 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             
             foreach (var (playerTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PlayerTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
             {
-                if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter)
+                if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
+                    timeFrameCount > physicsTriggerOutputTag.TimeFrameCountForLastCollision + framesToWait)
                 { 
                     Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<GoalWasReachedTag>(entity);

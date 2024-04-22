@@ -42,7 +42,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                 ecb.RemoveComponent<ProjectileHasHitGoalComponent>(entity);
                 
                 // DESTROY
-                ecb.AddComponent<DestroyEntityTag>(entity);
+                ecb.AddComponent<DestroyEntityComponent>(entity);
             }
             
             // The frame DURING PhysicsTriggerOutputComponent

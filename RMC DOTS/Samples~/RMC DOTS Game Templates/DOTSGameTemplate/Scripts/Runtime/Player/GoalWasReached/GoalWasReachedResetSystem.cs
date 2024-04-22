@@ -14,7 +14,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
-            state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
         }
 
         [BurstCompile]

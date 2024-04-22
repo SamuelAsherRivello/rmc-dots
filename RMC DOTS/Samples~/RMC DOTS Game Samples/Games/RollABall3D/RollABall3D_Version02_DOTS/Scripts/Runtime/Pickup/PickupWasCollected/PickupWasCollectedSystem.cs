@@ -41,7 +41,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 { 
                     Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<PickupWasCollectedTag>(entity);
-                    ecb.AddComponent<DestroyEntityTag>(entity);
+                    ecb.AddComponent<DestroyEntityComponent>(entity);
                   
                 }
             }
