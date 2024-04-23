@@ -10,13 +10,13 @@
 	"upm",
 	"rmc",
 	"utility",
-  "dots",
-  "burst",
-  "ecs",
-  "jobs"
+	"dots",
+	"burst",
+	"ecs",
+	"jobs"
   ],
   "dependencies": {
-	"com.rmc.rmc-core" : "1.4.2",
+	"com.rmc.rmc-core" : "1.4.2"
   },
   "manually-add-these-in-unity-dependencies": {
 	"com.rmc.rmc-core" : "1.4.2",
