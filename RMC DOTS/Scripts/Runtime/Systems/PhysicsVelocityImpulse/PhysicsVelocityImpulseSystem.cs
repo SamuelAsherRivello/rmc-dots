@@ -22,7 +22,7 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
             state.RequireForUpdate<PhysicsVelocityImpulseComponent>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             
-            state.RequireForUpdate<RandomComponentAuthoring.RandomSystemIsEnabledTag>();
+            state.RequireForUpdate<RandomSystemAuthoring.RandomSystemIsEnabledTag>();
             state.RequireForUpdate<RandomComponent>();
         }
 
@@ -50,6 +50,7 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
 
                 float3 mathematicsFloat3 = ConversionUtility.ToMathmaticsFloat3(forceVector3);
 
+                Debug.Log("Move by : " + mathematicsFloat3);
                 velocity.ValueRW.ApplyLinearImpulse(in mass.ValueRO, mathematicsFloat3);
                 ecb.RemoveComponent<PhysicsVelocityImpulseComponent>(entity);
             }

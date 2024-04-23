@@ -31,9 +31,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 
             _goalComponentLookup.Update(ref state);
  
-            int timeFrameCount = UnityEngine.Time.frameCount;
-            int framesToWait = 1; //TODO: why not lower it to '0'? I guess this sysetm runs one frame after the last one?
-            
             // The frame AFTER PhysicsTriggerOutputComponent
             // Cleanup collision locally
             foreach (var (projectileTag, projectileHasScoredTag, entity) in SystemAPI.Query<ProjectileTag, ProjectileHasHitGoalComponent>().WithEntityAccess())
@@ -50,7 +47,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             foreach (var (projectileTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<ProjectileTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
             {
                 if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= timeFrameCount - framesToWait)
+                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= Time.frameCount - PhysicsTriggerOutputComponent.FramesToWait)
                 {
                    // Debug.Log($"GamePickup ({entity.Index}) Set To ADD on TimeFrameCount: {Time.frameCount}");
                     var goalComponent = _goalComponentLookup.GetRefRO(physicsTriggerOutputTag.TheOtherEntity);

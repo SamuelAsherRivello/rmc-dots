@@ -25,20 +25,19 @@ namespace RMC.DOTS.Demos.PhysicsTrigger
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            int timeFrameCount = UnityEngine.Time.frameCount;
-            
             //Remove any existing tags
             foreach (var (playerTag, goalWasReachedTag, entity) in SystemAPI.Query<PlayerTag, PlayerWasTriggeredTag>().WithEntityAccess())
             {
-                Debug.Log($"GamePickup ({entity.Index}) Set To REMOVE on TimeFrameCount: {Time.frameCount}");
+                //Debug.Log($"GamePickup ({entity.Index}) Set To REMOVE on TimeFrameCount: {Time.frameCount}");
                 ecb.RemoveComponent<PlayerWasTriggeredTag>(entity);
             }
             
             foreach (var (playerTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PlayerTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
             {
-                if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter)
+                if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
+                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= Time.frameCount - PhysicsTriggerOutputComponent.FramesToWait)
                 { 
-                    Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
+                    //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<PlayerWasTriggeredTag>(entity);
                 }
             }

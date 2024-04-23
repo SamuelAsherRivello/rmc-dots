@@ -4,7 +4,12 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Random
 {
-    public class RandomComponentAuthoring : MonoBehaviour
+    
+    /// <summary>
+    /// NOTE: This does not have a SYSTEM per se, but I like the naming this way.
+    /// It has instead, just a component and tag that UNRELATED systems check for
+    /// </summary>
+    public class RandomSystemAuthoring : MonoBehaviour
     {
         [SerializeField] 
         public bool IsSystemEnabled = true;
@@ -15,9 +20,9 @@ namespace RMC.DOTS.Systems.Random
         
         public struct RandomSystemIsEnabledTag : IComponentData {}
         
-        public class RandomComponentAuthoringBaker : Baker<RandomComponentAuthoring>
+        public class RandomComponentAuthoringBaker : Baker<RandomSystemAuthoring>
         {
-            public override void Bake(RandomComponentAuthoring authoring)
+            public override void Bake(RandomSystemAuthoring authoring)
             {
                 if (authoring.IsSystemEnabled)
                 {

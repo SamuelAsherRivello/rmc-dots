@@ -24,9 +24,6 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 CreateCommandBuffer(state.WorldUnmanaged);
             
             
-            int timeFrameCount = UnityEngine.Time.frameCount;
-            int framesToWait = 1; //TODO: why not lower it to '0'? I guess this sysetm runs one frame after the last one?
-            
             //Remove any existing tags
             foreach (var (pickupTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PickupTag, PickupWasCollectedTag>().WithEntityAccess())
             {
@@ -37,9 +34,9 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
             foreach (var (pickupTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PickupTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
             {
                 if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= timeFrameCount - framesToWait)
+                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= Time.frameCount - PhysicsTriggerOutputComponent.FramesToWait)
                 { 
-                    Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
+                    //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<PickupWasCollectedTag>(entity);
                     ecb.AddComponent<DestroyEntityComponent>(entity);
                   

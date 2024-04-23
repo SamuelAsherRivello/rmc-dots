@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 1985194065}
   - component: {fileID: 1985194066}
   m_Layer: 0
-  m_Name: RandomComponentAuthoring
+  m_Name: RandomSystemAuthoring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

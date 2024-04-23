@@ -153,6 +153,6 @@ MonoBehaviour:
   CollidesWithLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  IsSupportNegative: 0
-  MinLinearImpulse: {x: 10, y: 10, z: 0}
-  MaxLinearImpulse: {x: 15, y: 15, z: 0}
+  CanBeNegative: 1
+  MinForce: {x: 11, y: 11, z: 0}
+  MaxForce: {x: 11, y: 11, z: 0}
