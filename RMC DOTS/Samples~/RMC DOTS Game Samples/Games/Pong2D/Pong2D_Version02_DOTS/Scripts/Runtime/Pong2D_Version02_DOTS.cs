@@ -2,9 +2,9 @@ using System.Threading.Tasks;
 using RMC.Core.Audio;
 using RMC.DOTS.Systems.GameState;
 using RMC.DOTS.Systems.Scoring;
-using RMC.DOTS.Systems.Spawner;
 using RMC.DOTS.Utilities;
 using RMC.DOTS.Samples.Pong2D.Shared;
+using RMC.DOTS.Systems.Spawn;
 using Unity.Entities;
 using Unity.Scenes;
 using UnityEngine;
@@ -53,7 +53,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         private bool IsDebug = false;
         
         private GameStateSystem _gameStateSystem;
-        private SpawnerSystem _spawnerSystem;
+        private SpawnSystem spawnSystem;
         private ScoringSystem _scoringSystem;
 
         private World _ecsWorld;
@@ -74,7 +74,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             _scoringSystem.OnScoresChanged += ScoresEventSystem_OnScoresChanged;
 
             // Spawner
-            _spawnerSystem = _ecsWorld.GetExistingSystemManaged<SpawnerSystem>();
+            spawnSystem = _ecsWorld.GetExistingSystemManaged<SpawnSystem>();
      
             // UI
             _common.MainUI.OnRestartRequest.AddListener(MainUI_OnRestartRequest);
@@ -144,9 +144,9 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                     _gameStateSystem.GameState = GameState.RoundStarted;
                     break;
                 case GameState.RoundStarted:
-                    if (_spawnerSystem.CanSpawn)
+                    if (spawnSystem.CanSpawn)
                     {
-                        _spawnerSystem.Spawn(new SpawnerRequestComponent
+                        spawnSystem.Spawn(new SpawnRequestComponent
                         {
                             Position = new Vector3 (0,0,0)
                         });

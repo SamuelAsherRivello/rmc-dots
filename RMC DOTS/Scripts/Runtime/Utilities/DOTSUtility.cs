@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Unity.Entities;
-using Unity.Entities.Serialization;
 using Unity.Scenes;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace RMC.DOTS.Utilities

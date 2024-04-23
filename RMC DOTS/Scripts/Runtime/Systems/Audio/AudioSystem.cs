@@ -1,4 +1,5 @@
-﻿using RMC.Core.Audio;
+﻿using System;
+using RMC.Core.Audio;
 using RMC.DOTS.SystemGroups;
 using Unity.Entities;
 using UnityEngine;
@@ -45,7 +46,16 @@ namespace RMC.DOTS.Systems.Audio
                     {
                         Debug.Log($"Playing audio: {audioComponent.AudioClipName.Value}");
                     }
-                    AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value);
+
+                    try
+                    {
+                        AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError("AudioManager Exception: " + e.Message);
+                    }
+                    
                     ecb.RemoveComponent<AudioComponent>(entity);
                     
                 }).WithoutBurst().Run();

@@ -1,7 +1,7 @@
 ﻿using RMC.DOTS.Systems.PhysicsTrigger;
+using RMC.DOTS.Systems.PhysicsVelocityImpulse;
 using Unity.Entities;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
@@ -12,9 +12,9 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         public LayerMask CollidesWithLayerMask;
         
         [Header("ApplyLinearImpulse System")]
-        public bool IsSupportNegative = true;
-        public Vector3 MinLinearImpulse = new Vector3(1,1, 0);
-        public Vector3 MaxLinearImpulse = new Vector3(1,1, 0);
+        public bool CanBeNegative = true;
+        public Vector3 MinForce = new Vector3(1,1, 0);
+        public Vector3 MaxForce = new Vector3(1,1, 0);
     }
 
     public class ProjectileBaker : Baker<ProjectileAuthoring>
@@ -23,38 +23,21 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         {
             Entity entity = GetEntity(TransformUsageFlags.Dynamic);
             AddComponent<ProjectileTag>(entity);
-            
-            Vector3 linearImpulse = new Vector3(
-                GenerateRandomComponent(
-                    authoring.MinLinearImpulse.x, 
-                    authoring.MaxLinearImpulse.x, 
-                    authoring.IsSupportNegative),
-                GenerateRandomComponent(
-                    authoring.MinLinearImpulse.y, 
-                    authoring.MaxLinearImpulse.y, 
-                    authoring.IsSupportNegative),
-                GenerateRandomComponent(
-                    authoring.MinLinearImpulse.z, 
-                    authoring.MaxLinearImpulse.z, 
-                    authoring.IsSupportNegative)
-            );
 
-            AddComponent(entity, new ApplyLinearImpulseComponent { Value = linearImpulse });
-    
-            
+            AddComponent<PhysicsVelocityImpulseComponent>(entity,
+                new PhysicsVelocityImpulseComponent
+                {
+                    CanBeNegative = authoring.CanBeNegative,
+                    MinForce = authoring.MinForce,
+                    MaxForce = authoring.MaxForce
+                });
+
             AddComponent<PhysicsTriggerComponent>(entity,
                 new PhysicsTriggerComponent
                 {
                     MemberOfLayerMask = authoring.MemberOfLayerMask,
                     CollidesWithLayerMask = authoring.CollidesWithLayerMask
                 });
-        }
-
-        private float GenerateRandomComponent(float min, float max, bool isSupportNegative)
-        {
-            float magnitude = Random.Range(min, max);
-            bool isNegative = isSupportNegative && Random.Range(0, 2) == 0; 
-            return isNegative ? -magnitude : magnitude;
         }
     }
 }
