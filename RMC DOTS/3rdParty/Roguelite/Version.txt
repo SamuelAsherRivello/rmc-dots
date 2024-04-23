@@ -1,6 +1,0 @@
-Source Url: 
-* https://github.com/AlexMerzlikin/UnityEntities-AutomatedTests-Sample/
-
-Changelog: 
-* (Maybe) remove some unneeded files
-* Moved to \Assets\...\3rdParty
