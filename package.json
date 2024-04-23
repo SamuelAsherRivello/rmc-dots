@@ -1,7 +1,7 @@
 {
   "name": "com.rmc.rmc-dots",
   "displayName": "RMC DOTS",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "unity": "2022.3",
   "description": "DOTS library for Unity Development by Rivello Multimedia Consulting",
   "keywords": [
@@ -17,17 +17,6 @@
   ],
   "dependencies": {
 	"com.rmc.rmc-core" : "1.4.2"
-  },
-  "manually-add-these-in-unity-dependencies": {
-	"com.rmc.rmc-core" : "1.4.2",
-	"com.unity.entities.graphics" : "1.0.16",
-	"com.unity.entities" : "1.0.16",
-	"com.unity.burst" : "1.8.13 ",
-	"com.unity.collections" : "2.1.4",
-	"com.unity.render-pipelines.universal" : "14.0.11",
-	"com.unity.mathematics", "1.2.6",
-	"com.unity.inputsystem" : "1.7.0",
-	"com.unity.ugui" : "1.0.0"
   },
   "homepage": "https://github.com/SamuelAsherRivello/rmc-dots.git",
   "bugs": {
