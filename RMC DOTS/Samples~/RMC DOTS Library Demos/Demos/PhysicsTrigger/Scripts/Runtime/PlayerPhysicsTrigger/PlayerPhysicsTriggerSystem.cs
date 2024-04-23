@@ -20,7 +20,7 @@ namespace RMC.DOTS.Demos.PhysicsTrigger
             _pickupQuery = SystemAPI.QueryBuilder().WithAll<PlayerTag, PlayerWasTriggeredTag>().Build();
         }
 
-        [BurstCompile]
+        //No burst sice I'm using an implicit toString in my Debug.Log
         public void OnUpdate(ref SystemState state)
         {
             // Get the number of entities we picked up this frame.

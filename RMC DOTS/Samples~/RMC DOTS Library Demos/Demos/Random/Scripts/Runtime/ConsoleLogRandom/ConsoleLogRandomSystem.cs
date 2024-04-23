@@ -22,7 +22,7 @@ namespace RMC.DOTS.Demos.Random.ConsoleLogRandom
             TempCounter = 0;
         }
 
-        [BurstCompile]
+        //No burst sice I'm using an implicit toString in my Debug.Log
         public void OnUpdate(ref SystemState state)
         {
             var randomComponentEntity = SystemAPI.GetSingletonEntity<RandomComponent>();
