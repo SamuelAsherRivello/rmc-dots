@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using RMC.Core.Audio;
+using RMC.Audio;
 using RMC.DOTS.Systems.GameState;
 using RMC.DOTS.Systems.Scoring;
 using RMC.DOTS.Utilities;

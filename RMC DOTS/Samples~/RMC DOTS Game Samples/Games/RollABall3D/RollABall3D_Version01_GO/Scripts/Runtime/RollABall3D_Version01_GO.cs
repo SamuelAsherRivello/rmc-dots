@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using RMC.Core.Audio;
+using RMC.Audio;
 using RMC.DOTS.Samples.RollABall3D.Shared;
 using RMCDotsInputActionNamespace;
 using UnityEngine;
