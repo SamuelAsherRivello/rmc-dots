@@ -14,7 +14,7 @@ namespace RMC.DOTS.Systems.GameState
         
         public struct GameStateSystemIsEnabledTag : IComponentData {}
         
-        public class GameStateBaker : Baker<GameStateSystemAuthoring>
+        public class GameStateSystemBaker : Baker<GameStateSystemAuthoring>
         {
             public override void Bake(GameStateSystemAuthoring systemAuthoring)
             {
