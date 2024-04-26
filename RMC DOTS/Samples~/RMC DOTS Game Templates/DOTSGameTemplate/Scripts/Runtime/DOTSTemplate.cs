@@ -57,6 +57,26 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         //  Unity Methods  --------------------------------
         protected async void Start()
         {
+            //Make sure the project has layers set properly
+            var playerName = "Player";
+            var playerIndexCurrent = LayerMask.NameToLayer(playerName);
+            var playerIndexRequired = 6;
+
+            if (playerIndexCurrent != playerIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {playerIndexRequired} to be '{playerName}'.");
+            }
+            
+            var goalName = "Goal";
+            var goalIndexCurrent = LayerMask.NameToLayer(goalName);
+            var goalIndexRequired = 9;
+
+            if (goalIndexCurrent != goalIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {goalIndexRequired} to be '{goalName}'.");
+            }
+            
+            // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 
             // Game State

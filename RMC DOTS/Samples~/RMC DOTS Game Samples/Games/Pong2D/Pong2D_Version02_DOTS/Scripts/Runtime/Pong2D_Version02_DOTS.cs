@@ -61,6 +61,26 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         //  Unity Methods  --------------------------------
         protected async void Start()
         {
+            //Make sure the project has layers set properly
+            var projectileName = "Projectile";
+            var projectileIndexCurrent = LayerMask.NameToLayer(projectileName);
+            var projectileIndexRequired = 8;
+
+            if (projectileIndexCurrent != projectileIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {projectileIndexRequired} to be '{projectileName}'.");
+            }
+            
+            var goalName = "Goal";
+            var goalIndexCurrent = LayerMask.NameToLayer(goalName);
+            var goalIndexRequired = 9;
+
+            if (goalIndexCurrent != goalIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {goalIndexRequired} to be '{goalName}'.");
+            }
+            
+            // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 
             // Game State

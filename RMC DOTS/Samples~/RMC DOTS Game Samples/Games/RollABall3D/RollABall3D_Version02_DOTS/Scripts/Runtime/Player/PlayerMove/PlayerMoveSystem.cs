@@ -25,18 +25,36 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         {
             // First get the current input value from the PlayerMoveInput component. This component is set in the
             // GetPlayerInputSystem that runs earlier in the frame.
-            float2 inputComponentMove = SystemAPI.GetSingleton<InputComponent>().Move;
+            float2 move = SystemAPI.GetSingleton<InputComponent>().Move;
+            float2 look = SystemAPI.GetSingleton<InputComponent>().Look;
             float deltaTime = SystemAPI.Time.DeltaTime;
+            float2 moveComposite = float2.zero;
+            
+            // Here we support EITHER look or move to move around
+            // Prioritize MOVE, if no MOVE is set, then use look
+            if (move.x != 0)
+            {
+                moveComposite.x = move.x;
+            }
+            else
+            {
+                moveComposite.x = look.x;
+            }
 
-            // Although there is only one player in the game world, we still define systems as if we were executing over
-            // a group of players. Inside this idiomatic foreach, we apply force to the player based off the current
-            // move input and the force strength.
-            foreach (var (velocity, mass, moveForce) in 
+            if (move.y != 0)
+            {
+                moveComposite.y =  move.y;
+            }
+            else
+            {
+                moveComposite.y = look.y;
+            }
+            
+            foreach (var (physicsVelocity, mass, playerMoveComponent) in 
                      SystemAPI.Query<RefRW<PhysicsVelocity>,PhysicsMass, PlayerMoveComponent>().WithAll<PlayerTag>())
             {
-                float3 moveInput3d = new float3(inputComponentMove.x, 0f, inputComponentMove.y);
-                float3 currentMoveInput = moveInput3d * moveForce.Value * deltaTime;
-                velocity.ValueRW.ApplyLinearImpulse(in mass, currentMoveInput);
+                float3 moveComposite3D = new float3(moveComposite.x, 0f, moveComposite.y) * (deltaTime * playerMoveComponent.Value);
+                physicsVelocity.ValueRW.ApplyLinearImpulse(in mass, moveComposite3D);
             }
         }
     }

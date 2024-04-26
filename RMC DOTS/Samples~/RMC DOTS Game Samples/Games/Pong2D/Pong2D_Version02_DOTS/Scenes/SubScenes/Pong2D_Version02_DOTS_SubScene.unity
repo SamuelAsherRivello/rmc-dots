@@ -604,10 +604,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
 --- !u!1 &1370772493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1524,10 +1524,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 256
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

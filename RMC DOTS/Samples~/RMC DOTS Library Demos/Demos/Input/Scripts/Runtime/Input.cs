@@ -8,6 +8,7 @@ namespace RMC.DOTS.Demos.Input
         protected void Start()
         {
             Debug.Log("Input Demo. Use arrow keys to move.");
+
         }
     }
 }

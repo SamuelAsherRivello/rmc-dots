@@ -21,8 +21,14 @@ namespace RMC.DOTS.Systems.Input
 
         protected override void OnUpdate()
         {
-            Vector2 playerMoveInput = _rmcDotsInputAction.Standard.Move.ReadValue<Vector2>();
-            SystemAPI.SetSingleton(new InputComponent { Move = playerMoveInput });
+            SystemAPI.SetSingleton(
+                new InputComponent
+                {
+                    Move = _rmcDotsInputAction.Standard.Move.ReadValue<Vector2>(),
+                    Look = _rmcDotsInputAction.Standard.Look.ReadValue<Vector2>(),
+                    Action1 = _rmcDotsInputAction.Standard.Action1.IsPressed(),
+                    Action2 = _rmcDotsInputAction.Standard.Action2.IsPressed()
+                });
         }
     }
 }

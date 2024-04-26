@@ -4,21 +4,20 @@ using RMC.DOTS.Systems.Player;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
-using UnityEngine;
+using Unity.Physics;
+using Unity.Physics.Extensions;
 
-namespace RMC.DOTS.Demos.Input
+namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    [BurstCompile]
+    /// <summary>
+    /// This system moves the player in 3D space.
+    /// </summary>
     [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
-        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<PlayerMoveSystemAuthoring.PlayerMoveSystemIsEnabledTag>();
             state.RequireForUpdate<InputComponent>();
-            
         }
 
         [BurstCompile]
@@ -29,7 +28,6 @@ namespace RMC.DOTS.Demos.Input
             float2 move = SystemAPI.GetSingleton<InputComponent>().Move;
             float2 look = SystemAPI.GetSingleton<InputComponent>().Look;
             float deltaTime = SystemAPI.Time.DeltaTime;
-            float multiplier = 10f;
             float2 moveComposite = float2.zero;
             
             // Here we support EITHER look or move to move around
@@ -51,13 +49,12 @@ namespace RMC.DOTS.Demos.Input
             {
                 moveComposite.y = look.y;
             }
-             
-            // Loop through all players. Move each
-            foreach (var localTransform in 
-                     SystemAPI.Query<RefRW<LocalTransform>>().WithAll<PlayerTag>())
+            
+            foreach (var (physicsVelocity, mass, playerMoveComponent) in 
+                     SystemAPI.Query<RefRW<PhysicsVelocity>,PhysicsMass, PlayerMoveComponent>().WithAll<PlayerTag>())
             {
-                localTransform.ValueRW.Position.x += moveComposite.x * (deltaTime * multiplier);
-                localTransform.ValueRW.Position.z += moveComposite.y * (deltaTime * multiplier);
+                float3 moveComposite3D = new float3(moveComposite.x, 0f, moveComposite.y) * (deltaTime * playerMoveComponent.Value);
+                physicsVelocity.ValueRW.ApplyLinearImpulse(in mass, moveComposite3D);
             }
         }
     }

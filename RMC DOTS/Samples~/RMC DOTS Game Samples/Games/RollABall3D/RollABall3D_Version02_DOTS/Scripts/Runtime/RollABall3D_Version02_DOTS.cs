@@ -58,6 +58,26 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         //  Unity Methods  --------------------------------
         protected async void Start()
         {
+            //Make sure the project has layers set properly
+            var playerName = "Player";
+            var playerIndexCurrent = LayerMask.NameToLayer(playerName);
+            var playerIndexRequired = 6;
+
+            if (playerIndexCurrent != playerIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {playerIndexRequired} to be '{playerName}'.");
+            }
+            
+            var pickupName = "Pickup";
+            var pickupIndexCurrent = LayerMask.NameToLayer(pickupName);
+            var pickupIndexRequired = 7;
+
+            if (pickupIndexCurrent != pickupIndexRequired)
+            {
+                Debug.Log($"LayerMask failed. Must set Layer {pickupIndexRequired} to be '{pickupName}'.");
+            }
+            
+            // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 
             // Game State

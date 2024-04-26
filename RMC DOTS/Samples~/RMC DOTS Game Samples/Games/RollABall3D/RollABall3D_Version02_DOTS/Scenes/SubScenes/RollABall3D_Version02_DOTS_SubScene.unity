@@ -1476,10 +1476,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!65 &1535103198781836437
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1544,10 +1544,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!54 &1595757792512350425
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1711,10 +1711,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
 --- !u!114 &1595757792512350436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1791,10 +1791,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!65 &1799974725487586352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1995,10 +1995,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!23 &2164273666026434707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2157,10 +2157,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!4 &2531862161484313402
 Transform:
   m_ObjectHideFlags: 0
@@ -2449,10 +2449,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!54 &2870685621814594093
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2523,10 +2523,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!54 &2957341238397316333
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2706,10 +2706,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!33 &3465807237584622645
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2889,10 +2889,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!65 &4663230611700336597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3072,10 +3072,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!65 &6507408694181100263
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3255,10 +3255,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!54 &6993958944624095650
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3465,10 +3465,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

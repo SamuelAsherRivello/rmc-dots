@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    public class MoveSystemAuthoring : MonoBehaviour
+    public class PlayerMoveSystemAuthoring : MonoBehaviour
     {
         [SerializeField] 
         public bool IsSystemEnabled = true;
         
         public struct MoveSystemIsEnabledTag : IComponentData {}
         
-        public class MoveSystemAuthoringBaker : Baker<MoveSystemAuthoring>
+        public class PlayerMoveSystemAuthoringBaker : Baker<PlayerMoveSystemAuthoring>
         {
-            public override void Bake(MoveSystemAuthoring authoring)
+            public override void Bake(PlayerMoveSystemAuthoring authoring)
             {
                 if (authoring.IsSystemEnabled)
                 {

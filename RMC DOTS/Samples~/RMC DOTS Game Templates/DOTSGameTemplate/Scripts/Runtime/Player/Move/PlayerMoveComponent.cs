@@ -2,7 +2,7 @@
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    public struct MoveComponent : IComponentData
+    public struct PlayerMoveComponent : IComponentData
     {
         public float Value;
     }
