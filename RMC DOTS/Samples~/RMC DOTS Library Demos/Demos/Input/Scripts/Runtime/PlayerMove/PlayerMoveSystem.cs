@@ -26,8 +26,8 @@ namespace RMC.DOTS.Demos.Input
         {
             // First get the current input value from the PlayerMoveInput component. This component is set in the
             // GetPlayerInputSystem that runs earlier in the frame.
-            float2 move = SystemAPI.GetSingleton<InputComponent>().Move;
-            float2 look = SystemAPI.GetSingleton<InputComponent>().Look;
+            float2 move = SystemAPI.GetSingleton<InputComponent>().MoveFloat2;
+            float2 look = SystemAPI.GetSingleton<InputComponent>().LookFloat2;
             float deltaTime = SystemAPI.Time.DeltaTime;
             float multiplier = 10f;
             float2 moveComposite = float2.zero;

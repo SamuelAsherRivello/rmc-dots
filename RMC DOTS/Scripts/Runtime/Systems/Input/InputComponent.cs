@@ -11,10 +11,19 @@ namespace RMC.DOTS.Systems.Input
     /// </summary>
     public struct InputComponent : IComponentData
     {
-        public float2 Move;
-        public float2 Look;
-        public bool Action1;
-        public bool Action2;
+        //WASD or LEFT STICK
+        public float2 MoveFloat2;
+        
+        //ARROWS or RIGHT STICK
+        public float2 LookFloat2;
+        
+        //SPACE or SOUTH BUTTON
+        public bool IsPressedAction1;
+        public bool WasPressedThisFrameAction1;
+        
+        //RETURN or EAST BUTTON
+        public bool IsPressedAction2;
+        public bool WasPressedThisFrameAction2;
     }
 }
 #endif //ENABLE_INPUT_SYSTEM

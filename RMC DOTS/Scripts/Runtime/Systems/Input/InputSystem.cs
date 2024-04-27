@@ -24,10 +24,12 @@ namespace RMC.DOTS.Systems.Input
             SystemAPI.SetSingleton(
                 new InputComponent
                 {
-                    Move = _rmcDotsInputAction.Standard.Move.ReadValue<Vector2>(),
-                    Look = _rmcDotsInputAction.Standard.Look.ReadValue<Vector2>(),
-                    Action1 = _rmcDotsInputAction.Standard.Action1.IsPressed(),
-                    Action2 = _rmcDotsInputAction.Standard.Action2.IsPressed()
+                    MoveFloat2 = _rmcDotsInputAction.Standard.Move.ReadValue<Vector2>(),
+                    LookFloat2 = _rmcDotsInputAction.Standard.Look.ReadValue<Vector2>(),
+                    IsPressedAction1 = _rmcDotsInputAction.Standard.Action1.IsPressed(),
+                    IsPressedAction2 = _rmcDotsInputAction.Standard.Action2.IsPressed(),
+                    WasPressedThisFrameAction1 = _rmcDotsInputAction.Standard.Action1.WasPressedThisFrame(),
+                    WasPressedThisFrameAction2 = _rmcDotsInputAction.Standard.Action2.WasPressedThisFrame()
                 });
         }
     }

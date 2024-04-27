@@ -25,8 +25,8 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         {
             // First get the current input value from the PlayerMoveInput component. This component is set in the
             // GetPlayerInputSystem that runs earlier in the frame.
-            float2 move = SystemAPI.GetSingleton<InputComponent>().Move;
-            float2 look = SystemAPI.GetSingleton<InputComponent>().Look;
+            float2 move = SystemAPI.GetSingleton<InputComponent>().MoveFloat2;
+            float2 look = SystemAPI.GetSingleton<InputComponent>().LookFloat2;
             float deltaTime = SystemAPI.Time.DeltaTime;
             float2 moveComposite = float2.zero;
             
