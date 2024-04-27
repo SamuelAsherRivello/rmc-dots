@@ -1,0 +1,20 @@
+{
+    "name": "RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8d0b5587a0a8ae741afbfe3a79c2872a",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:f009690ad5ed404499d073cbc2a9bad6",
+        "GUID:330ce21097b4d554fa95a74295bc3b8f",
+        "GUID:fdfc9daf6d9a5ba478d4cb5160c7c8c8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

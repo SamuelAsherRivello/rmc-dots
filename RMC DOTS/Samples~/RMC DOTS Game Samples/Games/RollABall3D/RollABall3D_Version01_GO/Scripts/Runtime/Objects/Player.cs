@@ -20,6 +20,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
         public readonly PickupUnityEvent OnPickup = new PickupUnityEvent();
 
         //  Properties ------------------------------------
+        public Rigidbody Rigidbody { get { return _rigidBody;}}
         
         //  Fields ----------------------------------------
 
@@ -35,7 +36,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
         //  Methods ---------------------------------------
         public void Move(Vector3 movement)
         {
-            _rigidBody.AddForce (movement * _speed);
+            _rigidBody.AddForce (movement * (_speed * Time.deltaTime));
         }
         
         

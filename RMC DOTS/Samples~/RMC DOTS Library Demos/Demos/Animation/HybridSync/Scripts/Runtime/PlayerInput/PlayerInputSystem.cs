@@ -1,5 +1,6 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Input;
+using RMC.DOTS.Systems.Player;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -9,7 +10,7 @@ using UnityEngine;
 namespace RMC.DOTS.Demos.HybridSync
 {
     [UpdateInGroup(typeof(PauseableSystemGroup))]
-    public partial struct SetCustomCharacterInputSystem : ISystem
+    public partial struct PlayerInputSystem : ISystem 
     {
         //NOTE: Its not good practice to store state on a system
         private int _triggerIndex;
@@ -87,7 +88,7 @@ namespace RMC.DOTS.Demos.HybridSync
             foreach (var (localTransform, entity) in
                      SystemAPI.Query<RefRO<LocalTransform>>().
                          WithNone<HybridSyncInputComponent>().
-                         WithAll<HybridSyncAnimatorReferenceComponent>().WithEntityAccess())
+                         WithAll<HybridSyncAnimatorReferenceComponent, PlayerTag>().WithEntityAccess())
              {
                  ecb.AddComponent<HybridSyncInputComponent>(entity);
              }
@@ -95,12 +96,10 @@ namespace RMC.DOTS.Demos.HybridSync
              ecb.Dispose();
              
              
-             
-             
             // Loop through all players. Update HybridSyncInputComponent on each
             foreach (var (toHybridSyncInputComponent, fromHybridSyncAnimatorReferenceComponent) in
                      SystemAPI.Query<RefRW<HybridSyncInputComponent>, HybridSyncAnimatorReferenceComponent>().
-                         WithAll<LocalTransform>())
+                         WithAll<LocalTransform, PlayerTag>())
             {
                 
                 // Keyframes

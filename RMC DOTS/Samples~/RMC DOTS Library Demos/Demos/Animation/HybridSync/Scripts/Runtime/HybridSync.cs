@@ -7,8 +7,7 @@ namespace RMC.DOTS.Demos.HybridSync
         //  Initialization --------------------------------
         protected void Start()
         {
-            Debug.Log("HybridSync Demo. Use arrow keys to move. Use spacebar to change animations.");
-
+            Debug.Log("HybridSync Demo. Use arrow keys to move & Spacebar/Enter to change animations.");
         }
     }
 }

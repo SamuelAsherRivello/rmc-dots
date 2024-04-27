@@ -119,7 +119,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                     if (_gameStateSystem.GameState == GameState.RoundStarted ||
                         _gameStateSystem.GameState == GameState.GameEnded)
                     {
-                        Debug.Log("TODO: Restart from UI not from mouse.");
+                        Debug.Log("TODO: Restart from UI not from mouse. And then show 'Are you sure?' dialog.");
                         MainUI_OnRestartConfirm();
                     }
                 }

@@ -1,0 +1,12 @@
+Overview:
+* This repo contains multiple versions of the "Pong" game
+
+Approach:
+* Has Unity DOTS
+
+Features:
+* Has Unity UI Toolkit
+* Has Unity Input System
+
+3rd Party:
+* Art inspiration by https://www.youtube.com/watch?v=lG_T2_arXLY

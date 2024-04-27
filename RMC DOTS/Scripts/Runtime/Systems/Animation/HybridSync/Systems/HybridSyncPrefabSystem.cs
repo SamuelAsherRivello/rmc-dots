@@ -18,8 +18,12 @@ namespace RMC.DOTS.Demos.HybridSync
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             
+            
+            //Add HybridSyncAnimatorReferenceComponent
             foreach (var (playerGameObjectPrefab, entity) in 
-                     SystemAPI.Query<HybridSyncPrefabComponent>().WithNone<HybridSyncAnimatorReferenceComponent>().WithEntityAccess())
+                     SystemAPI.Query<HybridSyncPrefabComponent>().
+                         WithNone<HybridSyncAnimatorReferenceComponent>().
+                         WithEntityAccess())
             {
                 var newCompanionGameObject =
                     Object.Instantiate(playerGameObjectPrefab.Prefab, 
@@ -33,9 +37,11 @@ namespace RMC.DOTS.Demos.HybridSync
                 ecb.AddComponent(entity, newAnimatorReference);
             } 
             
+            //Remove HybridSyncAnimatorReferenceComponent
             foreach (var (animatorReference, entity) in 
-                     SystemAPI.Query<HybridSyncAnimatorReferenceComponent>().WithNone<HybridSyncPrefabComponent, LocalTransform>()
-                         .WithEntityAccess())
+                     SystemAPI.Query<HybridSyncAnimatorReferenceComponent>().
+                         WithNone<HybridSyncPrefabComponent, LocalTransform>().
+                         WithEntityAccess())
             {
                 Object.Destroy(animatorReference.Value.gameObject);
                 ecb.RemoveComponent<HybridSyncAnimatorReferenceComponent>(entity);

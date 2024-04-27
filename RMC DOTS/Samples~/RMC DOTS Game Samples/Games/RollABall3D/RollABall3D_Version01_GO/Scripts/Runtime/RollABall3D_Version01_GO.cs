@@ -29,7 +29,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
             set
             {
                 __isGamePaused = value;
-                _player.GetComponent<Rigidbody>().isKinematic = __isGamePaused || __isGameOver;
+                _player.Rigidbody.isKinematic = __isGamePaused || __isGameOver;
             }
         }
         
@@ -42,7 +42,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
             set
             {
                 __isGameOver = value;
-                _player.GetComponent<Rigidbody>().isKinematic = __isGameOver || __isGamePaused;
+                _player.Rigidbody.isKinematic = __isGameOver || __isGamePaused;
             }
         }
         
@@ -61,7 +61,8 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
         /// but for consistency across demos, we use it here in the non-DOTS version too.
         /// </summary>
         private RMCDotsInputAction _rmcDotsInputAction;
-        
+
+        private Vector3 _playerMovement;
         private int _score = 0;
         private int _scoreMax = 0;
         
@@ -117,9 +118,20 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version01_GO
             }
             
             // Read the current input via our custom input asset
+            // Use WASD, or if no input, use Arrow Keys
             Vector2 playerMoveInput = _rmcDotsInputAction.Standard.Move.ReadValue<Vector2>();
-            Vector3 movement = new Vector3(playerMoveInput.x, 0.0f, playerMoveInput.y) * Time.deltaTime;
-            _player.Move(movement);
+            if (playerMoveInput.magnitude == 0)
+            {
+                playerMoveInput = _rmcDotsInputAction.Standard.Look.ReadValue<Vector2>();
+            }
+            
+            _playerMovement = new Vector3(playerMoveInput.x, 0.0f, playerMoveInput.y);
+        }
+
+        
+        protected void FixedUpdate()
+        {
+            _player.Move(_playerMovement);
         }
 
 
