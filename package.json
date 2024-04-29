@@ -1,52 +1,56 @@
 {
   "name": "com.rmc.rmc-dots",
   "displayName": "RMC DOTS",
-  "version": "0.8.3",
+  "version": "0.8.5",
   "unity": "2022.3",
   "description": "DOTS library for Unity Development by Rivello Multimedia Consulting",
   "keywords": [
-	"unity",
-	"unity3d",
-	"upm",
-	"rmc",
-	"utility",
-	"dots",
-	"burst",
-	"ecs",
-	"jobs"
+    "unity",
+    "unity3d",
+    "upm",
+    "rmc",
+    "utility",
+    "dots",
+    "burst",
+    "ecs",
+    "jobs"
   ],
   "dependencies": {
-	"com.rmc.rmc-readme": "1.2.2"
+    "com.rmc.rmc-readme": "1.2.2"
   },
   "homepage": "https://github.com/SamuelAsherRivello/rmc-dots.git",
   "bugs": {
-	"url": "https://github.com/SamuelAsherRivello/rmc-dots/issues"
+    "url": "https://github.com/SamuelAsherRivello/rmc-dots/issues"
   },
   "repository": {
-	"type": "git",
-	"url": "git+ssh://git@github.com/SamuelAsherRivello/rmc-dots.git"
+    "type": "git",
+    "url": "git+ssh://git@github.com/SamuelAsherRivello/rmc-dots.git"
   },
   "license": "MIT",
   "author": "rmc (github.com/SamuelAsherRivello)",
   "scripts": {
-	"test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "samples": [
     {
-      "displayName": "RMC DOTS Game Samples",
+      "displayName": "1. RMC DOTS Lessons",
       "description": "Games using the RMC DOTS library.",
-      "path": "RMC DOTS/Samples~/RMC DOTS Game Samples"
+      "path": "RMC DOTS/Samples~/1. RMC DOTS Lessons"
     },
     {
-      "displayName": "RMC DOTS Game Templates",
-      "description": "Game Templates using the RMC DOTS library.",
-      "path": "RMC DOTS/Samples~/RMC DOTS Game Templates"
-    }
-    ,
-    {
-      "displayName": "RMC DOTS Library Demos",
+      "displayName": "2. RMC DOTS Library Demos",
       "description": "Feature-specific demos using the RMC DOTS library.",
-      "path": "RMC DOTS/Samples~/RMC DOTS Library Demos"
+      "path": "RMC DOTS/Samples~/2. RMC DOTS Library Demos"
+    },
+    {
+      "displayName": "3. RMC DOTS Game Samples",
+      "description": "Games using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/3. RMC DOTS Game Samples"
+    },
+    {
+      "displayName": "4. RMC DOTS Game Templates",
+      "description": "Game Templates using the RMC DOTS library.",
+      "path": "RMC DOTS/Samples~/4. RMC DOTS Game Templates"
     }
   ]
 }
