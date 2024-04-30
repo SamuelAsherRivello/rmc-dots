@@ -34,7 +34,7 @@
   "samples": [
     {
       "displayName": "1. RMC DOTS Lessons",
-      "description": "Games using the RMC DOTS library.",
+      "description": "DOTS fundamental learning lessons using the RMC DOTS library.",
       "path": "RMC DOTS/Samples~/1. RMC DOTS Lessons"
     },
     {
@@ -44,12 +44,12 @@
     },
     {
       "displayName": "3. RMC DOTS Game Samples",
-      "description": "Games using the RMC DOTS library.",
+      "description": "Game samples using the RMC DOTS library.",
       "path": "RMC DOTS/Samples~/3. RMC DOTS Game Samples"
     },
     {
       "displayName": "4. RMC DOTS Game Templates",
-      "description": "Game Templates using the RMC DOTS library.",
+      "description": "Game templates using the RMC DOTS library.",
       "path": "RMC DOTS/Samples~/4. RMC DOTS Game Templates"
     }
   ]
