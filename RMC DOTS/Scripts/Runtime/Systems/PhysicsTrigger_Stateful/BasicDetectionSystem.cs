@@ -34,7 +34,7 @@ namespace Events
                     switch (collisionEvent.State) 
                     {
                         case StatefulEventState.Enter:
-                            DebugStatefulTriggerEvent(state, entity, i, collisionEvent);
+                            DebugStatefulTriggerEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Stay:
                             break;
@@ -55,7 +55,7 @@ namespace Events
                     switch (collisionEvent.State) 
                     {  
                         case StatefulEventState.Enter:
-                            DebugStatefulCollisionEvent(state, entity, i, collisionEvent);
+                            DebugStatefulCollisionEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Stay:
                             break;
@@ -67,7 +67,7 @@ namespace Events
             
         }
 
-        private void DebugStatefulTriggerEvent(SystemState state, Entity entity, int i, 
+        private void DebugStatefulTriggerEvent(ref SystemState state, Entity entity, int i, 
             StatefulTriggerEvent collisionEvent)
         {
             Debug.Log($"({collisionEvent.GetType().Name}) E: {entity}, i : {i}, f : {FrameCountSystem.FrameCount}, " +
@@ -76,7 +76,7 @@ namespace Events
                       $"S : {collisionEvent.State}");
         }
 
-        private void DebugStatefulCollisionEvent(SystemState state, Entity entity, int i,
+        private void DebugStatefulCollisionEvent(ref SystemState state, Entity entity, int i,
             StatefulCollisionEvent collisionEvent)
         {
             Debug.Log($"({collisionEvent.GetType().Name}) E: {entity}, i : {i}, f : {FrameCountSystem.FrameCount}, " +
