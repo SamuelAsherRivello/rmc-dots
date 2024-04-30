@@ -1,4 +1,4 @@
-[![npm package](https://img.shields.io/npm/v/com.rmc.rmc-core)](https://www.npmjs.com/package/com.rmc.rmc-core)
+[![npm package](https://img.shields.io/npm/v/com.rmc.rmc-dots)](https://www.npmjs.com/package/com.rmc.rmc-dots)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 <BR>
 <BR>
