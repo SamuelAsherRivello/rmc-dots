@@ -1,5 +1,15 @@
-[![npm package](https://img.shields.io/npm/v/com.rmc.rmc-core)](https://www.npmjs.com/package/com.rmc.rmc-core)
+[![npm package](https://img.shields.io/npm/v/com.rmc.rmc-dots)](https://www.npmjs.com/package/com.rmc.rmc-dots)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+<BR>
+<BR>
+<BR>
+
+> [!WARNING]  
+> Due to an issue with NPM.js, currently you must install the package below with the [Or Via Git URL](#or-via-git-url) technique.
+
+<BR>
+<BR>
+<BR>
 
 <img width = "400" src="https://raw.githubusercontent.com/SamuelAsherRivello/rmc-core/main/RMC%20Core/Documentation~/com.rmc_namespace_logo.png" />
 
