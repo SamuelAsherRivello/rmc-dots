@@ -7,13 +7,14 @@ namespace RMC.DOTS.Systems.FrameCount
     /// available from any scope.
     /// </summary>
     [UpdateInGroup(typeof(PresentationSystemGroup), OrderLast = true), BurstCompile]
-    partial struct FrameCountSystem : ISystem
+    public partial struct FrameCountSystem : ISystem
     {
         sealed class SharedFrameCount
         {
             internal static readonly SharedStatic<int> Ref = SharedStatic<int>.GetOrCreate<SharedFrameCount>();
         }
 
+        
         public static int FrameCount
         {
             get => SharedFrameCount.Ref.Data;
