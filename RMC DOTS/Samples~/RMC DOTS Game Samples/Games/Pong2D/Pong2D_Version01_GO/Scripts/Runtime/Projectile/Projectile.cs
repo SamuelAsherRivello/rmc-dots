@@ -18,11 +18,15 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
 
         //  Properties ------------------------------------
         public Rigidbody Rigidbody { get { return _rigidBody;}}
+        public PauseableRigidBody PauseableRigidBody { get { return _pauseableRigidBody;}}
         
         //  Fields ----------------------------------------
         [SerializeField] 
         private Rigidbody _rigidBody;
 
+        [SerializeField] 
+        private PauseableRigidBody _pauseableRigidBody;
+        
         [SerializeField] 
         private float _speed = 10;
         

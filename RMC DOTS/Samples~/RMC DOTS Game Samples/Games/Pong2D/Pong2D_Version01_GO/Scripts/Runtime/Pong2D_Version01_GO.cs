@@ -163,25 +163,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
 
         protected void Update()
         {
-             
-            //TODO: Remove this hack after fixing UI. UI Does not take input currently
-            if (Input.GetMouseButtonDown(0))
-            {
-                var screenPercentageX = Input.mousePosition.x / Screen.width;
-                var screenPercentageY = Input.mousePosition.y / Screen.height;
-                if (screenPercentageX > 0.65f && screenPercentageY > 0.80f)
-                {
-                    if (_gameState == GameState.RoundStarted ||
-                        _gameState == GameState.GameEnded)
-                    {
-                        Debug.Log("TODO: Restart from UI not from mouse. And then show 'Are you sure?' dialog.");
-                        MainUI_OnRestartConfirm();
-                    }
-                }
-            }
-            
-            
-            
+
             if (IsGameOver || IsGamePaused)
             {
                 return;
@@ -230,17 +212,22 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
             _paddleHuman.Move(_paddleHumanMovement);
             _paddleCPU.Move(_paddleCPUMovement);
         }
-
+    
+        
         
         //  Methods ---------------------------------------
         private void RefreshIsKinematic()
         {
-            _paddleHuman.Rigidbody.isKinematic = __isGamePaused || __isGameOver;
-            _paddleCPU.Rigidbody.isKinematic = __isGamePaused || __isGameOver;
+            bool isKinematic = __isGamePaused || __isGameOver;
+            
+            // Toggle isKinematic. This 'forgets' the last velocity and that is ok
+            _paddleHuman.Rigidbody.isKinematic = isKinematic;
+            _paddleCPU.Rigidbody.isKinematic = isKinematic;
 
             foreach (var projectiles in _projectiles)
             {
-                projectiles.Rigidbody.isKinematic = __isGamePaused || __isGameOver;
+                // Toggle IsPaused. This does not 'forget' the last velocity. Its important.
+                projectiles.PauseableRigidBody.IsPaused = isKinematic;
             }
         }
 
@@ -378,7 +365,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
         {
             IsGamePaused = false;
             IsGameOver = false;
-            
             
             AudioManager.Instance.PlayAudioClip("Click01");
 

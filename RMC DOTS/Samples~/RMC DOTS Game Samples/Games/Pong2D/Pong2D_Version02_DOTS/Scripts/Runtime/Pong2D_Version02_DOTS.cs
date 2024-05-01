@@ -107,25 +107,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
          
         }
 
-        protected void Update()
-        {
-            //TODO: Remove this hack after fixing UI. UI Does not take input currently
-            if (Input.GetMouseButtonDown(0))
-            {
-                var screenPercentageX = Input.mousePosition.x / Screen.width;
-                var screenPercentageY = Input.mousePosition.y / Screen.height;
-                if (screenPercentageX > 0.65f && screenPercentageY > 0.80f)
-                {
-                    if (_gameStateSystem.GameState == GameState.RoundStarted ||
-                        _gameStateSystem.GameState == GameState.GameEnded)
-                    {
-                        Debug.Log("TODO: Restart from UI not from mouse. And then show 'Are you sure?' dialog.");
-                        MainUI_OnRestartConfirm();
-                    }
-                }
-          
-            }
-        }
 
         protected void OnDestroy()
         {
