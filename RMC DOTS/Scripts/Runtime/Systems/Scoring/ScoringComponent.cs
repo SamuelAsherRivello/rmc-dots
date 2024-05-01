@@ -12,7 +12,7 @@ namespace RMC.DOTS.Systems.Scoring
         
         public override string ToString()
         {
-            return $"ScoreComponent: ScoreCurrent: {ScoreCurrent}, ScoreMax: {ScoreMax}";
+            return $"[ScoreComponent (ScoreCurrent: {ScoreCurrent}, ScoreMax: {ScoreMax})]";
         }
     }
     
@@ -28,7 +28,7 @@ namespace RMC.DOTS.Systems.Scoring
 
         public override string ToString()
         {
-            return $"ScoringComponent: ScoreComponent01: {ScoreComponent01}, ScoreComponent02: {ScoreComponent02}";
+            return $"[ScoringComponent (ScoreComponent01: {ScoreComponent01}, ScoreComponent02: {ScoreComponent02})]";
         }
     }
 }

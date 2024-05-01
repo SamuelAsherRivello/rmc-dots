@@ -176,9 +176,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2543956454327474802}
-  - component: {fileID: 660695131337864220}
+  - component: {fileID: 6987096313485777510}
   m_Layer: 0
-  m_Name: UITextureProjection
+  m_Name: ClickableUIRenderTexture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3106041980533014860}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &660695131337864220
+--- !u!114 &6987096313485777510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7298143390141897900}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55bf96d6f2861ce478255fabc87d0ddd, type: 3}
+  m_Script: {fileID: 11500000, guid: d42278bef16ad4245ad0de8bba7873af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_TargetCamera: {fileID: 7299876590250531826}

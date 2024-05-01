@@ -91,7 +91,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             
             // Scoring
             _scoringSystem = _ecsWorld.GetExistingSystemManaged<ScoringSystem>();
-            _scoringSystem.OnScoresChanged += ScoresEventSystem_OnScoresChanged;
+            _scoringSystem.OnScoringComponentChanged += ScoresEventSystem_OnScoresChanged;
 
             // Spawner
             spawnSystem = _ecsWorld.GetExistingSystemManaged<SpawnSystem>();

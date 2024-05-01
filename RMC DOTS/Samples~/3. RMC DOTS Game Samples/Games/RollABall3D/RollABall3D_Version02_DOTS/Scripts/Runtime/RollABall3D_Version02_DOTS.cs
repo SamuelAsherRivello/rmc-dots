@@ -88,7 +88,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 
             // Scoring
             ScoringSystem scoringSystem = _ecsWorld.GetExistingSystemManaged<ScoringSystem>();
-            scoringSystem.OnScoresChanged += ScoresEventSystem_OnScoresChanged;
+            scoringSystem.OnScoringComponentChanged += ScoresEventSystem_OnScoresChanged;
 
             // UI
             _common.MainUI.OnRestartRequest.AddListener(MainUI_OnRestartRequest);

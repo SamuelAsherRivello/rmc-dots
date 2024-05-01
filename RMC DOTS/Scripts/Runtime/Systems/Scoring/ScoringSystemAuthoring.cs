@@ -22,6 +22,7 @@ namespace RMC.DOTS.Systems.Scoring
                         ScoreComponent01 = new ScoreComponent {ScoreCurrent = 0, ScoreMax = authoring.ScoreMax},
                         ScoreComponent02 = new ScoreComponent {ScoreCurrent = 0, ScoreMax = authoring.ScoreMax}
                     });
+                Debug.Log("set");
             }
         }
     }

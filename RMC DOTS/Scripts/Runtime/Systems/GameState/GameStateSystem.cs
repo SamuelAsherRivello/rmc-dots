@@ -4,6 +4,10 @@ using Unity.Entities;
 
 namespace RMC.DOTS.Systems.GameState
 {
+    /// <summary>
+    /// This system offers a GameObject-friendy way to
+    /// subscribe to, get, and set the GameState.
+    /// </summary>
     [UpdateInGroup(typeof(UnpauseableSystemGroup))]
     public partial class GameStateSystem : SystemBase
     {
@@ -75,9 +79,13 @@ namespace RMC.DOTS.Systems.GameState
         protected override void OnCreate()
         {
             RequireForUpdate<GameStateSystemAuthoring.GameStateSystemIsEnabledTag>();
+
         }
-        
-        protected override void OnUpdate() { }
+
+        protected override void OnUpdate()
+        {
+            //Nothing needed here
+        }
 
 
     }

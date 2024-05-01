@@ -1,6 +1,7 @@
 ﻿using System;
 using RMC.DOTS.SystemGroups;
 using Unity.Entities;
+using UnityEngine;
 
 namespace RMC.DOTS.Systems.Scoring
 {
@@ -8,16 +9,38 @@ namespace RMC.DOTS.Systems.Scoring
     [RequireMatchingQueriesForUpdate]
     public partial class ScoringSystem : SystemBase
     {
-        public Action<ScoringComponent> OnScoresChanged;
-        public ScoringComponent ScoringComponent { get; private set; }
+        
+        public Action<ScoringComponent> OnScoringComponentChanged;
+
+        public ScoringComponent ScoringComponent
+        {
+            get
+            {
+                // In rare cases, (first frame of scene) there is no singleton yet
+                return SystemAPI.GetSingleton<ScoringComponent>();
+            }
+            set
+            {
+                SystemAPI.SetSingleton<ScoringComponent>(value);
+                OnScoringComponentChanged?.Invoke(value);
+            }
+        }
+        
+        protected override void OnCreate()
+        {
+            RequireForUpdate<ScoringComponent>();
+        }
         
         protected override void OnUpdate()
         {
-            foreach (var scoringComponent in SystemAPI.Query<ScoringComponent>().WithChangeFilter<ScoringComponent>())
+            // Listen for changes and broadcast it
+            foreach (var scoringComponent 
+                     in SystemAPI.Query<RefRO<ScoringComponent>>().WithChangeFilter<ScoringComponent>())
             {
-                ScoringComponent = scoringComponent;
-                OnScoresChanged?.Invoke(ScoringComponent);
+                ScoringComponent = scoringComponent.ValueRO;
             }
         }
+
+
     }
 }
