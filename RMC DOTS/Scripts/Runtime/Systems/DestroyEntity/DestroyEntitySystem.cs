@@ -1,8 +1,6 @@
 ﻿using RMC.DOTS.SystemGroups;
-using RMC.DOTS.Systems.GameState;
 using Unity.Burst;
 using Unity.Entities;
-using UnityEngine;
 
 namespace RMC.DOTS.Systems.DestroyEntity
 {
