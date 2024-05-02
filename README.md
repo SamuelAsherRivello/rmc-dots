@@ -5,8 +5,8 @@
 
 |                                                           | Includes<BR>Library  | Includes<BR>Library   | Includes<BR>Unity Project  | More<BR>Info  |
 |------------------------------------------------------------|--------------------|------------------------|----------------------------|---------------|
-| RMC DOTS Library & Examples (Includes Unity Project)       | ✔️                 | ✔️                    | ✔️                         | See [rmc-dots-examples](https://github.com/SamuelAsherRivello/rmc-dots-examples/)     |
-| RMC DOTS Library & Examples (Includes NO Unity Project)    | ✔️                 | ✔️                    | ❌                         | See below    |
+| RMC DOTS Library & Examples<BR>(Includes Unity Project)       | ✔️                 | ✔️                    | ✔️                         | See [rmc-dots-examples](https://github.com/SamuelAsherRivello/rmc-dots-examples/)     |
+| RMC DOTS Library & Examples<BR>(Includes NO Unity Project)    | ✔️                 | ✔️                    | ❌                         | See below    |
 
 
 
