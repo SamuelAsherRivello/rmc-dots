@@ -1,7 +1,7 @@
 [![npm package](https://img.shields.io/npm/v/com.rmc.rmc-dots)](https://www.npmjs.com/package/com.rmc.rmc-dots)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-# RMC DOTS Library 
+# RMC DOTS Library & Examples (Includes **NO** Unity Project)
 
 This repo contains the RMC DOTS Library. Its ready to be imported into **your** Unity Project
 
