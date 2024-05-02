@@ -15,22 +15,22 @@ Or if you want a complete, empty Unity Project with all Unity ECS packages alrea
 1. Open the Unity Hub
 1. Create a new Unity Project. Any template with URP is acceptable
 1. Open the Unity Project
-1. Open the Unity Package Manager Window
+1. Open the Unity Package Manager Window. NOTE: Some of the following may already be imported. If so, leave it as-is.
 1. Add **Unity** Packages...
-  * Add Package for "com.unity.inputsystem"
-  * Add Package for "com.unity.ugui"
-  * Add Package for "com.unity.textmeshpro"
+    1. Add Package for "com.unity.inputsystem"
+    1. Add Package for "com.unity.ugui"
+    1. Add Package for "com.unity.textmeshpro"
 1. Add **Unity** Packages for ECS...
-  * Add Package for "com.unity.render-pipelines.universal"
-  * Add Package for "com.unity.entities.graphics"
-  * Add Package for "com.unity.physics"
+    1. Add Package for "com.unity.render-pipelines.universal"
+    1. Add Package for "com.unity.entities.graphics"
+    1. Add Package for "com.unity.physics"
 1. Add **RMC** Packages...
-  * Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-readme.git"
-  * Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-dots.git"
+    1. Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-readme.git"
+    1. Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-dots.git"
 
 ### (Optional) RMC DOTS Library Examples
 1. Follow the steps above
-2. To import the RMC Dots Library examples, see [ReadMe](./Unity/Assets/ReadMe.txt)
+1. To import the RMC Dots Library examples, see [ReadMe](./Unity/Assets/ReadMe.txt)
 
 <img src="https://media.githubusercontent.com/media/SamuelAsherRivello/rmc-dots/486cbed228c68b64493305ee12d7faa39a2fbc98/RMC%20DOTS/Documentation/Images/rmc-dots-examples-screenshot.jpg" width = "400px" />
 
