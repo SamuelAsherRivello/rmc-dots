@@ -1,7 +1,8 @@
 [![npm package](https://img.shields.io/npm/v/com.rmc.rmc-dots)](https://www.npmjs.com/package/com.rmc.rmc-dots)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-# RMC DOTS Library & Examples (Includes **NO** Unity Project)
+# RMC DOTS Library & Examples
+## (Includes **NO** Unity Project)
 
 |                                                           | Includes<BR>Library  | Includes<BR>Library   | Includes<BR>Unity Project  | More<BR>Info  |
 |------------------------------------------------------------|--------------------|------------------------|----------------------------|---------------|
