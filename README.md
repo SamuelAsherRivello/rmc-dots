@@ -3,9 +3,8 @@
 
 # RMC DOTS Library & Examples (Includes **NO** Unity Project)
 
-This repo contains the RMC DOTS Library. Its ready to be imported into **your** Unity Project
-
-Or if you want a complete, empty Unity Project with all Unity ECS packages already added and the RMC DOTS Library package already added, see [https://github.com/SamuelAsherRivello/rmc-dots-examples/](https://github.com/SamuelAsherRivello/rmc-dots-examples/). This is the **fastest** way to create a new Unity Dots Project.
+1. This repo contains **only** RMC DOTS Library. It does not include a Unity Project. Import it into your Unity Project with the instructions below.
+2. Or if you want a RMC DOTS Library & Examples (That includes a Unity Project), see [https://github.com/SamuelAsherRivello/rmc-dots-examples/](https://github.com/SamuelAsherRivello/rmc-dots-examples/). This is the **fastest** way to create a new Unity Dots Project.
 
 ## Setup Instructions
 
