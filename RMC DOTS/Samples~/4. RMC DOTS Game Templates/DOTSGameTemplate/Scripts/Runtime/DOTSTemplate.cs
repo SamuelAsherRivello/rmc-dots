@@ -87,7 +87,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 
             // Scoring
             ScoringSystem scoringSystem = _ecsWorld.GetExistingSystemManaged<ScoringSystem>();
-            scoringSystem.OnScoresChanged += ScoresEventSystem_OnScoresChanged;
+            scoringSystem.OnScoringComponentChanged += ScoresEventSystem_OnScoresChanged;
 
             // UI
             _common.MainUI.OnRestartRequest.AddListener(MainUI_OnRestartRequest);

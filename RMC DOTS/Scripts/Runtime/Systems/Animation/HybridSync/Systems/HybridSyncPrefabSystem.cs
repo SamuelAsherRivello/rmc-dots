@@ -25,16 +25,21 @@ namespace RMC.DOTS.Demos.HybridSync
                          WithNone<HybridSyncAnimatorReferenceComponent>().
                          WithEntityAccess())
             {
-                var newCompanionGameObject =
-                    Object.Instantiate(playerGameObjectPrefab.Prefab, 
-                        playerGameObjectPrefab.Transform.position, 
-                        playerGameObjectPrefab.Transform.rotation);
                 
-                var newAnimatorReference = new HybridSyncAnimatorReferenceComponent
+                if (playerGameObjectPrefab != null && playerGameObjectPrefab.Transform != null)
                 {
-                    Value = newCompanionGameObject.GetComponent<Animator>()
-                };
-                ecb.AddComponent(entity, newAnimatorReference);
+                    var newCompanionGameObject =
+                        Object.Instantiate(playerGameObjectPrefab.Prefab, 
+                            playerGameObjectPrefab.Transform.position, 
+                            playerGameObjectPrefab.Transform.rotation);
+                
+                    var newAnimatorReference = new HybridSyncAnimatorReferenceComponent
+                    {
+                        Value = newCompanionGameObject.GetComponent<Animator>()
+                    };
+                    ecb.AddComponent(entity, newAnimatorReference);
+                }
+     
             } 
             
             //Remove HybridSyncAnimatorReferenceComponent
