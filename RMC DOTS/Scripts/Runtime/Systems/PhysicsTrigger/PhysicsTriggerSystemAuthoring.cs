@@ -5,7 +5,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
 {
     /// <summary>
     /// Place this MonoBehaviour on a GameObject in the Scene
-    /// To enable the <see cref="WaypointsSystem"/>
+    /// To enable the <see cref="PhysicsTriggerSystem"/>
     /// </summary>
     public class PhysicsTriggerSystemAuthoring : MonoBehaviour
     {

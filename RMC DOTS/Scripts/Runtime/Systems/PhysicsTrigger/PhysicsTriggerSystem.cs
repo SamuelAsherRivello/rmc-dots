@@ -3,7 +3,6 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Physics;
 using Unity.Physics.Systems;
-using UnityEngine;
 
 namespace RMC.DOTS.Systems.PhysicsTrigger
 {
@@ -11,7 +10,7 @@ namespace RMC.DOTS.Systems.PhysicsTrigger
     [UpdateInGroup(typeof(PhysicsSystemGroup))]
     [UpdateAfter(typeof(PhysicsSimulationGroup))]
     [UpdateBefore(typeof(ExportPhysicsWorld))]
-    public partial struct WaypointsSystem : ISystem
+    public partial struct PhysicsTriggerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {

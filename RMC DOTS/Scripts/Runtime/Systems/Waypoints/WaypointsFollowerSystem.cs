@@ -11,6 +11,12 @@ namespace RMC.DOTS.Systems.Waypoints
     [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial class WaypointsFollowerSystem : SystemBase
     {
+        
+        protected override void OnCreate()
+        {
+            RequireForUpdate<WaypointsFollowerSystemAuthoring.WaypointsSystemIsEnabledTag>();
+        }
+        
         protected override void OnUpdate()
         {
             float deltaTime = World.Time.DeltaTime;

@@ -7,16 +7,16 @@ namespace RMC.DOTS.Systems.Waypoints
     /// Place this MonoBehaviour on a GameObject in the Scene
     /// To enable the <see cref="WaypointsFollowerSystem"/>
     /// </summary>
-    public class WaypointsSystemAuthoring : MonoBehaviour
+    public class WaypointsFollowerSystemAuthoring : MonoBehaviour
     {
         [SerializeField] 
         public bool IsSystemEnabled = true;
         
         public struct WaypointsSystemIsEnabledTag : IComponentData {}
         
-        public class WaypointsSystemAuthoringBaker : Baker<WaypointsSystemAuthoring>
+        public class WaypointsSystemAuthoringBaker : Baker<WaypointsFollowerSystemAuthoring>
         {
-            public override void Bake(WaypointsSystemAuthoring authoring)
+            public override void Bake(WaypointsFollowerSystemAuthoring authoring)
             {
                 if (authoring.IsSystemEnabled)
                 {
