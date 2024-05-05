@@ -1,5 +1,5 @@
 {
-    "name": "RMC.DOTS.Lessons.Lesson02_ExecuteOnce.Runtime",
+    "name": "RMC.DOTS.Lessons.SpinningCube.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:8d0b5587a0a8ae741afbfe3a79c2872a",

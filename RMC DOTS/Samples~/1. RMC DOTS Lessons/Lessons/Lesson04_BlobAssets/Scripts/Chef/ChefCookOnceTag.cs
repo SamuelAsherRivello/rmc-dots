@@ -1,9 +1,9 @@
 using Unity.Entities;
 
-namespace RMC.DOTS.Lessons.ExecuteOnce
+namespace RMC.DOTS.Lessons.BlobAssets
 {
     //  Component  ------------------------------------
-    public struct ExecuteOnceTag : IComponentData
+    public struct ChefCookOnceTag : IComponentData
     {
     }
 }

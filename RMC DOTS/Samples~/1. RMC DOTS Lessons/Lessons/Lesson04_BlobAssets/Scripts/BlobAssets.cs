@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace RMC.DOTS.Lessons.ExecuteOnce
+namespace RMC.DOTS.Lessons.BlobAssets
 {
-    public class ExecuteOnce : MonoBehaviour
+    public class BlobAssets : MonoBehaviour
     {
         //  Initialization --------------------------------
         protected void Start()
         {
-            Debug.Log("ExecuteOnce Demo. Watch the console.");
+            Debug.Log("BlobAssets Demo. Watch the console.");
         }
     }
 }

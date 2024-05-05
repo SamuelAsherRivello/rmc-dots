@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Lessons.SpinningCube.Lesson02_ExecuteOnce
+namespace RMC.DOTS.Lessons.ExecuteOnce
 {
     public class ExecuteOnceTagAuthoring : MonoBehaviour
     {
