@@ -36,7 +36,7 @@
 
 ### (Optional) RMC DOTS Library Examples
 1. Follow the steps above
-1. To import the RMC Dots Library examples, see [ReadMe](./Unity/Assets/ReadMe.txt)
+1. To import the RMC Dots Library examples, see [ReadMe](https://github.com/SamuelAsherRivello/rmc-dots-examples/blob/main/Unity/Assets/ReadMe.txt)
 
 <img src="https://media.githubusercontent.com/media/SamuelAsherRivello/rmc-dots/486cbed228c68b64493305ee12d7faa39a2fbc98/RMC%20DOTS/Documentation/Images/rmc-dots-examples-screenshot.jpg" width = "400px" />
 
