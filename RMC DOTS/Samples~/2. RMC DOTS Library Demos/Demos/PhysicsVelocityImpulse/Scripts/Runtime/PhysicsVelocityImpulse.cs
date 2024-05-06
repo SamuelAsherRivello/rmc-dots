@@ -7,7 +7,7 @@ namespace RMC.DOTS.Demos.PhysicsVelocityImpulse
         //  Initialization --------------------------------
         protected void Start()
         {
-            Debug.Log("PhysicsVelocityImpulse Demo. Watch the projectile move");
+            Debug.Log("PhysicsVelocityImpulse Demo. Watch the projectile move.");
         }
     }
 }

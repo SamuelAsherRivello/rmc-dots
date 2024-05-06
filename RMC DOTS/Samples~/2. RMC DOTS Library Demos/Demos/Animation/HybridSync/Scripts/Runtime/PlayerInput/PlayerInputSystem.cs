@@ -1,6 +1,7 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Input;
 using RMC.DOTS.Systems.Player;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -17,6 +18,7 @@ namespace RMC.DOTS.Demos.HybridSync
         private int _triggerIndexMin;
         private int _triggerIndexMax;
         
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             _triggerIndex = 0;
@@ -27,6 +29,7 @@ namespace RMC.DOTS.Demos.HybridSync
             state.RequireForUpdate<InputComponent>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             // First get the current input value from the PlayerMoveInput component. This component is set in the
@@ -80,8 +83,6 @@ namespace RMC.DOTS.Demos.HybridSync
                     //Debug.Log("Next Trigger: " + triggers[_triggerIndex]);
                 }
             }
-            
-            
             
             // Loop through all players. Add HybridSyncInputComponent to each
             var ecb = new EntityCommandBuffer(Allocator.Temp);

@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1254122404}
   - component: {fileID: 1254122403}
   - component: {fileID: 1254122402}
-  - component: {fileID: 1254122401}
+  - component: {fileID: 1254122406}
   m_Layer: 0
   m_Name: ClickCountSharedComponentAuthoring
   m_TagString: Untagged
@@ -143,18 +143,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1254122401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254122400}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969936a4680c7d840b9f25a1569cc29c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1254122402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -241,6 +229,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 2.66, y: 65.57, z: 35.6}
+--- !u!114 &1254122406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254122400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811a55042e1f966419d6773a5e8381d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1814342439
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 1814342443}
   - component: {fileID: 1814342442}
   - component: {fileID: 1814342441}
-  - component: {fileID: 1814342440}
+  - component: {fileID: 1814342445}
   m_Layer: 0
   m_Name: ClickCountSharedComponentAuthoring
   m_TagString: Untagged
@@ -261,18 +261,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1814342440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814342439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969936a4680c7d840b9f25a1569cc29c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &1814342441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -359,6 +347,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 2.66, y: 29.03, z: 35.6}
+--- !u!114 &1814342445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814342439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811a55042e1f966419d6773a5e8381d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

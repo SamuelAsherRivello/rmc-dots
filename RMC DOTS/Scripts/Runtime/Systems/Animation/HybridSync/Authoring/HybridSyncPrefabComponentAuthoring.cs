@@ -13,6 +13,13 @@ namespace RMC.DOTS.Demos.HybridSync
             public override void Bake(HybridSyncPrefabComponentAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
+                
+                if (authoring.Prefab == null || 
+                    authoring.InitialTransform == null)
+                {
+                    return;
+                }
+                
                 AddComponentObject(entity, 
                     new HybridSyncPrefabComponent
                     {

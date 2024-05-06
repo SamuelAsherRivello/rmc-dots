@@ -27,7 +27,12 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             {
                 //Debug.Log("Play this sound: " + entity.Index + " fc: " + Time.frameCount);
                 Entity audioEntity = ecb.CreateEntity();
-                ecb.AddComponent<AudioComponent>(audioEntity, new AudioComponent {AudioClipName = "Pickup01"});
+                ecb.AddComponent<AudioComponent>(audioEntity, 
+                    new AudioComponent
+                    {
+                        AudioClipName = "Pickup01",
+                        TimeTillPlayInSeconds = 0.25f
+                    });
             }
         }
     }

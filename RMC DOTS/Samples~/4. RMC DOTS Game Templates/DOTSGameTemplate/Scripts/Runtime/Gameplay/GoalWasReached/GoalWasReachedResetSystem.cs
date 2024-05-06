@@ -20,10 +20,14 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            var ecb = SystemAPI.
+                GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
+                CreateCommandBuffer(state.WorldUnmanaged);
+            
             foreach (var (localTransform, playerTag, goalWasReached, entity) in 
                      SystemAPI.Query<RefRW<LocalTransform>,PlayerTag, GoalWasReachedTag>().WithEntityAccess())
             {
-                localTransform.ValueRW.Position = new float3(-3, 0, 0);
+                ecb.AddComponent<PlayerResetPositionExecuteOnceTag>(entity);
             }
         }
     }

@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1773436f607726648a3a06b64ad6bddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationDelta: {x: 50, y: 100, z: 25}
+  _rotationDelta: {x: 5, y: 10, z: 25}
   _cube: {fileID: 213796989}
 --- !u!65 &213796991
 BoxCollider:

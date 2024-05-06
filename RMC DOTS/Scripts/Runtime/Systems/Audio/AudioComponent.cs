@@ -7,5 +7,6 @@ namespace RMC.DOTS.Systems.Audio
     public struct AudioComponent : IComponentData
     {
         public FixedString128Bytes  AudioClipName;
+        public float TimeTillPlayInSeconds; //The default of 0 will play the audio immediately
     }
 }

@@ -31,32 +31,36 @@ namespace RMC.DOTS.Systems.Audio
         {
             var audioSystemConfigurationComponent = SystemAPI.GetSingleton<AudioSystemAuthoring.AudioSystemConfigurationComponent>();
             var ecb = _commandBufferSystem.CreateCommandBuffer();
+            var deltaTime = SystemAPI.Time.DeltaTime;
             
             if (audioSystemConfigurationComponent.IsDebug)
             {
                 Debug.Log($"Update");
             }
      
-       
             // Iterate over the entities
             Entities
                 .ForEach((Entity entity, ref AudioComponent audioComponent) =>
                 {
-                    if (audioSystemConfigurationComponent.IsDebug)
+                    audioComponent.TimeTillPlayInSeconds -= deltaTime;
+                    if (audioComponent.TimeTillPlayInSeconds <= 0)
                     {
-                        Debug.Log($"Playing audio: {audioComponent.AudioClipName.Value}");
-                    }
+                        if (audioSystemConfigurationComponent.IsDebug)
+                        {
+                            Debug.Log($"Playing audio: {audioComponent.AudioClipName.Value}");
+                        }
 
-                    try
-                    {
-                        AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value);
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.LogError("AudioManager Exception: " + e.Message);
-                    }
+                        try
+                        {
+                            AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value);
+                        }
+                        catch (Exception e)
+                        {
+                            Debug.LogError("AudioManager Exception: " + e.Message);
+                        }
                     
-                    ecb.RemoveComponent<AudioComponent>(entity);
+                        ecb.RemoveComponent<AudioComponent>(entity);
+                    }
                     
                 }).WithoutBurst().Run();
         }

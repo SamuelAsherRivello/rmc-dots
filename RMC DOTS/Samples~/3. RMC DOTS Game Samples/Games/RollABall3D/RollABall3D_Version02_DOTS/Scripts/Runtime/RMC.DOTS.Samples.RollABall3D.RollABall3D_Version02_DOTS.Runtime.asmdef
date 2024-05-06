@@ -2,7 +2,6 @@
     "name": "RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS.Runtime",
     "rootNamespace": "",
     "references": [
-        "GUID:8d0b5587a0a8ae741afbfe3a79c2872a",
         "GUID:d28bf24cef16ed84cb4cb180b9c77ac3",
         "GUID:f009690ad5ed404499d073cbc2a9bad6",
         "GUID:330ce21097b4d554fa95a74295bc3b8f",
@@ -14,7 +13,9 @@
         "GUID:d8b63aba1907145bea998dd612889d6b",
         "GUID:5f3cf485eb0554709a8abbeace890c86",
         "GUID:8819f35a0fc84499b990e90a4ca1911f",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:f2381d29563bc3c49ab35691478f3482",
+        "GUID:8d0b5587a0a8ae741afbfe3a79c2872a"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
