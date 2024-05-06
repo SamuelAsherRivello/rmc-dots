@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RMC.Audio;
+using RMC.Core.Utilities;
 using RMC.DOTS.Samples.Pong2D.Shared;
 using RMCDotsInputActionNamespace;
 using UnityEngine;
@@ -149,6 +150,13 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
         
         protected void Start()
         {
+            
+            // The Unity Project Must Have These Layers
+            // LayerMaskUtility Shows Errors If Anything Is Missing
+            LayerMaskUtility.AssertLayerMask("Projectile", 8);
+            LayerMaskUtility.AssertLayerMask("Goal", 9);
+            
+            
             // UI
             _common.MainUI.OnRestartRequest.AddListener(MainUI_OnRestartRequest);
             _common.MainUI.OnRestartConfirm.AddListener(MainUI_OnRestartConfirm);
