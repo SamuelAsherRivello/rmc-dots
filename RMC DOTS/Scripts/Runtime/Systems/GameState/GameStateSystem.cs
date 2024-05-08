@@ -14,6 +14,8 @@ namespace RMC.DOTS.Systems.GameState
         public Action<bool> OnIsGameOverChanged;
         public Action<bool> OnIsGamePausedChanged;
         public Action<GameState> OnGameStateChanged;
+        public Action<RoundData> OnRoundDataChanged;
+        
         public bool IsGameOver
         {
             get
@@ -28,6 +30,7 @@ namespace RMC.DOTS.Systems.GameState
                 {
                     IsGameOver = value,
                     IsGamePaused = gameStateComponent.IsGamePaused,
+                    RoundData = gameStateComponent.RoundData,
                     GameState = gameStateComponent.GameState
                 });
                 OnIsGameOverChanged?.Invoke(value);
@@ -48,6 +51,7 @@ namespace RMC.DOTS.Systems.GameState
                 {
                     IsGameOver = gameStateComponent.IsGameOver,
                     IsGamePaused = value,
+                    RoundData = gameStateComponent.RoundData,
                     GameState = gameStateComponent.GameState
                 });
 
@@ -69,6 +73,7 @@ namespace RMC.DOTS.Systems.GameState
                 {
                     IsGameOver = gameStateComponent.IsGameOver,
                     IsGamePaused = gameStateComponent.IsGamePaused,
+                    RoundData = gameStateComponent.RoundData,
                     GameState = value
                 });
 
@@ -76,15 +81,43 @@ namespace RMC.DOTS.Systems.GameState
             }
         }
         
+        public RoundData RoundData
+        {
+            get
+            {
+                return SystemAPI.GetSingleton<GameStateComponent>().RoundData;
+            }
+            set
+            {
+                var gameStateComponent = SystemAPI.GetSingleton<GameStateComponent>();
+
+                SystemAPI.SetSingleton<GameStateComponent>(new GameStateComponent
+                {
+                    IsGameOver = gameStateComponent.IsGameOver,
+                    IsGamePaused = gameStateComponent.IsGamePaused,
+                    RoundData = value,
+                    GameState = gameStateComponent.GameState
+                });
+
+                OnRoundDataChanged?.Invoke(value);
+            }
+        }
+
+   
         protected override void OnCreate()
         {
             RequireForUpdate<GameStateSystemAuthoring.GameStateSystemIsEnabledTag>();
 
         }
 
+        /// <summary>
+        ///  Nothing needed here, unless I want changes NOT set through the API
+        ///  above, but instead directly on components to be reflected here
+        ///  If so, copy from <see cref="ScoringSystem"/>
+        /// </summary>
         protected override void OnUpdate()
         {
-            //Nothing needed here
+            //Nothing
         }
 
 

@@ -25,6 +25,7 @@ namespace RMC.DOTS.Demos.GameStateDemo
             _gameStateSystem = world.GetExistingSystemManaged<GameStateSystem>();
             
             // Listen for changes
+            _gameStateSystem.OnRoundDataChanged += OnRoundDataChanged;
             _gameStateSystem.OnGameStateChanged += OnGameStateChanged;
             _gameStateSystem.OnIsGameOverChanged += OnIsGameOverChanged;
             _gameStateSystem.OnIsGamePausedChanged += OnIsGamePausedChanged;
@@ -43,12 +44,18 @@ namespace RMC.DOTS.Demos.GameStateDemo
             // Make changes
             _gameStateSystem.IsGameOver = false;
             _gameStateSystem.IsGamePaused = false;
+            _gameStateSystem.RoundData = new RoundData
+            {
+                RoundCurrent = 1,
+                RoundMax = 3
+            };
             _gameStateSystem.GameState = GameState.Initializing;
         }
         
 
         protected void OnDestroy()
         {
+            _gameStateSystem.OnRoundDataChanged -= OnRoundDataChanged;
             _gameStateSystem.OnGameStateChanged -= OnGameStateChanged;
             _gameStateSystem.OnIsGameOverChanged -= OnIsGameOverChanged;
             _gameStateSystem.OnIsGamePausedChanged -= OnIsGamePausedChanged;
@@ -68,6 +75,12 @@ namespace RMC.DOTS.Demos.GameStateDemo
             Debug.Log($"OnIsGameOverChanged() isGameOver = {isGameOver}");
         }
 
+        private void OnRoundDataChanged(RoundData roundData)
+        {
+            Debug.Log($"OnRoundDataChanged() roundData = {roundData}");
+        }
+        
+            
         private void OnGameStateChanged(GameState gameState)
         {
             Debug.Log($"OnGameStateChanged() gameState = {gameState}");
