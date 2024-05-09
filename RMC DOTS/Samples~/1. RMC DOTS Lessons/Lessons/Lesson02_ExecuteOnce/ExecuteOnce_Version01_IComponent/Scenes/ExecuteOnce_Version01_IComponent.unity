@@ -442,7 +442,7 @@ GameObject:
   - component: {fileID: 1888274861}
   - component: {fileID: 1888274862}
   m_Layer: 0
-  m_Name: ExecuteOnce
+  m_Name: ExecuteOnce_Version01_IComponent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

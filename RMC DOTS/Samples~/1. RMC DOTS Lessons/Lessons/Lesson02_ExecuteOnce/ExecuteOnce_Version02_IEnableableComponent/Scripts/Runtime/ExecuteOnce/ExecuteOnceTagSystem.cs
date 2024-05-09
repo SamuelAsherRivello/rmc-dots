@@ -2,7 +2,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Lessons.ExecuteOnce
+namespace RMC.DOTS.Lessons.ExecuteOnce.ExecuteOnce_Version02_IEnableableComponent
 {
     //  System  ------------------------------------
     [BurstCompile]
@@ -13,7 +13,7 @@ namespace RMC.DOTS.Lessons.ExecuteOnce
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
-            state.RequireForUpdate<ExecuteOnceTag>();
+            state.RequireForUpdate<ExecuteOnceEnableableTag>();
         }
 
         [BurstCompile]
@@ -24,11 +24,13 @@ namespace RMC.DOTS.Lessons.ExecuteOnce
                 CreateCommandBuffer(state.WorldUnmanaged);
             
             foreach (var (executeOnceTag, entity)
-                     in SystemAPI.Query<RefRO<ExecuteOnceTag>>().WithEntityAccess())
+                     in SystemAPI.Query<RefRO<ExecuteOnceEnableableTag>>().
+                         WithEntityAccess().
+                         WithOptions(EntityQueryOptions.IgnoreComponentEnabledState))
             {
                 
                 // Remove here
-                ecb.RemoveComponent<ExecuteOnceTag>(entity);
+                ecb.SetComponentEnabled<ExecuteOnceEnableableTag>(entity, false);
             }
         }
     }

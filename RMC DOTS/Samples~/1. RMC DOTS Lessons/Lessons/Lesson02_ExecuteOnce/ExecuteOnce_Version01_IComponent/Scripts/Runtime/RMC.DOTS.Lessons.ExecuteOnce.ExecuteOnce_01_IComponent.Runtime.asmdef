@@ -1,5 +1,5 @@
 {
-    "name": "RMC.DOTS.Lessons.ExecuteOnce.Runtime",
+    "name": "RMC.DOTS.Lessons.ExecuteOnce.ExecuteOnce_01_IComponent.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:d28bf24cef16ed84cb4cb180b9c77ac3",

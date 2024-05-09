@@ -4,6 +4,9 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Lessons.SpinningCube.SpinningCube_Version05_DOTS
 {
+    /// <summary>
+    /// See <see cref="VersionComparisonComments"/>
+    /// </summary>
     //  System  ------------------------------------
     [UpdateInGroup(typeof(PresentationSystemGroup))]
     public partial class SpinningCubeSystem : SystemBase

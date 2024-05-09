@@ -1,7 +1,7 @@
 using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Lessons.ExecuteOnce
+namespace RMC.DOTS.Lessons.ExecuteOnce.ExecuteOnce_01_IComponent
 {
     public class ExecuteOnceTagAuthoring : MonoBehaviour
     {

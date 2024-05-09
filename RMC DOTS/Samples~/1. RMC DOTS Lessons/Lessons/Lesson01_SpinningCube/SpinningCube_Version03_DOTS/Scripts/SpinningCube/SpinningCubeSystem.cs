@@ -5,6 +5,9 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Lessons.SpinningCube.SpinningCube_Version03_DOTS
 {
+    /// <summary>
+    /// See <see cref="VersionComparisonComments"/>
+    /// </summary>
     //  System  ------------------------------------
     [BurstCompile]
     [UpdateInGroup(typeof(PresentationSystemGroup))]
