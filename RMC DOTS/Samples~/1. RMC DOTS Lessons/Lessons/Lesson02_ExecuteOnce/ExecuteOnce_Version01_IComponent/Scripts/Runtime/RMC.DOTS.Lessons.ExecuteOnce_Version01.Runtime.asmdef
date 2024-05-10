@@ -1,5 +1,5 @@
 {
-    "name": "RMC.DOTS.Lessons.ExecuteOnce.ExecuteOnce_01_IComponent.Runtime",
+    "name": "RMC.DOTS.Lessons.ExecuteOnce_Version01.Runtime",
     "rootNamespace": "",
     "references": [
         "GUID:d28bf24cef16ed84cb4cb180b9c77ac3",
@@ -13,8 +13,7 @@
         "GUID:5f3cf485eb0554709a8abbeace890c86",
         "GUID:8819f35a0fc84499b990e90a4ca1911f",
         "GUID:75469ad4d38634e559750d17036d5f7c",
-        "GUID:f2381d29563bc3c49ab35691478f3482",
-        "GUID:8d0b5587a0a8ae741afbfe3a79c2872a"
+        "GUID:f2381d29563bc3c49ab35691478f3482"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

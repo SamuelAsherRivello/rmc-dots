@@ -1,15 +1,15 @@
 {
     "name": "Unity.Physics.Custom.Editor",
+    "rootNamespace": "",
     "references": [
-        "Unity.Burst",
-        "Unity.Collections",
-        "Unity.Entities",
-        "Unity.Mathematics",
-        "Unity.Physics",
-        "Unity.Physics.Editor",
-        "Unity.Physics.Hybrid",
-        "Unity.Physics.Samples",
-        "Unity.Physics.Custom"
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:63afb046c8423dd448ae7aba042ea63d",
+        "GUID:3438610b0a83016488db5062ec247a8d",
+        "GUID:e00140a815de944528348782854abe39",
+        "GUID:6bfefdf09ee6431fae75a6f5e06a0e89"
     ],
     "includePlatforms": [
         "Editor"
@@ -20,5 +20,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }
