@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using WayneGames.ECSTestsFixture;
+using Unity.Hack.ECSTestsFixture;
 
 namespace RMC.DOTS.Systems.Waypoints
 {

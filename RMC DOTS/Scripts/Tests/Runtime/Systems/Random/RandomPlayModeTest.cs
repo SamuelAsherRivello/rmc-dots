@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Unity.Entities;
-using WayneGames.ECSTestsFixture;
+using Unity.Hack.ECSTestsFixture;
 
 namespace RMC.DOTS.Systems.Random
 {   

@@ -1,9 +1,38 @@
 ﻿using Unity.Entities;
+using Unity.Hack.ECSTestsFixture;
 using Unity.Mathematics;
+using Unity.Physics.Tests.Aspects;
 using Unity.Transforms;
 
+/// ///////////////// completely new /////////////////////////////
+//Renamed for prettier API
+namespace Unity.Hack.ECSTestsFixture
+{
+    public static class EntityCreatorForTests
+    {    
+        public enum BodyType
+         {
+             STATIC,
+             DYNAMIC,
+             INFINITE_MASS,
+             INFINITE_INERTIA,
+             KINEMATIC_NO_MASS_OVERRIDE,
+             KINEMATIC_MASS_OVERRIDE,
+             SET_VELOCITY_TO_ZERO,
+             SCALED_DYNAMIC
+         }
+        public static Entity CreatePhysicsEntity(BodyType type, EntityManager manager)
+        {
+            return RigidBodyAspect_UnitTestsCopy.CreateBodyComponents(type, manager);
+        }
+    }
+}
+
+
+/// ///////////////////////// slightly modified from source ////////////////////////////////
 namespace Unity.Physics.Tests.Aspects
 {
+   
     public static class AspectTestUtils
     {
         internal static float3 DefaultPos => new float3(1.0f, 0.0f, 0.0f);
@@ -20,21 +49,11 @@ namespace Unity.Physics.Tests.Aspects
         internal static CollisionFilter ModificationFilter => new CollisionFilter { BelongsTo = 234, CollidesWith = 123, GroupIndex = 221 };
     }
 
+
     public partial class RigidBodyAspect_UnitTestsCopy
     {
-        public enum BodyType
-        {
-            STATIC,
-            DYNAMIC,
-            INFINITE_MASS,
-            INFINITE_INERTIA,
-            KINEMATIC_NO_MASS_OVERRIDE,
-            KINEMATIC_MASS_OVERRIDE,
-            SET_VELOCITY_TO_ZERO,
-            SCALED_DYNAMIC
-        }
 
-        public static Entity CreateBodyComponents(BodyType type, EntityManager manager)
+        public static Entity CreateBodyComponents(EntityCreatorForTests.BodyType type, EntityManager manager)
         {
             // Create default components - index, transform, body, scale
             PhysicsWorldIndex worldIndex = new PhysicsWorldIndex { Value = 0 };
@@ -73,41 +92,41 @@ namespace Unity.Physics.Tests.Aspects
 
             switch (type)
             {
-                case BodyType.INFINITE_MASS:
+                case EntityCreatorForTests.BodyType.INFINITE_MASS:
                     pm.InverseMass = 0.0f;
-                    goto case BodyType.DYNAMIC;
+                    goto case EntityCreatorForTests.BodyType.DYNAMIC;
 
-                case BodyType.INFINITE_INERTIA:
+                case EntityCreatorForTests.BodyType.INFINITE_INERTIA:
                     pm.InverseInertia = float3.zero;
-                    goto case BodyType.DYNAMIC;
+                    goto case EntityCreatorForTests.BodyType.DYNAMIC;
 
-                case BodyType.KINEMATIC_NO_MASS_OVERRIDE:
+                case EntityCreatorForTests.BodyType.KINEMATIC_NO_MASS_OVERRIDE:
                     pm.InverseInertia = float3.zero;
                     pm.InverseMass = 0.0f;
-                    goto case BodyType.DYNAMIC;
+                    goto case EntityCreatorForTests.BodyType.DYNAMIC;
 
-                case BodyType.SET_VELOCITY_TO_ZERO:
+                case EntityCreatorForTests.BodyType.SET_VELOCITY_TO_ZERO:
                     pmo.SetVelocityToZero = 1;
-                    goto case BodyType.KINEMATIC_MASS_OVERRIDE;
+                    goto case EntityCreatorForTests.BodyType.KINEMATIC_MASS_OVERRIDE;
 
-                case BodyType.SCALED_DYNAMIC:
+                case EntityCreatorForTests.BodyType.SCALED_DYNAMIC:
 
                     var localTransform = manager.GetComponentData<LocalTransform>(body);
                     localTransform.Scale = AspectTestUtils.NonIdentityScale;
                     manager.SetComponentData<LocalTransform>(body, localTransform);
-                    goto case BodyType.DYNAMIC;
+                    goto case EntityCreatorForTests.BodyType.DYNAMIC;
 
-                case BodyType.KINEMATIC_MASS_OVERRIDE:
+                case EntityCreatorForTests.BodyType.KINEMATIC_MASS_OVERRIDE:
                     pmo.IsKinematic = 1;
                     manager.AddComponentData<PhysicsMassOverride>(body, pmo);
-                    goto case BodyType.DYNAMIC;
+                    goto case EntityCreatorForTests.BodyType.DYNAMIC;
 
-                case BodyType.DYNAMIC:
+                case EntityCreatorForTests.BodyType.DYNAMIC:
                     manager.AddComponentData<PhysicsVelocity>(body, pv);
                     manager.AddComponentData<PhysicsMass>(body, pm);
                     break;
 
-                case BodyType.STATIC:
+                case EntityCreatorForTests.BodyType.STATIC:
                 default:
                     break;
             }

@@ -7,7 +7,7 @@ using Unity.Jobs.LowLevel.Unsafe;
 using UnityEngine.LowLevel;
 #endif
 
-namespace WayneGames.ECSTestsFixture
+namespace Unity.Hack.ECSTestsFixture
 {
 	#if NET_DOTS
 	    public class EmptySystem : ComponentSystem

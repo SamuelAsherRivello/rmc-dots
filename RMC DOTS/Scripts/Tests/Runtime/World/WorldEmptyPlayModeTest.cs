@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using Unity.Collections;
-using UnityEngine;
-using WayneGames.ECSTestsFixture;
+using Unity.Hack.ECSTestsFixture;
 
 namespace RMC.DOTS.World
 {

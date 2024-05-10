@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using Unity.Collections;
-using WayneGames.ECSTestsFixture;
+using Unity.Hack.ECSTestsFixture;
 
 namespace RMC.DOTS.Systems.DestroyEntity
 {   

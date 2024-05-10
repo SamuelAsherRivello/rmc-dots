@@ -2,11 +2,10 @@
 using NUnit.Framework;
 using RMC.DOTS.Systems.Random;
 using Unity.Entities;
+using Unity.Hack.ECSTestsFixture;
 using Unity.Mathematics;
-using Unity.Physics.Tests.Aspects;
 using Unity.Transforms;
 using UnityEngine;
-using WayneGames.ECSTestsFixture;
 
 namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
 {
@@ -40,7 +39,7 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
         public void LocalTransform_PositionIsSame_After00Updates()
         {
             // Arrange
-            Entity entity = RigidBodyAspect_UnitTestsCopy.CreateBodyComponents(RigidBodyAspect_UnitTestsCopy.BodyType.DYNAMIC, EntityManager);
+            Entity entity = EntityCreatorForTests.CreatePhysicsEntity(EntityCreatorForTests.BodyType.DYNAMIC, EntityManager);
             
             var localTransform = EntityManager.GetComponentData<LocalTransform>(entity);
             localTransform.Position = new float3(0,0,0);
@@ -67,7 +66,7 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
             // Arrange
             
             // TODO: Discuss1 how knowing what components you need (physics) for a given system (physics) is difficult
-            Entity entity = RigidBodyAspect_UnitTestsCopy.CreateBodyComponents(RigidBodyAspect_UnitTestsCopy.BodyType.DYNAMIC, EntityManager);
+            Entity entity = EntityCreatorForTests.CreatePhysicsEntity(EntityCreatorForTests.BodyType.DYNAMIC, EntityManager);
             
             // TODO: Discuss2 tools to help find out what components you need
             // var t = EntityManager.GetComponentTypes(entity, Allocator.Temp);
