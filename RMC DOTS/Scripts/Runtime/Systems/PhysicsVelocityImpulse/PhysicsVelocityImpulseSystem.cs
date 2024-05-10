@@ -21,7 +21,6 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
             state.RequireForUpdate<PhysicsVelocityImpulseSystemAuthoring.PhysicsVelocityImpulseSystemIsEnabledTag>();
             state.RequireForUpdate<PhysicsVelocityImpulseComponent>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
-            
             state.RequireForUpdate<RandomSystemAuthoring.RandomSystemIsEnabledTag>();
             state.RequireForUpdate<RandomComponent>();
         }

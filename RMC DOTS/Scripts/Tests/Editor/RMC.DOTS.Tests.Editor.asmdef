@@ -1,17 +1,18 @@
 {
-    "name": "RMC.DOTS.Tests.PlayMode",
+    "name": "RMC.DOTS.Tests.Editor",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
+        "WayneGames.ECSTestsFixture.Tests.Runtime",
         "Unity.Entities",
         "Unity.Collections",
-        "RMC.DOTS.Runtime",
-        "Roguelite.EcsTestUtility",
-        "Roguelite.Core",
-        "Unity.Entities.Tests"
+        "RMC.DOTS.Tests.Runtime",
+        "Unity.Hack.ECSTestsFixture.Tests.Runtime"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,

@@ -1,6 +1,5 @@
 using System.Numerics;
 using Unity.Entities;
-using Unity.Mathematics;
 
 namespace RMC.DOTS.Systems.Random
 {
@@ -61,7 +60,5 @@ namespace RMC.DOTS.Systems.Random
             uint index = _randomComponent.ValueRW.Random.NextUInt(uint.MaxValue);
             _randomComponent.ValueRW.Random = Unity.Mathematics.Random.CreateFromIndex(index);
         }
-
-
     }
 }

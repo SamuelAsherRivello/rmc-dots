@@ -1,0 +1,5 @@
+Source Url: 
+* https://github.com/WAYN-Games/DOTSEventsStressTest
+
+Changelog: 
+* Moved to .../3rdParty/
