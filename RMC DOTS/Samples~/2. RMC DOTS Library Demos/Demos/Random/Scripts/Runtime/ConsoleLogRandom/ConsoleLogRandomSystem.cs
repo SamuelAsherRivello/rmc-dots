@@ -22,16 +22,17 @@ namespace RMC.DOTS.Demos.Random.ConsoleLogRandom
             TempCounter = 0;
         }
 
-        //No burst sice I'm using an implicit toString in my Debug.Log
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var randomComponentEntity = SystemAPI.GetSingletonEntity<RandomComponent>();
             var randomComponentAspect = SystemAPI.GetAspect<RandomComponentAspect>(randomComponentEntity);
             
             //Limit the console output for this demo
-            if (++TempCounter <= 5)
+            if (++TempCounter <= 3)
             {
-                Debug.Log("RandomComponentAspect DemoValue = " + randomComponentAspect.NextFloat(0, 10));
+                float result = randomComponentAspect.NextFloat(0, 10);
+                Debug.Log(string.Format("RandomComponentAspect DemoValue = {0}", result));
             }
         }
     }

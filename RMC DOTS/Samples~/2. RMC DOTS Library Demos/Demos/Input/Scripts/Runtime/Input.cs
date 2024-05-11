@@ -7,7 +7,7 @@ namespace RMC.DOTS.Demos.Input
         //  Initialization --------------------------------
         protected void Start()
         {
-            Debug.Log("Input Demo. Use WASD keys / arrow keys to move.");
+            Debug.Log("Input Demo. Move with WASD/Arrows/Gamepad. Scale with Space/Enter/Gamepad");
 
         }
     }

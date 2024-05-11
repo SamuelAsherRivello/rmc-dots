@@ -260,8 +260,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1465897715}
+  - component: {fileID: 1465897716}
   m_Layer: 0
-  m_Name: ------- Specific -------
+  m_Name: --------- Instances ----------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,6 +283,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1465897716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465897714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bd367752a957644a1419fad5d66606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DividerType: 3
 --- !u!1 &1592965419
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,8 +305,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1592965420}
+  - component: {fileID: 1592965421}
   m_Layer: 0
-  m_Name: ------- Shared --------
+  m_Name: ------- SharedSystems --------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,6 +328,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1592965421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592965419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4bd367752a957644a1419fad5d66606, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DividerType: 1
 --- !u!1 &1921382899
 GameObject:
   m_ObjectHideFlags: 0

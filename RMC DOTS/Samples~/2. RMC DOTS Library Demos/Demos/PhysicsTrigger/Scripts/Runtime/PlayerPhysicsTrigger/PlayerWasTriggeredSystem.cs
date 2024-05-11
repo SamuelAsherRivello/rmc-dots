@@ -35,7 +35,7 @@ namespace RMC.DOTS.Demos.PhysicsTrigger
             foreach (var (playerTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PlayerTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
             {
                 if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputTag.TimeFrameCountForLastCollision <= Time.frameCount - PhysicsTriggerOutputComponent.FramesToWait)
+                    physicsTriggerOutputTag.TimeFrameCountForLastCollision == Time.frameCount)
                 { 
                     //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
                     ecb.AddComponent<PlayerWasTriggeredTag>(entity);

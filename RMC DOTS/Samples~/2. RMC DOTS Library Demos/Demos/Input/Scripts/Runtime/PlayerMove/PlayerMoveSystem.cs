@@ -5,7 +5,6 @@ using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace RMC.DOTS.Demos.Input
 {
@@ -13,51 +12,72 @@ namespace RMC.DOTS.Demos.Input
     [UpdateInGroup(typeof(PauseableSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
+        
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerMoveSystemAuthoring.PlayerMoveSystemIsEnabledTag>();
             state.RequireForUpdate<InputComponent>();
-            
         }
 
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            // First get the current input value from the PlayerMoveInput component. This component is set in the
-            // GetPlayerInputSystem that runs earlier in the frame.
-            float2 move = SystemAPI.GetSingleton<InputComponent>().MoveFloat2;
-            float2 look = SystemAPI.GetSingleton<InputComponent>().LookFloat2;
+            ////////////////////////////////////////
+            // #1 - Get a reference to the InputComponent
+            // which is calculated for you by RMC DOTS
+            var inputComponent = SystemAPI.GetSingleton<InputComponent>();
+            
+            ////////////////////////////////////////
+            // #2 - Store some/all local references
+            // for easier access
+            float2 move = inputComponent.MoveFloat2;                 //WASD, Gamepad Left Stick
+            float2 look = inputComponent.LookFloat2;                 //ARROWS, Gamepad Right Stick
+            bool isPressedAction1 = inputComponent.IsPressedAction1; //SPACE, South Button
+            bool isPressedAction2 = inputComponent.IsPressedAction2; //ENTER, East Button
+            
+            ////////////////////////////////////////
+            // #3 - Handle the input however you like
+            // for the needs of your game ...
             float deltaTime = SystemAPI.Time.DeltaTime;
-            float multiplier = 10f;
+            float moveSpeed = 10f;
+            float scaleSpeed = 8f;
             float2 moveComposite = float2.zero;
             
-            // Here we support EITHER look or move to move around
-            // Prioritize MOVE, if no MOVE is set, then use look
-            if (move.x != 0)
+            // Use left stick *OR* right stick for movement
+            if (math.length(move) > 0.001f)
             {
-                moveComposite.x = move.x;
+                moveComposite = move;
             }
             else
             {
-                moveComposite.x = look.x;
+                moveComposite = look;
+            }
+            
+            // Use any buttons to double scale
+            float scale = 1;
+            if (isPressedAction1 || isPressedAction2)
+            {
+                scale = 2;
             }
 
-            if (move.y != 0)
-            {
-                moveComposite.y =  move.y;
-            }
-            else
-            {
-                moveComposite.y = look.y;
-            }
              
-            // Loop through all players. Move each
+            // Move the player
             foreach (var localTransform in 
                      SystemAPI.Query<RefRW<LocalTransform>>().WithAll<PlayerTag>())
             {
-                localTransform.ValueRW.Position.x += moveComposite.x * (deltaTime * multiplier);
-                localTransform.ValueRW.Position.z += moveComposite.y * (deltaTime * multiplier);
+                localTransform.ValueRW.Position.x += moveComposite.x * (deltaTime * moveSpeed);
+                localTransform.ValueRW.Position.z += moveComposite.y * (deltaTime * moveSpeed);
+            }
+            
+            
+            // Scale the player
+            foreach (var localTransform in 
+                     SystemAPI.Query<RefRW<LocalTransform>>().WithAll<PlayerTag>())
+            {
+                localTransform.ValueRW.Scale = 
+                    math.lerp(localTransform.ValueRW.Scale, scale, deltaTime * scaleSpeed);
             }
         }
     }
