@@ -46,11 +46,11 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 
                 //
                 Entity audioEntity = ecb.CreateEntity();
-                ecb.AddComponent<AudioComponent>(audioEntity, 
+                ecb.AddComponent<AudioComponent>(audioEntity,
                     new AudioComponent
-                    {
-                        AudioClipName = "Click01"
-                    });
+                    (
+                         "Click01"
+                    ));
                 
                 //
                 localTransform.ValueRW.Position = new float3(-3, 0, 0);

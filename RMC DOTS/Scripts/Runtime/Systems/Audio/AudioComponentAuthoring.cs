@@ -6,7 +6,12 @@ namespace RMC.DOTS.Systems.Audio
     public class AudioComponentAuthoring : MonoBehaviour
     {
         public string AudioClipName;
+        public float Volume = 1;
+        public float Pitch = 1;
+        public float DelayInSeconds = 0;
+        public bool IsLooping = false;
 
+        
         public class AudioComponentAuthoringBaker : Baker<AudioComponentAuthoring>
         {
             public override void Bake(AudioComponentAuthoring authoring)
@@ -15,9 +20,13 @@ namespace RMC.DOTS.Systems.Audio
 
                 AddComponent<AudioComponent>(entity,
                     new AudioComponent
-                    {
-                        AudioClipName = authoring.AudioClipName
-                    });
+                    (
+                        authoring.AudioClipName,
+                        authoring.Volume,
+                        authoring.Pitch,
+                        authoring.DelayInSeconds,
+                        authoring.IsLooping
+                    ));
 
             }
         }

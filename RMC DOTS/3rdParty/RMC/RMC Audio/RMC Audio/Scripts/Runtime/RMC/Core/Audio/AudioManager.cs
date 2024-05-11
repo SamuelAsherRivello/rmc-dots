@@ -99,7 +99,8 @@ namespace RMC.Audio
 		/// <summary>
 		/// Play the AudioClip by index.
 		/// </summary>
-		public void PlayAudioClip(string audioClipName)
+		public void PlayAudioClip(string audioClipName,
+			AudioManagerPlayParameters audioManagerPlayParameters = default(AudioManagerPlayParameters))
 		{
 			int index = AudioClips.FindIndex (
 				(audioClip) => audioClip.name == audioClipName);
@@ -109,14 +110,15 @@ namespace RMC.Audio
 				throw new Exception($"PlayAudioClip() failed for audioClipName = {audioClipName}.");
 			}
 			
-			PlayAudioClip(index);
+			PlayAudioClip(index, audioManagerPlayParameters);
 		}
 
 
 		/// <summary>
 		/// Play the AudioClip by index.
 		/// </summary>
-		public void PlayAudioClip(int audioClipIndex)
+		public void PlayAudioClip(int audioClipIndex, 
+			AudioManagerPlayParameters audioManagerPlayParameters = default(AudioManagerPlayParameters))
 		{
 			AudioClip audioClip = null;
 			try
@@ -128,7 +130,7 @@ namespace RMC.Audio
 				throw new ArgumentException($"PlayAudioClip() failed for index = {audioClipIndex}.");
 			}
 			
-			PlayAudioClip(audioClip);
+			PlayAudioClip(audioClip, audioManagerPlayParameters);
 		}
 
 		
@@ -136,19 +138,36 @@ namespace RMC.Audio
 		/// Play the AudioClip by reference.
 		/// If all sources are occupied, nothing will play.
 		/// </summary>
-		public AudioSource PlayAudioClip(AudioClip audioClip)
+		public AudioSource PlayAudioClip(AudioClip audioClip, 
+			AudioManagerPlayParameters audioManagerPlayParameters = default(AudioManagerPlayParameters))
 		{
 			if (audioClip == null)
 			{
 				throw new ArgumentException($"PlayAudioClip() failed. AudioClip is null.");
 			}
+
+			if (audioManagerPlayParameters.Equals(default(AudioManagerPlayParameters)))
+			{
+				audioManagerPlayParameters = new AudioManagerPlayParameters();
+			}
+			
+			audioManagerPlayParameters.Validate();
 			
 			foreach (AudioSource audioSource in _audioSources)
 			{
 				if (!audioSource.isPlaying)
 				{
 					audioSource.clip = audioClip;
-					audioSource.Play();
+					// Struct default is ok
+					if (!audioManagerPlayParameters.HasDelay)
+					{
+						audioSource.PlayDelayed(audioManagerPlayParameters.DelayInSeconds);
+					}
+					else
+					{
+						audioSource.Play();
+					}
+					
 					return audioSource;
 				}
 			}

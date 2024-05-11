@@ -27,7 +27,10 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             {
                 //Debug.Log("Play this sound: " + entity.Index + " fc: " + Time.frameCount);
                 Entity audioEntity = ecb.CreateEntity();
-                ecb.AddComponent<AudioComponent>(audioEntity, new AudioComponent {AudioClipName = "Goal01"});
+                ecb.AddComponent<AudioComponent>(audioEntity, new AudioComponent
+                (
+                    "Goal01"
+                ));
             }
         }
     }

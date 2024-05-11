@@ -25,7 +25,11 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
             {
                 //Debug.Log("Play this sound: " + entity.Index + " fc: " + Time.frameCount);
                 Entity audioEntity = ecb.CreateEntity();
-                ecb.AddComponent<AudioComponent>(audioEntity, new AudioComponent {AudioClipName = "Pickup01"});
+                ecb.AddComponent<AudioComponent>(audioEntity,
+                    new AudioComponent
+                    (
+                        "Pickup01"
+                    ));
             }
         }
     }

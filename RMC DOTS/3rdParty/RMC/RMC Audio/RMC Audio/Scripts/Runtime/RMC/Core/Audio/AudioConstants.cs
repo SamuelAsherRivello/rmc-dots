@@ -9,6 +9,15 @@ namespace RMC.Audio.Data.Types
         //  Fields  -----------------------------------------------
         
         ///////////////////////////////////////////
+        // Defaults
+        ///////////////////////////////////////////
+        public const float VolumeDefault = 1;
+        public const float PitchDefault = 1;
+        public const float DelayInSecondsDefault = 0;
+        public const bool IsLoopingDefault = false;
+        
+        
+        ///////////////////////////////////////////
         // MenuItem Path
         ///////////////////////////////////////////
         public const string CompanyName = "RMC";

@@ -1,6 +1,7 @@
 ﻿using System;
 using RMC.Audio;
 using RMC.DOTS.SystemGroups;
+using RMC.DOTS.Systems.FrameCount;
 using Unity.Entities;
 using UnityEngine;
 
@@ -38,29 +39,33 @@ namespace RMC.DOTS.Systems.Audio
                 Debug.Log($"Update");
             }
      
+            
             // Iterate over the entities
             Entities
                 .ForEach((Entity entity, ref AudioComponent audioComponent) =>
                 {
-                    audioComponent.TimeTillPlayInSeconds -= deltaTime;
-                    if (audioComponent.TimeTillPlayInSeconds <= 0)
+                    if (audioSystemConfigurationComponent.IsDebug)
                     {
-                        if (audioSystemConfigurationComponent.IsDebug)
-                        {
-                            Debug.Log($"Playing audio: {audioComponent.AudioClipName.Value}");
-                        }
-
-                        try
-                        {
-                            AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value);
-                        }
-                        catch (Exception e)
-                        {
-                            Debug.LogError("AudioManager Exception: " + e.Message);
-                        }
-                    
-                        ecb.RemoveComponent<AudioComponent>(entity);
+                        Debug.Log($"Playing audio: {audioComponent.AudioClipName.Value}");
                     }
+                    try
+                    {
+                        
+                        AudioManagerPlayParameters audioManagerPlayParameters = new AudioManagerPlayParameters
+                        (
+                            audioComponent.Volume,
+                            audioComponent.Pitch,
+                            audioComponent.DelayInSeconds,
+                            audioComponent.IsLooping
+                            );
+                        AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value, audioManagerPlayParameters);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError("AudioManager Exception: " + e.Message);
+                    }
+                
+                    ecb.RemoveComponent<AudioComponent>(entity);
                     
                 }).WithoutBurst().Run();
         }

@@ -2,7 +2,6 @@
 using RMC.DOTS.Systems.Player;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate

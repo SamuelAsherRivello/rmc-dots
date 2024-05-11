@@ -7,7 +7,7 @@ namespace RMC.DOTS.Demos.Audio
         //  Initialization --------------------------------
         protected void Start()
         {
-            Debug.Log("Audio Demo. Hear one sound play.");
+            Debug.Log("Audio Demo. Hear one sound play per entity.");
         }
     }
 }
