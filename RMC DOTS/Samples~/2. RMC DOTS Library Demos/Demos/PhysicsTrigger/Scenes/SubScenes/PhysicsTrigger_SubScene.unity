@@ -361,10 +361,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!1 &1252459018
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,10 +400,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
 --- !u!54 &1252459020
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -801,10 +801,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MemberOfLayerMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 64
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 512
 --- !u!114 &2141468201
 MonoBehaviour:
   m_ObjectHideFlags: 0
