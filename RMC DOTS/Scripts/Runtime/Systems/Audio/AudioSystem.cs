@@ -50,14 +50,9 @@ namespace RMC.DOTS.Systems.Audio
                     }
                     try
                     {
-                        
-                        AudioManagerPlayParameters audioManagerPlayParameters = new AudioManagerPlayParameters
-                        (
-                            audioComponent.Volume,
-                            audioComponent.Pitch,
-                            audioComponent.DelayInSeconds,
-                            audioComponent.IsLooping
-                            );
+                        AudioManagerPlayParameters audioManagerPlayParameters = 
+                            audioComponent.CreateAudioManagerPlayParameters();
+        
                         AudioManager.Instance.PlayAudioClip(audioComponent.AudioClipName.Value, audioManagerPlayParameters);
                     }
                     catch (Exception e)

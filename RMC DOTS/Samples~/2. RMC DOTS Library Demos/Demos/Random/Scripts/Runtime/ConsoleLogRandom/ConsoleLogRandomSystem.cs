@@ -19,7 +19,7 @@ namespace RMC.DOTS.Demos.Random.ConsoleLogRandom
             state.RequireForUpdate<RandomSystemAuthoring.RandomSystemIsEnabledTag>();
             state.RequireForUpdate<RandomComponent>();
 
-            TempCounter = 0;
+            TempCounter = 0; 
         }
 
         [BurstCompile]
@@ -32,7 +32,7 @@ namespace RMC.DOTS.Demos.Random.ConsoleLogRandom
             if (++TempCounter <= 3)
             {
                 float result = randomComponentAspect.NextFloat(0, 10);
-                Debug.Log(string.Format("RandomComponentAspect DemoValue = {0}", result));
+                Debug.Log(string.Format("RandomComponentAspect DemoValue = {0}\n", result));
             }
         }
     }

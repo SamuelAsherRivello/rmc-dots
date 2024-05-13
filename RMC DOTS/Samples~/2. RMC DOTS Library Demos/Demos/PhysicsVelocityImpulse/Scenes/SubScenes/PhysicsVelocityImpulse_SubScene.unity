@@ -375,10 +375,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsRandomForce: 0
-  Force: {x: 1, y: 1, z: 0}
+  Force: {x: 5, y: 0.1, z: 5}
   RandomCanBeNegative: 1
-  RandomMinForce: {x: 1, y: 1, z: 0}
-  RandomMaxForce: {x: 1, y: 1, z: 0}
+  RandomMinForce: {x: 1, y: 1, z: 1}
+  RandomMaxForce: {x: 2, y: 2, z: 2}
 --- !u!65 &1921382901
 BoxCollider:
   m_ObjectHideFlags: 0

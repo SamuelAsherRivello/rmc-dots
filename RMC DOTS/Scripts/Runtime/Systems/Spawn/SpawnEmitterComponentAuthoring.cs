@@ -15,6 +15,8 @@ namespace RMC.DOTS.Systems.Spawn
         [Range(1, 100000)]
         public int SpawnsPerTotal = 1;
 
+        public GameObject Prefab;
+        
         protected void OnValidate()
         {
             // SpawnsPerOperation must be less than SpawnsPerTotal
@@ -26,6 +28,11 @@ namespace RMC.DOTS.Systems.Spawn
             public override void Bake(SpawnEmitterComponentAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
+
+                AddComponent(entity, new SpawnConfigurationComponent
+                {
+                    Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
+                });
 
                 AddComponent<SpawnEmitterComponent>(entity,
                     new SpawnEmitterComponent

@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f96d238e7a93d4f87f030c13f947ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanBeNegative: 1
-  MinForce: {x: 0, y: 1, z: 0}
-  MaxForce: {x: 6, y: 6, z: 6}
+  IsRandomForce: 1
+  Force: {x: 1, y: 1, z: 0}
+  RandomCanBeNegative: 1
+  RandomMinForce: {x: 1, y: 1, z: 1}
+  RandomMaxForce: {x: 5, y: 5, z: 5}

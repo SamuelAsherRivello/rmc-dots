@@ -1,0 +1,6 @@
+#NonRandomVisualElement, #RandomVisualElement
+{
+    margin-left: 10px;
+    background-color: #404040
+}
+

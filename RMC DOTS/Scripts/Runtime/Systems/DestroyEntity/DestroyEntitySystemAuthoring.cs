@@ -9,7 +9,6 @@ namespace RMC.DOTS.Systems.DestroyEntity
     /// </summary>
     public class DestroyEntitySystemAuthoring : MonoBehaviour
     {
-        [SerializeField] 
         public bool IsSystemEnabled = true;
         
         public struct DestroyEntitySystemIsEnabledTag : IComponentData {}

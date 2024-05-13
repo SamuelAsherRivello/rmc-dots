@@ -1,4 +1,5 @@
-﻿using RMC.Audio.Data.Types;
+﻿using RMC.Audio;
+using RMC.Audio.Data.Types;
 using Unity.Collections;
 using Unity.Entities;
 
@@ -9,10 +10,10 @@ namespace RMC.DOTS.Systems.Audio
     public struct AudioComponent : IComponentData
     {
         public FixedString128Bytes AudioClipName;
-        public float Volume;
-        public float Pitch;
-        public float DelayInSeconds;
-        public bool IsLooping;
+        public readonly float Volume;
+        public readonly float Pitch;
+        public readonly float DelayInSeconds;
+        public readonly bool IsLooping;
         
         public AudioComponent 
         (
@@ -29,5 +30,15 @@ namespace RMC.DOTS.Systems.Audio
             IsLooping = isLooping;
         }
 
+        public AudioManagerPlayParameters CreateAudioManagerPlayParameters()
+        {
+            return new AudioManagerPlayParameters
+            (
+                Volume,
+                Pitch,
+                DelayInSeconds,
+                IsLooping
+            );
+        }
     }
 }

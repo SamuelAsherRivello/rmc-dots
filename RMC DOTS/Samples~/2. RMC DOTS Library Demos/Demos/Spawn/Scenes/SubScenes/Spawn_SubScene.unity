@@ -384,6 +384,7 @@ MonoBehaviour:
   SpawnPosition: {fileID: 1926283221}
   SpawnsPerOperation: 1000
   SpawnsPerTotal: 100000
+  Prefab: {fileID: 5045529216829520069, guid: c1c192a3093c4cc43abbc10861f76cac, type: 3}
 --- !u!23 &1926283219
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -493,7 +494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb80d15adc04178856b46a5ee044d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5045529216829520069, guid: c1c192a3093c4cc43abbc10861f76cac, type: 3}
   IsSystemEnabled: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -1,28 +1,45 @@
 ﻿using UnityEditor;
 using UnityEditor.UIElements;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
 {
     [CustomEditor(typeof(PhysicsVelocityImpulseComponentAuthoring))]
-    public class PhysicsVelocityImpulseComponentAuthoringEditor : Editor
+    public class PhysicsVelocityImpulseComponentAuthoringEditor : BaseCustomEditor
     {
-        public VisualTreeAsset VisualTreeAsset;
         private VisualElement _visualElement;
         private PropertyField _isRandomForcePropertyField;
 
+        private const bool IsInDevelopment = false;
+
         public override VisualElement CreateInspectorGUI()
         {
+            // Create new VisualElement
             _visualElement = new VisualElement();
-            VisualTreeAsset.CloneTree(_visualElement);
 
-            // Listen
+            if (IsInDevelopment)
+            {
+                // Debug-only: Keep commented out
+                AddDefaultInspector(ref _visualElement);
+                AddVerticalGap(ref _visualElement);
+            }
+            
+            // Add default Script Field
+            AddScriptField(ref _visualElement);
+            
+            // Clone serialized VisualElement and StyleSheet
+            MyVisualTreeAsset.CloneTree(_visualElement);
+            _visualElement.styleSheets.Add(MyStyleSheet);
+            
+            // Observer Events
             _isRandomForcePropertyField = _visualElement.Q<PropertyField>("IsRandomForcePropertyField");
             _isRandomForcePropertyField.RegisterCallback<ClickEvent>(IsRandomForcePropertyField_OnClick);
             IsRandomForcePropertyField_OnClick(null);
+            
             return _visualElement;
         }
+
+
 
         private void IsRandomForcePropertyField_OnClick(ClickEvent evt)
         {

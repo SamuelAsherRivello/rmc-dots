@@ -143,6 +143,7 @@ namespace RMC.Audio
 		{
 			if (audioClip == null)
 			{
+				
 				throw new ArgumentException($"PlayAudioClip() failed. AudioClip is null.");
 			}
 
@@ -158,6 +159,10 @@ namespace RMC.Audio
 				if (!audioSource.isPlaying)
 				{
 					audioSource.clip = audioClip;
+					audioSource.volume = audioManagerPlayParameters.Volume;
+					audioSource.pitch = audioManagerPlayParameters.Pitch;
+					audioSource.loop = audioManagerPlayParameters.IsLooping;
+					
 					// Struct default is ok
 					if (!audioManagerPlayParameters.HasDelay)
 					{

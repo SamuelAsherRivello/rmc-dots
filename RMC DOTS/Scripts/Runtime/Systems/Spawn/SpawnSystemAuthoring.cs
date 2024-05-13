@@ -10,24 +10,19 @@ namespace RMC.DOTS.Systems.Spawn
 
     public class SpawnSystemAuthoring : MonoBehaviour
     {
-        public GameObject Prefab;
         public bool IsSystemEnabled = true;
         
         public struct SpawnerSystemIsEnabledTag : IComponentData {}
         
         public class SpawnerSystemAuthoringBaker : Baker<SpawnSystemAuthoring>
         {
-            public override void Bake(SpawnSystemAuthoring systemAuthoring)
+            public override void Bake(SpawnSystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     var entity = GetEntity(TransformUsageFlags.None);
                     AddComponent<SpawnerSystemIsEnabledTag>(entity);
-                    AddComponent(entity, new SpawnConfigurationComponent
-                    {
-                        Prefab = GetEntity(systemAuthoring.Prefab, TransformUsageFlags.Dynamic),
-                    });
-            
+        
                 }
             }
         }
