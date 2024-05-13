@@ -16,12 +16,14 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
         {
             // Create new VisualElement
             _visualElement = new VisualElement();
-
+         
             if (IsInDevelopment)
             {
+#pragma warning disable CS0162
                 // Debug-only: Keep commented out
                 AddDefaultInspector(ref _visualElement);
                 AddVerticalGap(ref _visualElement);
+#pragma warning restore CS0162
             }
             
             // Add default Script Field
