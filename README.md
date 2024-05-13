@@ -22,14 +22,15 @@
 1. Create a new Unity Project. Any template with URP is acceptable
 1. Open the Unity Project
 1. Open the Unity Package Manager Window. NOTE: Some of the following may already be imported. If so, leave it as-is.
-1. Add **Unity** Packages...
-    1. Add Package for "com.unity.inputsystem"
-    1. Add Package for "com.unity.ugui"
-    1. Add Package for "com.unity.textmeshpro"
+1. Add **Unity** Packages for General usage ...
+    1. Add Package for "Input System" (com.unity.inputsystem)
+    1. Add Package for "Unity UI" (com.unity.ugui)
+    1. Add Package for "Text Mesh Pro" (com.unity.textmeshpro)
 1. Add **Unity** Packages for ECS...
-    1. Add Package for "com.unity.render-pipelines.universal"
-    1. Add Package for "com.unity.entities.graphics"
-    1. Add Package for "com.unity.physics"
+    1. Add Package for "Universal RP" (com.unity.render-pipelines.universal)
+    1. Add Package for "Entities Graphics" (com.unity.entities.graphics)
+    1. Add Package for "Entities" (com.unity.entities)
+    1. Add Package for "Unity Physics" (com.unity.physics)
 1. Add **RMC** Packages...
     1. Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-readme.git"
     1. Add Package By Git for "https://github.com/SamuelAsherRivello/rmc-dots.git"
