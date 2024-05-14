@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 1926283221}
   - component: {fileID: 1926283220}
   - component: {fileID: 1926283219}
+  - component: {fileID: 1926283222}
   - component: {fileID: 1926283218}
   m_Layer: 0
   m_Name: SpawnEmitterComponentAuthoring
@@ -380,8 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b1ec8d7a6d0f44baa0cfdbffa69701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnPrefab: {fileID: 5045529216829520069, guid: c1c192a3093c4cc43abbc10861f76cac,
-    type: 3}
   SpawnPosition: {fileID: 1926283221}
   TimeTillSpawnInSeconds: 0.1
   SpawnsPerOperation: 134
@@ -451,6 +450,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1926283222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926283217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb8be24ec1a490f82ec88b0f8bd52e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPrefab: {fileID: 5045529216829520069, guid: c1c192a3093c4cc43abbc10861f76cac,
+    type: 3}
 --- !u!1 &1985194063
 GameObject:
   m_ObjectHideFlags: 0

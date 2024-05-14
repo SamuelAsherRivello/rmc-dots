@@ -6,9 +6,7 @@ namespace RMC.DOTS.Systems.Spawn
 {
     public class SpawnEmitterComponentAuthoring : MonoBehaviour
     {
-        [Header("Prefab")]
-        public GameObject SpawnPrefab;
-
+        [Header("Position")]
         public Transform SpawnPosition;
 
         [Header("Timing")]
@@ -32,11 +30,6 @@ namespace RMC.DOTS.Systems.Spawn
             public override void Bake(SpawnEmitterComponentAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
-
-                AddComponent(entity, new SpawnConfigurationComponent
-                {
-                    SpawnPrefab = GetEntity(authoring.SpawnPrefab, TransformUsageFlags.Dynamic),
-                });
 
                 AddComponent<SpawnEmitterComponent>(entity,
                     new SpawnEmitterComponent

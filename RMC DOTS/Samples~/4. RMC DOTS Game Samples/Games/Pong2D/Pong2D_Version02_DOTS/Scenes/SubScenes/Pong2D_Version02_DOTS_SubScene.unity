@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 87623214}
   - component: {fileID: 87623215}
+  - component: {fileID: 87623216}
   m_Layer: 0
   m_Name: SpawnSystemAuthoring
   m_TagString: Untagged
@@ -167,8 +168,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb80d15adc04178856b46a5ee044d9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 4754850223202791305, guid: d183d4a793710f5419a7f13e8625d9d7, type: 3}
   IsSystemEnabled: 1
+--- !u!114 &87623216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87623212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb8be24ec1a490f82ec88b0f8bd52e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpawnPrefab: {fileID: 4754850223202791305, guid: d183d4a793710f5419a7f13e8625d9d7,
+    type: 3}
 --- !u!1 &120287095
 GameObject:
   m_ObjectHideFlags: 0
