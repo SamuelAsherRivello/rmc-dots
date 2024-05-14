@@ -78,10 +78,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7822846090650586699}
   - {fileID: 7689816761388812632}
   - {fileID: 365496285332942872}
   - {fileID: 8823626512475932964}
+  - {fileID: 5591452188457879879}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3586695608133428092
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1001 &4591001269018259335
+--- !u!1001 &2215210703712135307
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -356,62 +356,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5183454963766305521}
     m_Modifications:
-    - target: {fileID: 1485694314543369636, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 1485694314543369636, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7167726124109680841, guid: 1736d7b1048786a48a4d7f999297d944,
+    - target: {fileID: 7167726124109680841, guid: 8d370336eac23054cbdf8a7ca6a14832,
         type: 3}
       propertyPath: _audioManagerConfiguration
       value: 
@@ -421,10 +421,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 1736d7b1048786a48a4d7f999297d944, type: 3}
---- !u!4 &7822846090650586699 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 8d370336eac23054cbdf8a7ca6a14832, type: 3}
+--- !u!4 &5591452188457879879 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 5991711950516216268, guid: 1736d7b1048786a48a4d7f999297d944,
+  m_CorrespondingSourceObject: {fileID: 5991711950516216268, guid: 8d370336eac23054cbdf8a7ca6a14832,
     type: 3}
-  m_PrefabInstance: {fileID: 4591001269018259335}
+  m_PrefabInstance: {fileID: 2215210703712135307}
   m_PrefabAsset: {fileID: 0}
