@@ -57,7 +57,7 @@ namespace RMC.DOTS.Systems.Spawn
                 WithStructuralChanges().
                 ForEach((Entity entity, ref SpawnRequestComponent spawnerRequestComponent) =>
             {
-                var prefab = spawnerConfigurationComponent.Prefab;
+                var prefab = spawnerConfigurationComponent.SpawnPrefab;
                 
                 //Spawn just ONE, but allow for more later...
                 var instances = EntityManager.Instantiate(prefab, 1, Allocator.Temp);

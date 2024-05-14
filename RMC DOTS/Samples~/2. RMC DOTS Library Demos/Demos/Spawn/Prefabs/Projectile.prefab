@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WillDestroy: 1
-  TimeTillDestroyInSeconds: 5
+  TimeTillDestroyInSeconds: 3
 --- !u!114 &4163320432907653527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,5 +142,5 @@ MonoBehaviour:
   IsRandomForce: 1
   Force: {x: 1, y: 1, z: 0}
   RandomCanBeNegative: 1
-  RandomMinForce: {x: 1, y: 1, z: 1}
-  RandomMaxForce: {x: 5, y: 5, z: 5}
+  RandomMinForce: {x: 0, y: 0, z: 0}
+  RandomMaxForce: {x: 11, y: 3, z: 11}

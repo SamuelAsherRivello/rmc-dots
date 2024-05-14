@@ -25,14 +25,14 @@ namespace RMC.DOTS.Systems.Audio
         
         public class AudioSystemAuthoringBaker : Baker<AudioSystemAuthoring>
         {
-            public override void Bake(AudioSystemAuthoring systemAuthoring)
+            public override void Bake(AudioSystemAuthoring authoring)
             {
                 Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                 
                 AddComponent<AudioSystemConfigurationComponent>(entity,
-                    new AudioSystemConfigurationComponent { IsDebug = systemAuthoring.IsDebug });
+                    new AudioSystemConfigurationComponent { IsDebug = authoring.IsDebug });
                 
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     //Turn system on
                     AddComponent<AudioSystemIsEnabledTag>(entity);

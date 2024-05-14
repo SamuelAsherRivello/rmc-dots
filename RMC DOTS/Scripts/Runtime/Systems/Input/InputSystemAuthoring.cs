@@ -17,9 +17,9 @@ namespace RMC.DOTS.Systems.Input
         
         public class InputSystemAuthoringBaker : Baker<InputSystemAuthoring>
         {
-            public override void Bake(InputSystemAuthoring systemAuthoring)
+            public override void Bake(InputSystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     Entity inputEntity = GetEntity(TransformUsageFlags.Dynamic);
                     

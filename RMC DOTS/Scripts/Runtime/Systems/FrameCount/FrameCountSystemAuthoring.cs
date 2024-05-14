@@ -16,9 +16,9 @@ namespace RMC.DOTS.Systems.FrameCount
         
         public class FrameCountSystemAuthoringBaker : Baker<FrameCountSystemAuthoring>
         {
-            public override void Bake(FrameCountSystemAuthoring systemAuthoring)
+            public override void Bake(FrameCountSystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                     

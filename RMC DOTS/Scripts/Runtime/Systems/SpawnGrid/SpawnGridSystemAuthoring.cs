@@ -16,9 +16,9 @@ namespace RMC.DOTS.Systems.SpawnGrid
         
         public class SpawnGridSystemAuthoringBaker : Baker<SpawnGridSystemAuthoring>
         {
-            public override void Bake(SpawnGridSystemAuthoring systemAuthoring)
+            public override void Bake(SpawnGridSystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     var entity = GetEntity(TransformUsageFlags.None);
                     AddComponent<SpawnGridSystemIsEnabledTag>(entity);

@@ -15,9 +15,9 @@ namespace RMC.DOTS.Systems.DestroyEntity
         
         public class DestroyEntitySystemAuthoringBaker : Baker<DestroyEntitySystemAuthoring>
         {
-            public override void Bake(DestroyEntitySystemAuthoring systemAuthoring)
+            public override void Bake(DestroyEntitySystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                     

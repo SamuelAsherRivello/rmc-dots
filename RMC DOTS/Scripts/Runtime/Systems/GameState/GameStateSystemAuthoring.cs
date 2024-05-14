@@ -16,9 +16,9 @@ namespace RMC.DOTS.Systems.GameState
         
         public class GameStateSystemBaker : Baker<GameStateSystemAuthoring>
         {
-            public override void Bake(GameStateSystemAuthoring systemAuthoring)
+            public override void Bake(GameStateSystemAuthoring authoring)
             {
-                if (systemAuthoring.IsSystemEnabled)
+                if (authoring.IsSystemEnabled)
                 {
                     Entity entity = GetEntity(TransformUsageFlags.Dynamic);
                     

@@ -199,11 +199,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3327021180845433965, guid: e83d146f974973a4a86f6b4cd240e44e,
-        type: 3}
-      propertyPath: m_ramModuleState
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 3327021180851059439, guid: e83d146f974973a4a86f6b4cd240e44e,
         type: 3}
       propertyPath: m_Name
