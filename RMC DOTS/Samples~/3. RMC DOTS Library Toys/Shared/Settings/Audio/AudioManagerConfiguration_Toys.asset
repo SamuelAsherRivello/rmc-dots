@@ -15,3 +15,4 @@ MonoBehaviour:
   _audioMixer: {fileID: 24100000, guid: 8ff72523f40ad994f91e5cc7bffdaddf, type: 2}
   _audioClips:
   - {fileID: 8300000, guid: 5930807ae45731347be2f0ddaa6f83e8, type: 3}
+  - {fileID: 8300000, guid: eb7ff383d2f938c4d87dceadce5ed90b, type: 3}
