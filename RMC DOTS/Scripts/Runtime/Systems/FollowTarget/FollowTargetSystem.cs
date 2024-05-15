@@ -35,6 +35,13 @@ namespace RMC.DOTS.Systems.FollowTarget
                 SystemAPI.Query<RefRW<LocalTransform>, RefRW<PhysicsVelocity>, RefRO<PhysicsMass>, RefRO<FollowerComponent>>()
             )
             {
+
+                if (!followerComponent.ValueRO.IsEnabled)
+                {
+                    // TODO: maybe slow down movement here
+                    continue;
+                }
+                
                 // Find the target
                 float3 targetPosition = float3.zero;
                 bool hasFoundTarget = false;

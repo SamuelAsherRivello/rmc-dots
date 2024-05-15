@@ -9,7 +9,8 @@ namespace RMC.DOTS.Systems.FollowTarget
         public float AngularSpeed = 10;
         public float LinearSpeed = 10;
         public float Radius = 3;
-            
+        public bool IsEnabled = true;
+        
         public class FollowTargetComponentAuthoringBaker : Baker<FollowerComponentAuthoring>
         {
             public override void Bake(FollowerComponentAuthoring authoring)
@@ -23,6 +24,7 @@ namespace RMC.DOTS.Systems.FollowTarget
                         AngularSpeed = authoring.AngularSpeed,
                         LinearSpeed = authoring.LinearSpeed,
                         Radius = authoring.Radius,
+                        IsEnabled = authoring.IsEnabled
                     });
 
             }

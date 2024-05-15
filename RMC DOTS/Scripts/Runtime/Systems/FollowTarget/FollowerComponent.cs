@@ -9,5 +9,6 @@ namespace RMC.DOTS.Systems.FollowTarget
         public float LinearSpeed;
         public float AngularSpeed;
         public float Radius;
+        public bool IsEnabled;
     }
 }
