@@ -9,6 +9,7 @@ using Unity.Transforms;
 using RMC.DOTS.Systems.Player;
 using RMC.DOTS.Systems.Random;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
 {
@@ -24,17 +25,16 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         {
             state.RequireForUpdate<RandomComponent>();
             state.RequireForUpdate<PlayerTag>();
-            state.RequireForUpdate<EnemyMoveSystemAuthoring.EnemyMoveSystemIsEnabledTag>();
+            state.RequireForUpdate<EnemySpawnSystemAuthoring.EnemySpawnSystemIsEnabledTag>();
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<EnemySpawnComponent>();
             state.RequireForUpdate<ScoringComponent>();
             state.RequireForUpdate<GameStateComponent>();
             _localTransformLookup = state.GetComponentLookup<LocalTransform>();
-        }
-
-
-        public void OnStartRunning(ref SystemState state)
-        {
+            
+            
+            //TODO: is there a better place to put this? 
+            //I'd like it to honor EnemySpawnSystemAuthoring.EnemySpawnSystemIsEnabledTag, but it doesn't yet
             GameStateSystem gameStateSystem = state.World.GetExistingSystemManaged<GameStateSystem>();
             gameStateSystem.OnGameStateChanged += GameStateSystem_OnGameStateChanged;
         }
@@ -77,7 +77,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             var playerEntity = SystemAPI.GetSingletonEntity<PlayerTag>();
             float3 currentPlayerPosition = _localTransformLookup.GetRefRO(playerEntity).ValueRO.Position;
             
-            ScoringComponent scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
             var randomComponentEntity = SystemAPI.GetSingletonEntity<RandomComponent>();
             var randomComponentAspect = SystemAPI.GetAspect<RandomComponentAspect>(randomComponentEntity);
             const float spawnHeight = 3.0f;
@@ -87,7 +86,10 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                          WithEntityAccess())
             {
                 if (SystemAPI.Time.ElapsedTime < enemySpawnComponent.ValueRW.SpawnNextAtElapsedTime)
+                {
                     continue;
+                }
+                   
 
 
                 
@@ -109,17 +111,16 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                 ecb.SetComponent(enemyEntity, LocalTransform.FromPosition(newEnemyPosition));
                 ecb.SetComponent(enemyEntity, newEnemyMoveComponent);
 
-                HealthComponent newHealthComponent = new HealthComponent(enemySpawnComponent.ValueRO.InitialHealth, enemySpawnComponent.ValueRO.InitialHealth);
-
-                // Use Add because current authoring does not add any HealthComponent to Prefab
-                ecb.AddComponent(enemyEntity, newHealthComponent);
+                
+                // HealthComponent newHealthComponent = new HealthComponent(enemySpawnComponent.ValueRO.InitialHealth, enemySpawnComponent.ValueRO.InitialHealth);
+                //
+                // // Use Add because current authoring does not add any HealthComponent to Prefab
+                // ecb.AddComponent(enemyEntity, newHealthComponent);
 
                 enemySpawnComponent.ValueRW.SpawnNextAtElapsedTime = 
                     (float)(SystemAPI.Time.ElapsedTime + enemySpawnComponent.ValueRO.SpawnIntervalInSecondsCurrent);
+                //Debug.Log("set: " + enemySpawnComponent.ValueRO.SpawnIntervalInSecondsCurrent);
                 
-                // Add to POSSIBLE points for each enemy
-                scoringComponent.ScoreComponent01.ScoreMax += 1;
-
                 ecb.AddComponent<TweenScaleComponent>(enemyEntity, 
                     new TweenScaleComponent(0.1f, 1, 8)); 
                 
@@ -130,8 +131,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                 ));
 
             }
-            
-            SystemAPI.SetSingleton<ScoringComponent>(scoringComponent);
         }
         
         //  Methods ---------------------------------------
@@ -140,6 +139,11 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         //  Event Handlers --------------------------------
         private void GameStateSystem_OnGameStateChanged(GameState gameState)
         {
+            if (!SystemAPI.HasSingleton<EnemySpawnSystemAuthoring.EnemySpawnSystemIsEnabledTag>())
+            {
+                return;
+            }
+            
             GameStateComponent gameStateComponent = SystemAPI.GetSingleton<GameStateComponent>();
             if (gameStateComponent.GameState == GameState.RoundStarted)
             {
@@ -159,8 +163,8 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                     enemySpawnComponent.SpawnIntervalInSecondsMin + 
                     enemySpawnComponent.SpawnIntervalInSecondsMax * (1 - difficultyPercentage);
                 
-                //Debug.Log($"EnemySpawnSystem. difficultyPercentage = {difficultyPercentage}.");
-                //Debug.Log("1 SpawnIntervalInSecondsCurrent: " + enemySpawnComponent.SpawnIntervalInSecondsCurrent);
+              //  Debug.Log($"EnemySpawnSystem. difficultyPercentage = {difficultyPercentage}.");
+               // Debug.Log("1 SpawnIntervalInSecondsCurrent: " + enemySpawnComponent.SpawnIntervalInSecondsCurrent);
                 
                 // Set Component
                 SystemAPI.SetSingleton<EnemySpawnComponent>(enemySpawnComponent);

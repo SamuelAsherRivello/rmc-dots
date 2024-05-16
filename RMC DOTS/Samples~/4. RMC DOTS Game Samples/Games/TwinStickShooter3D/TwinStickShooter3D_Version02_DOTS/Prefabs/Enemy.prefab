@@ -303,7 +303,7 @@ MonoBehaviour:
     m_Bits: 2048
   CollidesWithLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
 --- !u!114 &5543047190229947869
 MonoBehaviour:
   m_ObjectHideFlags: 0

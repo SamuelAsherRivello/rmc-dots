@@ -41,7 +41,28 @@ namespace RMC.DOTS.Systems.Scoring
         }
         
         [Test]
-        public void ScoreComponent_AreNotEqual_WhenUniqueValues()
+        public void ScoreComponent_AreNotEqual_WhenUniqueValues01()
+        {
+            // Arrange
+            ScoreComponent scoreComponent01 = new ScoreComponent
+            {
+                ScoreCurrent = 1,
+                ScoreMax = 3
+            };
+            ScoreComponent scoreComponent02 = new ScoreComponent
+            {
+                ScoreCurrent = 2,
+                ScoreMax = 3
+            };
+            
+            // Act
+
+            // Assert
+            Assert.That(scoreComponent01, Is.Not.EqualTo(scoreComponent02));
+        }
+        
+        [Test]
+        public void ScoreComponent_AreNotEqual_WhenUniqueValues02()
         {
             // Arrange
             ScoreComponent scoreComponent01 = new ScoreComponent

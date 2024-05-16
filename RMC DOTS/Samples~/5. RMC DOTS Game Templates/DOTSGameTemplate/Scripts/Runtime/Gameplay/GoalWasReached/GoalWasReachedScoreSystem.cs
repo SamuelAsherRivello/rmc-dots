@@ -3,6 +3,7 @@ using RMC.DOTS.Systems.Player;
 using RMC.DOTS.Systems.Scoring;
 using Unity.Burst;
 using Unity.Entities;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
@@ -18,16 +19,16 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<ScoringComponent>();
         }
-
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (playerTag, goalWasReached) in 
                      SystemAPI.Query<PlayerTag, GoalWasReachedTag>())
             {
-                var pickupCounter = SystemAPI.GetSingleton<ScoringComponent>();
-                pickupCounter.ScoreComponent01.ScoreCurrent += 1;
-                SystemAPI.SetSingleton(pickupCounter);
+                var scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
+                scoringComponent.ScoreComponent01.ScoreCurrent += 1;
+                SystemAPI.SetSingleton(scoringComponent);
             }
         }
     }

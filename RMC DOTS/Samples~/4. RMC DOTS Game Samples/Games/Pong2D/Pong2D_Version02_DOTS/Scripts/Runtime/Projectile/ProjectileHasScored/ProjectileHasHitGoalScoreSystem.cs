@@ -43,7 +43,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             {
                 
                 scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
-                Debug.LogWarning("scoringComponent was: " + scoringComponent.ScoreComponent01.ScoreCurrent);
                 
                 if (projectileHasScoredTag.PlayerType == PlayerType.Human)
                 {
@@ -61,10 +60,8 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 
             if (wasScoreChanged)
             {
-                SystemAPI.SetSingleton(scoringComponent);
+                SystemAPI.SetSingleton<ScoringComponent>(scoringComponent);
             }
-       
-            Debug.LogWarning("scoringComponent is: " + scoringComponent.ScoreComponent01.ScoreCurrent);
         }
     }
 }

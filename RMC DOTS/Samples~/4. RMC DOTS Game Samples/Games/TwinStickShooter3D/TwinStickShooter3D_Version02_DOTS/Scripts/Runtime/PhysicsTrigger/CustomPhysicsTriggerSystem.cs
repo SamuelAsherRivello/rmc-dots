@@ -21,6 +21,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<CustomPhysicsTriggerSystemAuthoring.CustomPhysicsTriggerSystemIsEnabledTag>();
             state.RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<GameStateComponent>();

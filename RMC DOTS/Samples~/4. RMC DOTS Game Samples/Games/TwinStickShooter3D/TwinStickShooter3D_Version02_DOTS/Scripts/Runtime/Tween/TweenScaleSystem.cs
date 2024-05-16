@@ -16,6 +16,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<TweenScaleSystemAuthoring.TweenScaleSystemIsEnabledTag>();
             state.RequireForUpdate<BeginSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<TweenScaleComponent>();
             state.RequireForUpdate<LocalTransform>();

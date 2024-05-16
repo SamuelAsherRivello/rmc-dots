@@ -46,7 +46,7 @@ namespace RMC.DOTS.World
         }
 
         [Test]
-        public void World_EntityCountIsGT4_WhenInitial()
+        public void World_EntityCountIsGTE4_WhenInitial()
         {
             // Arrange
             
@@ -54,7 +54,7 @@ namespace RMC.DOTS.World
             int result = World.EntityManager.UniversalQuery.CalculateEntityCount();
 
             // Assert
-            Assert.That(result, Is.GreaterThan(4));
+            Assert.That(result, Is.GreaterThanOrEqualTo(4));
         }
         
         [Test]

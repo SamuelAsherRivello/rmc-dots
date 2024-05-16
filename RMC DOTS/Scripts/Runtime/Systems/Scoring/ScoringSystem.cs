@@ -2,6 +2,7 @@
 using RMC.DOTS.SystemGroups;
 using Unity.Entities;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 namespace RMC.DOTS.Systems.Scoring
 {
@@ -11,6 +12,7 @@ namespace RMC.DOTS.Systems.Scoring
     {
         
         public Action<ScoringComponent> OnScoringComponentChanged;
+        private ScoringComponent _lastScoringComponent;
 
         public ScoringComponent ScoringComponent
         {
@@ -18,15 +20,14 @@ namespace RMC.DOTS.Systems.Scoring
             get
             {
                 // In rare cases, (first frame of scene) there is no singleton yet
-                Debug.Log("Getting");
                 return SystemAPI.GetSingleton<ScoringComponent>();
             }
             set
             {
                 SystemAPI.SetSingleton<ScoringComponent>(value);
-                Debug.Log("Score seto to : "  + value);
                 OnScoringComponentChanged?.Invoke(value);
             }
+            
         }
         
         protected override void OnCreate()
@@ -36,16 +37,19 @@ namespace RMC.DOTS.Systems.Scoring
         
         protected override void OnUpdate()
         {
-            // WithChangeFilter means it was changed **OR** simply any RefRW was used, regardless of actual change
+            // WithChangeFilter is NOT accurate. It means any RefRW was used, regardless of actual value change
             foreach (var scoringComponent 
                      in SystemAPI.Query<RefRO<ScoringComponent>>().WithChangeFilter<ScoringComponent>())
             {
-                //Debug.Log("eq;" + ScoringComponent.Equals(scoringComponent.ValueRO) + "because a: " + scoringComponent.ValueRO.ScoreComponent01.ScoreCurrent +  " and b: " + ScoringComponent.ScoreComponent01.ScoreCurrent);
-                
-                //if (!ScoringComponent.Equals(scoringComponent.ValueRO))
+
+                //TODO: Remove the need for this check
+                //For now, this quits if the incoming value is NOT actually changed
+                if (_lastScoringComponent.Equals(scoringComponent.ValueRO))
                 {
-                    ScoringComponent = scoringComponent.ValueRO;
+                    return;
                 }
+                _lastScoringComponent = scoringComponent.ValueRO;
+                ScoringComponent = _lastScoringComponent;
             }
         }
 

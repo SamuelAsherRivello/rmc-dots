@@ -56,7 +56,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         private GameStateSystem _gameStateSystem;
         private SpawnSystem spawnSystem;
         private ScoringSystem _scoringSystem;
-
         private World _ecsWorld;
 
         //  Unity Methods  --------------------------------
@@ -181,7 +180,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             {
                 Debug.Log($"OnScoresChanged() scoringComponent = {scoringComponent.ScoreComponent01.ScoreCurrent} vs {scoringComponent.ScoreComponent02.ScoreCurrent}");
             }
-                        
+            
             _common.MainUI.Score01Label.text = 
                 $"{scoringComponent.ScoreComponent01.ScoreCurrent:00}";
             

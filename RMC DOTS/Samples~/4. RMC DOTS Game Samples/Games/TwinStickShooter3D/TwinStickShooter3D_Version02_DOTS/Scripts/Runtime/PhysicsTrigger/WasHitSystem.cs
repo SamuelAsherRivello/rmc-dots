@@ -32,7 +32,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         {
             RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
             RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
-            RequireForUpdate<ScoringComponent>();
             RequireForUpdate<GameStateComponent>();
             
             _destroyEntityComponentLookup = GetComponentLookup<DestroyEntityComponent>();
@@ -59,7 +58,8 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 				         WithEntityAccess())
 			{
 				scoringComponent.ScoreComponent01.ScoreCurrent += 1;
-					
+				SystemAPI.SetSingleton<ScoringComponent>(scoringComponent);
+				
 				var audioEntity = ecb.CreateEntity();
 				ecb.AddComponent<AudioComponent>(audioEntity, new AudioComponent
 				(
@@ -79,15 +79,15 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 			////////////////////////////////
 			// ENEMY
 			////////////////////////////////
-			foreach (var (healthAspect, enemyTag, enemyWasHitTag, localTransform, gemDropComponent, entity)
-				in SystemAPI.Query<HealthAspect, EnemyTag, EnemyWasHitThisFrameTag, LocalTransform, GemSpawnComponent>().
+			foreach (var (enemyTag, enemyWasHitTag, localTransform, gemDropComponent, entity)
+				in SystemAPI.Query<EnemyTag, EnemyWasHitThisFrameTag, LocalTransform, GemSpawnComponent>().
 					WithNone<EnemyWasDestroyed>().
 				WithEntityAccess())
 			{
-                const float damageDealtPerBullet = 1.0f;
-                healthAspect.DealDamage(damageDealtPerBullet);
-                if (!healthAspect.IsDead)
-                    continue;
+                // const float damageDealtPerBullet = 1.0f;
+                // healthAspect.DealDamage(damageDealtPerBullet);
+                // if (!healthAspect.IsDead)
+                //     continue;
 
                 // Instantiate the entity
                 var gemEntity = ecb.Instantiate(gemDropComponent.GemPrefab);
@@ -132,8 +132,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 				ecb.AddComponent<BulletWasDestroyed>(entity);
 
 			}
-			
-			SystemAPI.SetSingleton<ScoringComponent>(scoringComponent);
+
 		}
 
         

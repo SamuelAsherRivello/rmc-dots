@@ -60,7 +60,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         [Header("Debug")]
         [Tooltip("True, to show debug logs")]
         [SerializeField] 
-        private bool IsDebugLog = false;
+        private bool IsDebug = false;
 
         [Tooltip("True, to show faster UI")]
         [SerializeField] 
@@ -73,16 +73,18 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         private int _enemyKillsThisRoundMax;
         private readonly int _delayAfterTextInMilliseconds = 2000;
         
+
         //  Unity Methods  --------------------------------
         protected async void Start()
         {
             // The Unity Project Must Have These Layers
             // LayerMaskUtility Shows Errors If Anything Is Missing
             LayerMaskUtility.AssertLayerMask("Player", 6);
-            LayerMaskUtility.AssertLayerMask("Bullet", 10);
             LayerMaskUtility.AssertLayerMask("Enemy", 11);
-            LayerMaskUtility.AssertLayerMask("Wall", 12);
+            LayerMaskUtility.AssertLayerMask("Bullet", 12);
             LayerMaskUtility.AssertLayerMask("Gem", 13);
+            LayerMaskUtility.AssertLayerMask("Wall", 14);
+      
             
             // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
@@ -141,7 +143,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         //  Event Handlers --------------------------------
         private async void GameStateSystem_OnGameStateChanged(GameState gameState)
         {
-            if (IsDebugLog)
+            if (IsDebug)
             {
                 Debug.Log($"OnGameStateChanged() gameState = {gameState}");
             }
@@ -280,9 +282,14 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 
         private void ScoresEventSystem_OnScoresChanged(ScoringComponent scoringComponent)
         {
+            if (IsDebug)
+            {
+                Debug.Log($"OnScoresChanged() scoringComponent = {scoringComponent.ScoreComponent01.ScoreCurrent} vs {scoringComponent.ScoreComponent02.ScoreCurrent}");
+            }
+            
             var gemsCurrent = 0;
             var gemsMax = 0;
-            
+
             if (!scoringComponent.Equals(default(ScoringComponent)))
             {
                 gemsCurrent = scoringComponent.ScoreComponent01.ScoreCurrent;
@@ -291,9 +298,10 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 
             _common.MainUI.ScoreLabel.text =
                      $"Gems: {gemsCurrent}"; //Don't show "/gemsMax" anymore?
+
         }
-        
-        
+
+  
         private void MainUI_OnRestartRequest()
         {
             AudioManager.Instance.PlayAudioClip("Click01");
