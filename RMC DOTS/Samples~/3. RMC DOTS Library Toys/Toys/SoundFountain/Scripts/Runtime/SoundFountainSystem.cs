@@ -26,6 +26,7 @@ namespace RMC.DOTS.Toys.Fountain
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<SoundFountainSystemAuthoring.SoundFountainSystemIsEnabledTag>();
             state.RequireForUpdate<PhysicsVelocityImpulseSystemAuthoring.PhysicsVelocityImpulseSystemIsEnabledTag>();
             state.RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();

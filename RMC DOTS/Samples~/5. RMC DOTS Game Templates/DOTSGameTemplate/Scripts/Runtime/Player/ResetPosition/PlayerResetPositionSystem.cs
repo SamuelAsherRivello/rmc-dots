@@ -16,6 +16,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
     {
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<PlayerResetPositionSystemAuthoring.PlayerResetPositionSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerResetPositionExecuteOnceTag>();
             state.RequireForUpdate<PlayerTag>();

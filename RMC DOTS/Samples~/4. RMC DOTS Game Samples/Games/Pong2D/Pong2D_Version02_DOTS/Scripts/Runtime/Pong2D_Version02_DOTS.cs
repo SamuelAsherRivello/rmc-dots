@@ -179,7 +179,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         {
             if (IsDebug)
             {
-                //Debug.Log($"OnScoresChanged() scoringComponent = {scoringComponent.ScoreComponent01.ScoreCurrent} vs {scoringComponent.ScoreComponent02.ScoreCurrent}");
+                Debug.Log($"OnScoresChanged() scoringComponent = {scoringComponent.ScoreComponent01.ScoreCurrent} vs {scoringComponent.ScoreComponent02.ScoreCurrent}");
             }
                         
             _common.MainUI.Score01Label.text = 

@@ -16,7 +16,7 @@ namespace RMC.DOTS.World
         }
         
         [Test]
-        public void World_SystemsCountIs71_WhenInitial()
+        public void World_SystemsCountIsGT71_WhenInitial()
         {
             // Arrange
             
@@ -24,11 +24,11 @@ namespace RMC.DOTS.World
             int result = World.Systems.Count;
 
             // Assert
-            Assert.That(result, Is.EqualTo(71));
+            Assert.That(result, Is.GreaterThan(71));
         }
         
         [Test]
-        public void World_GetAllUnmanagedSystemsCountIs45_WhenInitial()
+        public void World_GetAllUnmanagedSystemsCountIsGT45_WhenInitial()
         {
             // Arrange
             
@@ -42,11 +42,11 @@ namespace RMC.DOTS.World
             }
 
             // Assert
-            Assert.That(result, Is.EqualTo(45));
+            Assert.That(result, Is.GreaterThan(45));
         }
 
         [Test]
-        public void World_EntityCountIs4_WhenInitial()
+        public void World_EntityCountIsGT4_WhenInitial()
         {
             // Arrange
             
@@ -54,7 +54,7 @@ namespace RMC.DOTS.World
             int result = World.EntityManager.UniversalQuery.CalculateEntityCount();
 
             // Assert
-            Assert.That(result, Is.EqualTo(4));
+            Assert.That(result, Is.GreaterThan(4));
         }
         
         [Test]

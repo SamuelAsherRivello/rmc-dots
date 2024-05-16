@@ -18,6 +18,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<ProjectileHasHitGoalSystemAuthoring.ProjectileHasHitGoalSystemIsEnabled>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             _goalComponentLookup = state.GetComponentLookup<GoalComponent>();
         }

@@ -9,7 +9,8 @@
         "Unity.Collections",
         "RMC.DOTS.Tests.Runtime",
         "Unity.Hack.ECSTestsFixture.Tests.Runtime",
-        "RMC.Core.PackageCandidate.Runtime"
+        "RMC.Core.PackageCandidate.Runtime",
+        "RMC.DOTS.Runtime"
     ],
     "includePlatforms": [
         "Editor"

@@ -19,6 +19,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<ProjectileHasHitGoalSystemAuthoring.ProjectileHasHitGoalSystemIsEnabled>();
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<ScoringComponent>();
             state.RequireForUpdate<ProjectileTag>();
@@ -33,26 +34,37 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             var ecb = SystemAPI.
                 GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
-            
-            var scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
+
+            ScoringComponent scoringComponent = default(ScoringComponent);
+            var wasScoreChanged = false;
             
             foreach (var (projectileTag, projectileHasScoredTag, entity) in SystemAPI
                          .Query<ProjectileTag, ProjectileHasHitGoalComponent>().WithEntityAccess())
             {
+                
+                scoringComponent = SystemAPI.GetSingleton<ScoringComponent>();
+                Debug.LogWarning("scoringComponent was: " + scoringComponent.ScoreComponent01.ScoreCurrent);
+                
                 if (projectileHasScoredTag.PlayerType == PlayerType.Human)
                 {
                     scoringComponent.ScoreComponent01.ScoreCurrent += 1;
+                    wasScoreChanged = true;
                 }
                 else 
                 {
                     scoringComponent.ScoreComponent02.ScoreCurrent += 1;
+                    wasScoreChanged = true;
                 }
 
                 ecb.RemoveComponent<ProjectileHasHitGoalComponent>(entity);
             }
-    
-            SystemAPI.SetSingleton(scoringComponent);
 
+            if (wasScoreChanged)
+            {
+                SystemAPI.SetSingleton(scoringComponent);
+            }
+       
+            Debug.LogWarning("scoringComponent is: " + scoringComponent.ScoreComponent01.ScoreCurrent);
         }
     }
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af061af9280c2848890866508270d2f, type: 3}
+  m_Name: AudioManagerConfiguration_TwinStickShooter3D
+  m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: 1938ea5a2248a394eaf9ed6ca93191fe, type: 2}
+  _audioClips:
+  - {fileID: 8300000, guid: 62f6af78d30ce89419917fd792314a33, type: 3}
+  - {fileID: 8300000, guid: 55d871e47f187464987cf682fd248b2b, type: 3}
+  - {fileID: 8300000, guid: 151a3ac69bf6f064daf4b58aec1c556e, type: 3}
+  - {fileID: 8300000, guid: eeeaad2d203280247a3013f12f3ea7be, type: 3}
+  - {fileID: 8300000, guid: 9c2f6be43eeebfe4c849841585b70a5a, type: 3}
+  - {fileID: 8300000, guid: 03c017c01f32982419ea7bf70476bf06, type: 3}
+  - {fileID: 8300000, guid: 367687945112d8c46ac6a7886aba3b8d, type: 3}

@@ -14,14 +14,17 @@ namespace RMC.DOTS.Systems.Scoring
 
         public ScoringComponent ScoringComponent
         {
+            
             get
             {
                 // In rare cases, (first frame of scene) there is no singleton yet
+                Debug.Log("Getting");
                 return SystemAPI.GetSingleton<ScoringComponent>();
             }
             set
             {
                 SystemAPI.SetSingleton<ScoringComponent>(value);
+                Debug.Log("Score seto to : "  + value);
                 OnScoringComponentChanged?.Invoke(value);
             }
         }
@@ -33,11 +36,16 @@ namespace RMC.DOTS.Systems.Scoring
         
         protected override void OnUpdate()
         {
-            // Listen for changes and broadcast it
+            // WithChangeFilter means it was changed **OR** simply any RefRW was used, regardless of actual change
             foreach (var scoringComponent 
                      in SystemAPI.Query<RefRO<ScoringComponent>>().WithChangeFilter<ScoringComponent>())
             {
-                ScoringComponent = scoringComponent.ValueRO;
+                //Debug.Log("eq;" + ScoringComponent.Equals(scoringComponent.ValueRO) + "because a: " + scoringComponent.ValueRO.ScoreComponent01.ScoreCurrent +  " and b: " + ScoringComponent.ScoreComponent01.ScoreCurrent);
+                
+                //if (!ScoringComponent.Equals(scoringComponent.ValueRO))
+                {
+                    ScoringComponent = scoringComponent.ValueRO;
+                }
             }
         }
 
