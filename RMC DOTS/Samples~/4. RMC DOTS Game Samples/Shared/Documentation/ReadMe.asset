@@ -44,6 +44,15 @@ MonoBehaviour:
     MenuItemPath: 
   - TextHeading: 
     TextSubheading: 
+    TextBody: Demonstration of the game using the traditional approach of Unity <b>GameObjects</b>.
+    LinkName: 
+    LinkUrl: 
+    PingObjectName: Pong2D_Version01_GO
+    PingObjectGuid: cae2d980d891780409f03abf7aac6d20
+    MenuItemName: 
+    MenuItemPath: 
+  - TextHeading: 
+    TextSubheading: 
     TextBody: Demonstration of the game using the data-oriented aproach of Unity
       <b>DOTS</b>.
     LinkName: 
@@ -78,6 +87,16 @@ MonoBehaviour:
     LinkUrl: 
     PingObjectName: RollABall3D_Version02_DOTS
     PingObjectGuid: 4cc136bef947a6a44a431f736acd4cde
+    MenuItemName: 
+    MenuItemPath: 
+  - TextHeading: TwinStickShooter (3D)
+    TextSubheading: 
+    TextBody: Demonstration of the game using the data-oriented aproach of Unity
+      <b>DOTS</b>.
+    LinkName: 
+    LinkUrl: 
+    PingObjectName: TwinStickShooter3D_Version02_DOTS
+    PingObjectGuid: b4d201425b7301f43b9dfb41ee22fe19
     MenuItemName: 
     MenuItemPath: 
   HasLoadedLayout: 0

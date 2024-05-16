@@ -43,6 +43,28 @@ namespace RMC.DOTS.Utilities
         }
         
         /// <summary>
+        /// Gets the world reference, INCLUDING after a game start.
+        /// </summary>
+        public static async Task IsWorldReadyAsync (SubScene subScene)
+        {
+            //Call this yourself first before calling IsWorldReadyAsync
+            await GetWorldAsync(subScene);
+
+            //Sometimes I get an exception when using the system below this method
+            //So I'm trying to figure out how to wait for the world to be ready
+            
+            //This doesn't always work
+            while (World.DefaultGameObjectInjectionWorld.Systems.Count == 0)
+            {
+                await Task.Delay(100);
+            }
+                      
+            //This helps
+            await Task.Delay(500);
+
+        }
+        
+        /// <summary>
         /// Restart the game DURING playmode
         /// </summary>
         public static async Task ReloadWorldAsync(SubScene subScene)

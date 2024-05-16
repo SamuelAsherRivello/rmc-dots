@@ -97,10 +97,8 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         //  Methods ---------------------------------------
         private async Task InitializeAsync()
         {
-            //TODO: Is this still needed? (Gamestate singleton not found without this code)
-            await Task.Delay(300);
-
-            _gameStateSystem.GameState = GameState.Initialized;
+            await DOTSUtility.IsWorldReadyAsync(_subScene);
+            _gameStateSystem.GameState = GameState.Initializing;
         }
 
 
@@ -114,6 +112,9 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             
             switch (gameState)
             {
+                case GameState.Initializing:
+                    _gameStateSystem.GameState = GameState.Initialized;
+                    break;
                 case GameState.Initialized:
                     _gameStateSystem.GameState = GameState.GameStarted;
                     break;

@@ -63,6 +63,13 @@ namespace RMC.DOTS.Systems.GameState
         {
             get
             {
+                
+                // Allow for "first-frame" access or similar, perhaps before systems are ready
+                if (!SystemAPI.HasSingleton<GameStateComponent>())
+                {
+                    SystemAPI.SetSingleton<GameStateComponent>(new GameStateComponent());
+                }
+                
                 return SystemAPI.GetSingleton<GameStateComponent>().GameState;
             }
             set

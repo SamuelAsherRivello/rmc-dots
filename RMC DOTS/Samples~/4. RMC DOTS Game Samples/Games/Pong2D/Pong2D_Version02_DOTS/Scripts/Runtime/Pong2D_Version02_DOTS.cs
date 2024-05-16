@@ -104,10 +104,8 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         //  Methods ---------------------------------------
         private async Task InitializeAsync()
         {
-            //TODO: Is this still needed? (Yes, multiple balls happen without it)
-            await Task.Delay(300);
-            
-            _gameStateSystem.GameState = GameState.Initialized;
+            await DOTSUtility.IsWorldReadyAsync(_subScene);
+            _gameStateSystem.GameState = GameState.Initializing;
         }
 
 
@@ -122,6 +120,9 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             
             switch (gameState)
             {
+                case GameState.Initializing:
+                    _gameStateSystem.GameState = GameState.Initialized;
+                    break;
                 case GameState.Initialized:
                     _gameStateSystem.GameState = GameState.GameStarted;
                     

@@ -21,7 +21,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
     ///
     /// Responsibilities include to wire together the ECS areas, and the GameObject areas like UI
     /// </summary>
-    public class TwinStickShooter3D : MonoBehaviour
+    public class TwinStickShooter3D_Version02_DOTS : MonoBehaviour
     {
         //  Events ----------------------------------------
 
@@ -128,11 +128,10 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         //  Methods ---------------------------------------
         private async Task InitializeAsync()
         {
-            //TODO: Is this still needed? (Gamestate singleton not found without this code)
-            await Task.Delay(300);
-     
+            await DOTSUtility.IsWorldReadyAsync(_subScene);
             _gameStateSystem.GameState = GameState.Initializing;
         }
+
         
         private void RefreshWaveProgressLabel()
         {
@@ -152,7 +151,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             {
                 case GameState.Initializing:
                     _gameStateSystem.GameState = GameState.Initialized;
-         
                     break;
                 case GameState.Initialized:
                     _gameStateSystem.GameState = GameState.GameStarting;
