@@ -29,7 +29,7 @@ namespace RMC.DOTS.Demos.HybridSync
             state.RequireForUpdate<InputComponent>();
         }
 
-        [BurstCompile]
+        //Cannot use [BurstCompile], due to managed references within
         public void OnUpdate(ref SystemState state)
         {
             // First get the current input value from the PlayerMoveInput component. This component is set in the

@@ -16,7 +16,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.

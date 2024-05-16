@@ -32,8 +32,9 @@ namespace RMC.DOTS.Lessons.BlobAssets
                 var recipeDataRef = chefComponent.ValueRO.RecipeDataRef.Value;
                 
                 // Show the amount
-                Debug.Log($"1. Chef has flour={chefComponent.ValueRO.FlourInKilogramsRemaining}, " +
-                          $"water={chefComponent.ValueRO.WaterInLitersRemaining}.");
+                Debug.Log (string.Format ("1. Chef has flour={0}, water={1}", 
+                    chefComponent.ValueRO.FlourInKilogramsRemaining, 
+                    chefComponent.ValueRO.WaterInLitersRemaining));
                 
                 // Does chef have enough ingredients?
                 if (chefComponent.ValueRO.FlourInKilogramsRemaining > recipeDataRef.FlourInKilogramsRequired ||
@@ -51,9 +52,9 @@ namespace RMC.DOTS.Lessons.BlobAssets
                 }
                 
                 // Show the amount
-                Debug.Log($"2. Chef has flour={chefComponent.ValueRO.FlourInKilogramsRemaining}, " +
-                          $"water={chefComponent.ValueRO.WaterInLitersRemaining}.");
-                
+                Debug.Log (string.Format ("2. Chef has flour={0}, water={1}", 
+                    chefComponent.ValueRO.FlourInKilogramsRemaining, 
+                    chefComponent.ValueRO.WaterInLitersRemaining));
                 
                 //Trigger to not run again
                 ecb.RemoveComponent<ChefCookOnceTag>(entity);

@@ -14,7 +14,6 @@ namespace RMC.DOTS.Lessons.SpinningCube.SpinningCube_Version04_DOTS
     {
         private EntityQuery _entityQuery;
         
-        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<LocalTransform>();

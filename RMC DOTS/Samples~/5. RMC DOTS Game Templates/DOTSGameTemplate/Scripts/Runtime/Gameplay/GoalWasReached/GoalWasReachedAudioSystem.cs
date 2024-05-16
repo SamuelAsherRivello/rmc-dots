@@ -18,8 +18,6 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
         }
 
-        
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.

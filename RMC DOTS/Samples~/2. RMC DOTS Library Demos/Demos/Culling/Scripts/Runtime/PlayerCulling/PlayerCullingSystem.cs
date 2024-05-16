@@ -39,9 +39,10 @@ namespace RMC.DOTS.Demos.Input
                 if (cullingComponent.ValueRO.IsOffscreen.HasValue &&
                     cullingComponent.ValueRO.IsOffscreen.Value)
                 {
-                    Debug.Log($"Entity ({entity.Index}), " +
-                              $"IsOffscreen = {cullingComponent.ValueRO.IsOffscreen.Value}, so DestroyEntity.");
-                    
+                    Debug.Log(string.Format("Entity ({0}), IsOffscreen = {1}, so DestroyEntity.",
+                        entity.Index,
+                        cullingComponent.ValueRO.IsOffscreen.Value
+                    ));
                     ecb.DestroyEntity(entity);
                 }
             }

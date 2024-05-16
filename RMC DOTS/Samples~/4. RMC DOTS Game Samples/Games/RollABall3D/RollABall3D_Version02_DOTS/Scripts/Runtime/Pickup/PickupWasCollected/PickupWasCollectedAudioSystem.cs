@@ -1,6 +1,5 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Audio;
-using Unity.Burst;
 using Unity.Entities;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
@@ -14,7 +13,6 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
