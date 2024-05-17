@@ -1,5 +1,4 @@
-#if MAGICTWEEN_ENABLE_TRANSFORM_JOBS && MAGICTWEEN_ENABLE_DEMO
-
+//DO NOT USE #if define in this file
 using Unity.Entities;
 
 namespace RMC.DOTS.Tweening.MagicTween
@@ -10,4 +9,3 @@ namespace RMC.DOTS.Tweening.MagicTween
     }
 }
 
-#endif //#if MAGICTWEEN_ENABLE_TRANSFORM_JOBS && MAGICTWEEN_ENABLE_DEMO
