@@ -1,6 +1,6 @@
 ﻿using Unity.Entities;
 
-namespace RMC.DOTS.Demos.PhysicsTrigger
+namespace RMC.DOTS.Demos.PhysicsTriggerOLD
 {
     public struct PlayerWasTriggeredTag : IComponentData {}
 }

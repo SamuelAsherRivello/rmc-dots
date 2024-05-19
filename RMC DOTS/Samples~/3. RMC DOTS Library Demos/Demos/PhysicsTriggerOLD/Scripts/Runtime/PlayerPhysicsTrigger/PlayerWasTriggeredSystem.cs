@@ -6,7 +6,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Demos.PhysicsTrigger
+namespace RMC.DOTS.Demos.PhysicsTriggerOLD
 {
     [UpdateInGroup(typeof(UnpauseableSystemGroup))]
     public partial struct PlayerWasTriggeredSystem : ISystem

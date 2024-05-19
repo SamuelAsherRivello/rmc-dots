@@ -5,6 +5,11 @@ namespace RMC.DOTS.Systems.FrameCount
     /// <summary>
     /// Debugging system that makes the "FrameCountSystem.FrameCount" static value easily
     /// available from any scope.
+    ///
+    /// TODO: I thought framecount was not easily accessible in some systems, but perhaps it is with Unity's Time.frameCount?
+    /// If that's ALWAYS available, then consider to remove this custom system entirely
+    ///
+    /// 
     /// </summary>
     [UpdateInGroup(typeof(PresentationSystemGroup), OrderLast = true), BurstCompile]
     public partial struct FrameCountSystem : ISystem

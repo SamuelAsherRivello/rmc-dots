@@ -1,12 +1,11 @@
-﻿using Unity.Entities;
+﻿using System;
+using Unity.Entities;
 using UnityEngine;
 
 namespace RMC.DOTS.Systems.PhysicsTrigger
 {
-    /// <summary>
-    /// This authoring component allows us to define the speed and direction a pickup will rotate. This script is added
-    /// to a GameObject in the RollABallSubScene and the Baker will convert it to an entity at runtime.
-    /// </summary>
+
+    [Obsolete("Remove this and use the RMC DOTS 'PhysicsStateful' feature instead")]
     public class PhysicsTriggerComponentAuthoring : MonoBehaviour
     {
         public LayerMask MemberOfLayerMask;

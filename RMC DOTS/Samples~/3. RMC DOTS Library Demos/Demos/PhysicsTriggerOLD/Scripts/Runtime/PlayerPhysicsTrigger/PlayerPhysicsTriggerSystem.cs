@@ -5,7 +5,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Demos.PhysicsTrigger
+namespace RMC.DOTS.Demos.PhysicsTriggerOLD
 {
     [BurstCompile]
     [UpdateInGroup(typeof(PauseableSystemGroup))]
@@ -19,13 +19,15 @@ namespace RMC.DOTS.Demos.PhysicsTrigger
         }
 
         
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (playerTag, playerWasTriggeredTag, entity) in 
                      SystemAPI.Query<RefRO<PlayerTag>, RefRO<PlayerWasTriggeredTag>>().WithEntityAccess())
             {
-                Debug.Log($"The player hit a goal.\n\n");
+                
+                Debug.Log($"The player hit a goal.\n\n and " + entity);
             }
         }
     }
