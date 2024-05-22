@@ -1,19 +1,15 @@
 ﻿using RMC.Audio.Data.Types;
 using RMC.DOTS.Systems.Audio;
-using RMC.DOTS.Systems.PhysicsTrigger;
 using RMC.DOTS.Systems.PhysicsVelocityImpulse;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
+using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
 namespace RMC.DOTS.Toys.Fountain
 {
-    /// <summary>
-    /// Detect trigger, EXACTLY ONE TIME
-    /// </summary>
-    public struct PhysicsTriggerExecuteOnceTag : IComponentData {}
-    
     /// <summary>
     /// When a new <see cref="Entity"/> droplet has a
     /// <see cref="PhysicsVelocityImpulseComponent"/> on it,
@@ -24,17 +20,21 @@ namespace RMC.DOTS.Toys.Fountain
     [UpdateAfter(typeof(PhysicsVelocityImpulseSystem))] 
     public partial struct SoundFountainSystem : ISystem
     {
+        private EntityQuery _statefulEntityQuery;
+        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<SoundFountainSystemAuthoring.SoundFountainSystemIsEnabledTag>();
+            state.RequireForUpdate<PhysicsStatefulSystemAuthoring.CollisionSystemIsEnabledIsEnabledTag>();
             state.RequireForUpdate<PhysicsVelocityImpulseSystemAuthoring.PhysicsVelocityImpulseSystemIsEnabledTag>();
-            state.RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             
             //These are OPTIONAL...
             //NOTE: Don't require PhysicsVelocityImpulseComponent
             //NOTE: Don't require PhysicsTriggerOutputComponent
 
+            _statefulEntityQuery = state.GetEntityQuery(
+                typeof(StatefulCollisionEvent), typeof(PhysicsVelocity));
         }
 
         public void OnUpdate(ref SystemState state)
@@ -62,32 +62,36 @@ namespace RMC.DOTS.Toys.Fountain
                         volume1,
                         pitch1));
             }
+
             
             // 2) Detect when something bounces, and play a sound
-            foreach (var (physicsVelocity, physicsTriggerOutputComponent, entity) in 
-                     SystemAPI.Query<
-                             RefRW<PhysicsVelocity>,
-                             RefRO<PhysicsTriggerOutputComponent>>().
-                         WithNone<PhysicsTriggerExecuteOnceTag>().
-                         WithEntityAccess())
+            foreach (var entity in 
+                     _statefulEntityQuery.ToEntityArray(Allocator.Temp))
             {
-                if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType != PhysicsTriggerType.Enter ||
-                    physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
+                
+               // Debug.Log("Found1");
+                var buffer = state.EntityManager.GetBuffer<StatefulCollisionEvent>(entity);
+                var physicsVelocity = state.EntityManager.GetComponentData<PhysicsVelocity>(entity);
+                
+                for (int bufferIndex = 0; bufferIndex < buffer.Length; bufferIndex++)
                 {
-                    var pitch2 = 0.5f + math.abs(physicsVelocity.ValueRO.Linear.y) / 10;
-                    var volume2 = AudioConstants.VolumeDefault;
-                    
-                    ecb.AddComponent<AudioComponent>(entity, 
-                        new AudioComponent(
-                            "Bounce01", 
-                            volume2,
-                            pitch2));
+                    var collisionEvent = buffer[bufferIndex];
 
-                    //When the trigger rolls around on the floor eventually, it makes too many 'new' hits...
-                    //So only one sound EVER per droplet will be heard now
-                    ecb.AddComponent<PhysicsTriggerExecuteOnceTag>(entity);
+                    switch (collisionEvent.State) 
+                    {  
+                        case StatefulEventState.Enter:
+                            var pitch2 = 0.5f + math.abs(physicsVelocity.Linear.y) / 10;
+                            var volume2 = AudioConstants.VolumeDefault;
+                            
+                            ecb.AddComponent<AudioComponent>(entity, 
+                                new AudioComponent(
+                                    "Bounce01", 
+                                    volume2,
+                                    pitch2));
+                        
+                            break;
+                    }
                 }
-       
             }
         }
     }

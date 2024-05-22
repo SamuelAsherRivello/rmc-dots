@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af061af9280c2848890866508270d2f, type: 3}
   m_Name: AudioManagerConfiguration_Toys
   m_EditorClassIdentifier: 
-  _audioMixer: {fileID: 24100000, guid: 8ff72523f40ad994f91e5cc7bffdaddf, type: 2}
+  _audioMixer: {fileID: 24100000, guid: a5d16af3667619840893387e2b4af918, type: 2}
   _audioClips:
-  - {fileID: 8300000, guid: 5930807ae45731347be2f0ddaa6f83e8, type: 3}
-  - {fileID: 8300000, guid: eb7ff383d2f938c4d87dceadce5ed90b, type: 3}
+  - {fileID: 8300000, guid: f4bc79004a649314d8bca2d1a2b8d213, type: 3}
+  - {fileID: 8300000, guid: 1e45ae5c660d8064e930501ea59680f6, type: 3}

@@ -11,7 +11,7 @@ namespace RMC.DOTS.Tweening.MagicTween
         public void Apply(ref MySampleTweenComponent component, in float value)
         {
             component.value = value;
-            Debug.Log("Tween Custom Value To : " + component.value);
+            Debug.Log(string.Format("Tween Custom Value To : {0}", component.value));
         }
         
 

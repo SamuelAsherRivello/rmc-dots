@@ -415,7 +415,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _audioManagerConfiguration
       value: 
-      objectReference: {fileID: 11400000, guid: ca4f3e94e324b7543a7fce0c8a028e37,
+      objectReference: {fileID: 11400000, guid: a7ca5b326a15b2c458398ba842e701f2,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

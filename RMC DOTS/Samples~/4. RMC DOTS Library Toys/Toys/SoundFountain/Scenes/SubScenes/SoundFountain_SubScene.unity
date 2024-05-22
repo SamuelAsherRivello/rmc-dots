@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -259,51 +258,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &845587729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 845587731}
-  - component: {fileID: 845587730}
-  m_Layer: 0
-  m_Name: PhysicsTriggerSystemAuthoring
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &845587730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845587729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5bb799c4b2748459a30ee76e8d70425, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsSystemEnabled: 1
---- !u!4 &845587731
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 845587729}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &919901013
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,20 +357,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4344397013398296937, guid: c789afa7d90bfdf459fd865b512146cd,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.97
-      objectReference: {fileID: 0}
     - target: {fileID: 4624573501639497277, guid: c789afa7d90bfdf459fd865b512146cd,
         type: 3}
       propertyPath: m_Name
       value: Floor
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384771819385399669, guid: c789afa7d90bfdf459fd865b512146cd,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8054685657043907913, guid: c789afa7d90bfdf459fd865b512146cd,
         type: 3}
@@ -654,6 +598,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1822891114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1822891116}
+  - component: {fileID: 1822891115}
+  m_Layer: 0
+  m_Name: PhysicsStatefulSystemAuthoring
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1822891115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822891114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5149e7c33e004e17b4a13ed04aac3bb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionSystemIsEnabled: 1
+  TriggerSystemIsEnabled: 1
+  DebugSystemIsEnabled: 0
+--- !u!4 &1822891116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1822891114}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1926283217
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +680,7 @@ MonoBehaviour:
   SpawnPosition: {fileID: 1926283221}
   TimeTillSpawnInSeconds: 0.5
   SpawnsPerOperation: 1
-  SpawnsPerTotal: 386139
+  SpawnsPerTotal: 1000000
 --- !u!23 &1926283219
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -821,8 +812,8 @@ SceneRoots:
   - {fileID: 1592965420}
   - {fileID: 1118455259}
   - {fileID: 3156069}
+  - {fileID: 1822891116}
   - {fileID: 1811352685}
-  - {fileID: 845587731}
   - {fileID: 722627204}
   - {fileID: 1755947585}
   - {fileID: 1985194065}

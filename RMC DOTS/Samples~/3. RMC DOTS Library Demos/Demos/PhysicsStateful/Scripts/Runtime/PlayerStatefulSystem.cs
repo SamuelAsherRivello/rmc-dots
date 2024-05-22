@@ -112,8 +112,8 @@ namespace Unity.Physics.PhysicsStateful
             int bufferIndex, int frameCount, string entityAName, string entityBName, string stateName)
         {
             Debug.Log($"{eventName}.{stateName}" +
-                      $"\t{entityAName} with {entityBName}'" +
-                      $"\t ... [e : {entity}, i : {bufferIndex}, f : {frameCount}]" +
+                      $"\t'{entityAName}' with '{entityBName}'" +
+                      $"\t More Info...\n\n [e : {entity}, i : {bufferIndex}, f : {frameCount}]" +
                       $"\n\n"
                       );
         }
