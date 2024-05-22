@@ -5,7 +5,7 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Demos.HybridSync
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct HybridSyncInputSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

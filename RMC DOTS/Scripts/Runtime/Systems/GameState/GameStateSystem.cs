@@ -1,6 +1,7 @@
 ﻿using System;
 using RMC.DOTS.SystemGroups;
 using Unity.Entities;
+using UnityEngine;
 
 namespace RMC.DOTS.Systems.GameState
 {
@@ -8,7 +9,7 @@ namespace RMC.DOTS.Systems.GameState
     /// This system offers a GameObject-friendy way to
     /// subscribe to, get, and set the GameState.
     /// </summary>
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     public partial class GameStateSystem : SystemBase
     {
         public Action<bool> OnIsGameOverChanged;

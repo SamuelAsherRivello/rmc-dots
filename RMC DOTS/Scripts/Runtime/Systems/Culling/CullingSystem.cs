@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Culling
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup), OrderFirst = true)]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup), OrderFirst = true)]
     public partial class CullingSystem : SystemBase
     {
         // Query all sound request components

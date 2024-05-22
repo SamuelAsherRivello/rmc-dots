@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.DestroyEntity
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct DestroyEntitySystem : ISystem
     {

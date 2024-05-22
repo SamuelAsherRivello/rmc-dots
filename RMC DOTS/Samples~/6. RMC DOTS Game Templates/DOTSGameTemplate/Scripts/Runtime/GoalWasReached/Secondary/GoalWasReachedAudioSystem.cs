@@ -2,14 +2,14 @@
 using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Audio;
 using RMC.DOTS.Systems.Player;
-using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
-    [RequireMatchingQueriesForUpdate]
+    
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
+    [UpdateBefore(typeof(GoalWasReachedCleanupSystem))]
     public partial struct GoalWasReachedAudioSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -24,7 +24,10 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (playerTag, goalWasReachedTag, entity) in SystemAPI.Query<PlayerTag, GoalWasReachedTag>().WithEntityAccess())
+            foreach (var (playerTag, entity) 
+                     in SystemAPI.Query<PlayerTag>().
+                         WithAll<GoalWasReachedExecuteOnceTag>().
+                         WithEntityAccess())
             {
                 Entity audioEntity = ecb.CreateEntity();
                 ecb.AddComponent<AudioComponent>(audioEntity,

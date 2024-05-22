@@ -8,7 +8,7 @@ using UnityEngine;
 namespace RMC.DOTS.Demos.Input
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerCullingSystem : ISystem
     {
         

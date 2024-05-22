@@ -5,6 +5,7 @@ using Unity.Burst;
 
 namespace Unity.Physics.PhysicsStateful
 {
+    
     /// <summary>
     /// This system converts stream of TriggerEvents to StatefulTriggerEvents that can be stored in a Dynamic Buffer.
     /// In order for this conversion, it is required to:
@@ -14,8 +15,8 @@ namespace Unity.Physics.PhysicsStateful
     ///    1) Tick the 'Raise Trigger Events' flag on the <see cref="CharacterControllerAuthoring"/> component.
     ///       Note: the Character Controller will not become a trigger, it will raise events when overlapping with one
     /// </summary>
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
+    ///
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
     public partial struct StatefulTriggerEventSystem : ISystem
     {
         StatefulSimulationEventBuffers<StatefulTriggerEvent> events;

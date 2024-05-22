@@ -1,13 +1,11 @@
-using RMC.DOTS.Systems.FrameCount;
 using Unity.Collections;
 using Unity.Entities;
-using Unity.Physics.Systems;
 using UnityEngine;
 
 namespace Unity.Physics.PhysicsStateful
 {
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(StatefulTriggerEventSystem))]
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    [UpdateAfter(typeof(StatefulTriggerEventSystem))] 
     public partial struct PhysicsStatefulDebugSystem : ISystem
     {
         private EntityQuery _statefulTriggerEventEntityQuery;
@@ -39,18 +37,19 @@ namespace Unity.Physics.PhysicsStateful
                     switch (collisionEvent.State) 
                     {
                         case StatefulEventState.Enter:
-                            DebugStatefulTriggerEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Stay:
-                            DebugStatefulTriggerEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Exit:
-                            DebugStatefulTriggerEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                     }
                 }
             }
 
+            
             foreach (var entity in _statefulCollisionEventEntityQuery.ToEntityArray(Allocator.Temp))
             {
                 var buffer = state.EntityManager.GetBuffer<StatefulCollisionEvent>(entity);
@@ -62,13 +61,13 @@ namespace Unity.Physics.PhysicsStateful
                     switch (collisionEvent.State) 
                     {  
                         case StatefulEventState.Enter:
-                            DebugStatefulCollisionEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Stay:
-                            DebugStatefulCollisionEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                         case StatefulEventState.Exit:
-                            DebugStatefulCollisionEvent(ref state, entity, i, collisionEvent);
+                            PhysicsStatefulDebugSystem.LogEvent(ref state, entity, i, collisionEvent);
                             break;
                     }
                 }
@@ -76,22 +75,42 @@ namespace Unity.Physics.PhysicsStateful
             
         }
 
-        private void DebugStatefulTriggerEvent(ref SystemState state, Entity entity, int i, 
+        public static void LogEvent(ref SystemState state, Entity entity, int bufferIndex, 
             StatefulTriggerEvent collisionEvent)
         {
-            Debug.Log($"({collisionEvent.GetType().Name}) E: {entity}, i : {i}, f : {Time.frameCount}, " +
-                      $"A : {state.EntityManager.GetName(collisionEvent.EntityA)}, " +
-                      $"B : {state.EntityManager.GetName(collisionEvent.EntityB)}, " +
-                      $"S : {collisionEvent.State}");
+            LogEvent(
+                collisionEvent.GetType().Name, 
+                entity, 
+                bufferIndex, 
+                Time.frameCount, 
+                state.EntityManager.GetName(collisionEvent.EntityA), 
+                state.EntityManager.GetName(collisionEvent.EntityB), 
+                collisionEvent.State.ToString()
+            );
         }
 
-        private void DebugStatefulCollisionEvent(ref SystemState state, Entity entity, int i,
+        public static void LogEvent(ref SystemState state, Entity entity, int bufferIndex,
             StatefulCollisionEvent collisionEvent)
         {
-            Debug.Log($"({collisionEvent.GetType().Name}) E: {entity}, i : {i}, f : {Time.frameCount}, " +
-                      $"A : {state.EntityManager.GetName(collisionEvent.EntityA)}, " +
-                      $"B : {state.EntityManager.GetName(collisionEvent.EntityB)}, " +
-                      $"S : {collisionEvent.State}");
+            LogEvent(
+                collisionEvent.GetType().Name, 
+                entity, 
+                bufferIndex, 
+                Time.frameCount, 
+                state.EntityManager.GetName(collisionEvent.EntityA), 
+                state.EntityManager.GetName(collisionEvent.EntityB), 
+                collisionEvent.State.ToString()
+            );
+        }
+        
+        private static void LogEvent(string eventName, Entity entity, 
+            int bufferIndex, int frameCount, string entityAName, string entityBName, string stateName)
+        {
+            Debug.Log($"{eventName}() = {stateName} On " +
+                      $"'{entityAName}' with '{entityBName}'." +
+                      $"  More...\n\n [BufferIndex = {bufferIndex}, Entity = {entity}, FrameCount = {frameCount}]" +
+                      $"\n\n"
+            );
         }
     }
 }

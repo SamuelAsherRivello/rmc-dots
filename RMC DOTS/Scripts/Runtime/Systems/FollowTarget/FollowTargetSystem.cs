@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.FollowTarget
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial struct FollowTargetSystem : ISystem
     {

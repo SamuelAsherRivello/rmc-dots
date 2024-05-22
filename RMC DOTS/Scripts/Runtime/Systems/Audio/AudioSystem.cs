@@ -11,7 +11,7 @@ namespace RMC.DOTS.Systems.Audio
     /// <summary>
     /// This system plays the pickup sound effect when a pickup has been picked up
     /// </summary>
-    [UpdateInGroup(typeof(UnpauseableSystemGroup), OrderFirst = true)]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup), OrderFirst = true)]
     public partial class AudioSystem : SystemBase
     {
         // Query all sound request components

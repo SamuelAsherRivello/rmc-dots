@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RMC.DOTS.Demos.Random.ConsoleLogRandom
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct ConsoleLogRandomSystem : ISystem
     {
         private int TempCounter;

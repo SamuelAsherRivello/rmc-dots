@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct RotateSystem : ISystem
     {
         [BurstCompile]

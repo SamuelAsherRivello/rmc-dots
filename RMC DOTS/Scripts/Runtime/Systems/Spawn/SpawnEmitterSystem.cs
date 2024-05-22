@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Spawn
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial struct SpawnEmitterSystem : ISystem
     {

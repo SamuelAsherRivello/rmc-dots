@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Spawn
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial class SpawnSystem : SystemBase
     {

@@ -6,13 +6,14 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Physics;
 using Unity.Physics.Extensions;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
     /// <summary>
     /// This system moves the player in 3D space.
     /// </summary>
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

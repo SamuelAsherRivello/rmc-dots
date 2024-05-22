@@ -22,7 +22,7 @@ namespace Unity.Physics.PhysicsStateful
         
         [Header("Enable Debugging (Optional)")]
         [SerializeField] 
-        public bool DebugSystemIsEnabled = true;
+        public bool DebugSystemIsEnabled = false;
         
         public struct CollisionSystemIsEnabledIsEnabledTag : IComponentData {}
         public struct TriggerSystemIsEnabledIsEnabledTag : IComponentData {}

@@ -1,35 +1,33 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Player;
-using Unity.Burst;
 using Unity.Entities;
-using Unity.Transforms;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
     [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
-    public partial struct PlayerFallSystem : ISystem
+    [UpdateAfter(typeof(PlayerResetPositionSystem))]
+    public partial struct GoalWasReachedCleanupSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<
-                PlayerFallSystemAuthoring.PlayerFallSystemIsEnabledTag>();
+            state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
         }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (localTransform, entity) in SystemAPI.Query<RefRW<LocalTransform>>().WithAll<PlayerTag>().WithEntityAccess())
+            foreach (var (playerTag, entity) in 
+                     SystemAPI.Query<RefRO<PlayerTag>>().
+                         WithAll<GoalWasReachedExecuteOnceTag>().
+                         WithEntityAccess())
             {
-                if (localTransform.ValueRW.Position.y < -10)
-                {
-                    ecb.AddComponent<PlayerResetPositionExecuteOnceTag>(entity);
-                }
+                ecb.RemoveComponent<GoalWasReachedExecuteOnceTag>(entity);
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using RMC.Audio;
 using RMC.Core.Utilities;
+using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.GameState;
 using RMC.DOTS.Systems.Scoring;
 using RMC.DOTS.Utilities;
@@ -31,12 +32,20 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         /// An alternative would be to have each of my custom systems
         /// check the GameStateSystem.IsGamePaused property.
         /// </summary>
-        public bool IsEnabledSimulationSystemGroup
+        public bool IsEnabledAllPauseableSystems
         {
             set
             {
-                var simulationSystemGroup = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<SimulationSystemGroup>();
-                simulationSystemGroup.Enabled = value;
+                World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<SimulationSystemGroup>().Enabled = value;
+                World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<PauseablePresentationSystemGroup>().Enabled = value;
+            }
+            get
+            {
+                var isEnabled =
+                    World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<SimulationSystemGroup>().Enabled &&
+                    World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<PauseablePresentationSystemGroup>()
+                        .Enabled;
+                return isEnabled;
             }
         }
         
@@ -110,6 +119,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 Debug.Log($"OnGameStateChanged() gameState = {gameState}");
             }
             
+            
             switch (gameState)
             {
                 case GameState.Initializing:
@@ -123,7 +133,8 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                     _gameStateSystem.IsGameOver = false;
                     break;
                 case GameState.GameEnded: 
-                    _gameStateSystem.IsGameOver = true;
+                     _gameStateSystem.IsGamePaused = true; 
+                     _gameStateSystem.IsGameOver = true;
                     break;
             }
         }
@@ -136,17 +147,18 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 _common.MainUI.StatusLabel.text = "You Win!";
 
                 // Freeze game
-                IsEnabledSimulationSystemGroup = false;
+                IsEnabledAllPauseableSystems = false;
             }
         }
 
 
         private void GameStateSystem_OnIsGamePausedChanged(bool isGamePaused)
         {
-            IsEnabledSimulationSystemGroup = !isGamePaused;;
+            IsEnabledAllPauseableSystems = !isGamePaused;;
         }
         
 
+        
         private void ScoresEventSystem_OnScoresChanged(ScoringComponent scoringComponent)
         {
             _common.MainUI.ScoreLabel.text = 

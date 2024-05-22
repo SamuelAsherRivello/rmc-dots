@@ -4,7 +4,7 @@ using Unity.Entities;
 
 namespace RMC.DOTS.Systems.Timer
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     [BurstCompile]
     public partial struct TimerSystem : ISystem 

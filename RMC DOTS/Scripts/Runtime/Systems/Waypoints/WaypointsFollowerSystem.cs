@@ -8,7 +8,7 @@ using UnityEngine;
 namespace RMC.DOTS.Systems.Waypoints
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial class WaypointsFollowerSystem : SystemBase
     {
         

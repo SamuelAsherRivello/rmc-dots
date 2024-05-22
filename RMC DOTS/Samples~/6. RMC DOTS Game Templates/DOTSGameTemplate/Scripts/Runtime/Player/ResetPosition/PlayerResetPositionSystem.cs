@@ -1,6 +1,5 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.Audio;
-using RMC.DOTS.Systems.PhysicsTrigger;
 using RMC.DOTS.Systems.Player;
 using Unity.Burst;
 using Unity.Entities;
@@ -9,11 +8,13 @@ using Unity.Physics;
 using Unity.Transforms;
 using UnityEngine;
 
+
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     public partial struct PlayerResetPositionSystem : ISystem
     {
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerResetPositionSystemAuthoring.PlayerResetPositionSystemIsEnabledTag>();
@@ -22,6 +23,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             state.RequireForUpdate<PlayerTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
@@ -30,17 +32,7 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             
             foreach (var (localTransform, physicsVelocity, entity) in 
                      SystemAPI.Query<RefRW<LocalTransform>, RefRW<PhysicsVelocity>>().
-                         WithAll<PlayerTag, PlayerResetPositionExecuteOnceTag, PhysicsTriggerOutputComponent>().
-                         WithEntityAccess())
-            {
-                //TODO: This helps future collisions, but Why must I remove this here?
-                ecb.RemoveComponent<PhysicsTriggerOutputComponent>(entity);
-            }
-            
-            foreach (var (localTransform, physicsVelocity, entity) in 
-                     SystemAPI.Query<RefRW<LocalTransform>, RefRW<PhysicsVelocity>>().
                          WithAll<PlayerTag, PlayerResetPositionExecuteOnceTag>().
-                         WithNone<PhysicsTriggerOutputComponent>().
                          WithEntityAccess())
             {
                 

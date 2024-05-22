@@ -6,7 +6,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 namespace RMC.DOTS.Systems.Scoring
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial class ScoringSystem : SystemBase
     {

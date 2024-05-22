@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.SpawnGrid
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial class SpawnGridSystem : SystemBase
     {

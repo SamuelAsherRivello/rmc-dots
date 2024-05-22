@@ -17,7 +17,7 @@ namespace RMC.DOTS.Toys.Fountain
     /// with a dynamic pitch value.
     /// </summary>
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
-    [UpdateAfter(typeof(PhysicsVelocityImpulseSystem))] 
+    [UpdateAfter(typeof(StatefulTriggerEventSystem))] 
     public partial struct SoundFountainSystem : ISystem
     {
         private EntityQuery _statefulEntityQuery;

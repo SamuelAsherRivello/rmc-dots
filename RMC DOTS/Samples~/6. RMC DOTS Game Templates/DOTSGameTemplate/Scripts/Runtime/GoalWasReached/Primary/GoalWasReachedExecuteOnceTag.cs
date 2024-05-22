@@ -2,5 +2,5 @@
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    public struct GoalWasReachedTag : IComponentData {}
+    public struct GoalWasReachedExecuteOnceTag : IComponentData {}
 }

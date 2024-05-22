@@ -9,7 +9,7 @@ using Unity.Transforms;
 namespace RMC.DOTS.Demos.Input
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
         

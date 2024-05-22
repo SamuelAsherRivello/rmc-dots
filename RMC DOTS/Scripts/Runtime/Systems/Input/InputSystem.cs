@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Systems.Input
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial class InputSystem : SystemBase
     {
         // Reference to our custom input asset

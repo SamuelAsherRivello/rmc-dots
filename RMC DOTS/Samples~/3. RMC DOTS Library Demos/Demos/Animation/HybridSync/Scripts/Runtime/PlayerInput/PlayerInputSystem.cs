@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Demos.HybridSync
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerInputSystem : ISystem 
     {
         //NOTE: Its not good practice to store state on a system

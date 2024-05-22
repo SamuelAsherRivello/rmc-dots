@@ -6,8 +6,8 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
-    [RequireMatchingQueriesForUpdate]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
+    [UpdateBefore(typeof(GoalWasReachedCleanupSystem))]
     public partial struct GoalWasReachedResetSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -23,8 +23,10 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (localTransform, playerTag, goalWasReached, entity) in 
-                     SystemAPI.Query<RefRW<LocalTransform>,PlayerTag, GoalWasReachedTag>().WithEntityAccess())
+            foreach (var (localTransform, entity) in 
+                     SystemAPI.Query<RefRW<LocalTransform>>().
+                         WithAll<PlayerTag,GoalWasReachedExecuteOnceTag>().
+                         WithEntityAccess())
             {
                 ecb.AddComponent<PlayerResetPositionExecuteOnceTag>(entity);
             }
