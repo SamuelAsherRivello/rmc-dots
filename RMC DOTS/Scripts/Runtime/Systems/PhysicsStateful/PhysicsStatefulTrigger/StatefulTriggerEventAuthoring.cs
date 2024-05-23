@@ -1,5 +1,4 @@
 using Unity.Entities;
-using UnityEngine;
 
 namespace Unity.Physics.PhysicsStateful
 {
@@ -9,12 +8,14 @@ namespace Unity.Physics.PhysicsStateful
     // CharacterController on its own, without StatefulTriggerEventBufferSystem interference.
     public struct StatefulTriggerEventExclude : IComponentData {}
 
-    public class StatefulTriggerEventAuthoring : MonoBehaviour
+    public class StatefulTriggerEventAuthoring : BaseStatefulEventAuthoring
     {
-        class Baker : Baker<StatefulTriggerEventAuthoring>
+        class StatefulTriggerEventAuthoringBaker : Baker<StatefulTriggerEventAuthoring>
         {
             public override void Bake(StatefulTriggerEventAuthoring authoring)
             {
+                authoring.OnBakeValidation(authoring);
+                
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddBuffer<StatefulTriggerEvent>(entity);
             }

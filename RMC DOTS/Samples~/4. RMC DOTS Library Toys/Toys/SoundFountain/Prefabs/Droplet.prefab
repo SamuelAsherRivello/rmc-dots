@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3156465340796626862}
   - component: {fileID: 6936756503150194542}
   - component: {fileID: 7526951766992999168}
-  - component: {fileID: 3144504262899060679}
   - component: {fileID: 3512887816997820310}
   - component: {fileID: -958206064121103782}
+  - component: {fileID: 3144504262899060679}
   m_Layer: 0
   m_Name: Droplet
   m_TagString: Untagged
@@ -282,19 +282,6 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
---- !u!114 &3144504262899060679
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6272350607556993640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a444254202384e4ea55b4fe97742fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CalculateDetails: 0
 --- !u!114 &3512887816997820310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,3 +312,18 @@ MonoBehaviour:
   RandomCanBeNegative: 1
   RandomMinForce: {x: 0, y: 0, z: 0}
   RandomMaxForce: {x: 11, y: 11, z: 11}
+--- !u!114 &3144504262899060679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6272350607556993640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a444254202384e4ea55b4fe97742fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _physicsBodyAuthoring: {fileID: 6936756503150194542}
+  _physicsShapeAuthoring: {fileID: 7526951766992999168}
+  CalculateDetails: 0

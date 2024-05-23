@@ -5,6 +5,7 @@ using Unity.Burst;
 using Unity.Entities;
 using UnityEngine;
 
+//TODO: FixPhysics
 namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
 {
     
@@ -26,81 +27,106 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<GameStateComponent>();
         }
-
+        
+        //NEW SYNTAX
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = SystemAPI.
-                GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
-                CreateCommandBuffer(state.WorldUnmanaged);
+	        var ecb = SystemAPI.
+		        GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
+		        CreateCommandBuffer(state.WorldUnmanaged);
             
-            
-            //////////////////////////////////////
-            //GEM - REMOVE
-            foreach (var (physicsTriggerOutputComponent, entity) 
-                     in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-                         WithEntityAccess().WithAll<GemTag, GemWasHitThisFrameTag>())
-            {
-                ecb.RemoveComponent<GemWasHitThisFrameTag>(entity);
-            }
+	        foreach (var (statefulTriggerEventBuffers, entity) in 
+	                 SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>>().
+		                 WithEntityAccess())
+	        {
+                
+		        for (int bufferIndex = 0; bufferIndex < statefulTriggerEventBuffers.Length; bufferIndex++)
+		        {
+			        var collisionEvent = statefulTriggerEventBuffers[bufferIndex];
+			        if (collisionEvent.State == StatefulEventState.Enter)
+			        {
+				        //DO SOMETHING
+				        break;
+			        }
+		        }
+	        }
+        }
 
-            
-            //GEM - ADD
-            foreach (var (physicsTriggerOutputComponent, entity) 
-                     in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-                         WithEntityAccess().WithAll<GemTag>().WithNone<GemWasHitThisFrameTag>())
-            {
-                if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
-                {
-                    ecb.AddComponent<GemWasHitThisFrameTag>(entity);
-                }
-            }
-
-
-            //////////////////////////////////////
-            //BULLET - REMOVE
-            foreach (var (physicsTriggerOutputComponent, entity) 
-                     in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-                         WithEntityAccess().WithAll<BulletTag, BulletWasHitThisFrameTag>())
-            {
-                ecb.RemoveComponent<BulletWasHitThisFrameTag>(entity);
-            }
-
-            
-            //BULLET - ADD
-            foreach (var (physicsTriggerOutputComponent, entity) 
-                     in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-                         WithEntityAccess().WithAll<BulletTag>().WithNone<BulletWasHitThisFrameTag>())
-            {
-                if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
-                {
-                    ecb.AddComponent<BulletWasHitThisFrameTag>(entity);
-                }
-            }
-
-            //////////////////////////////////////
-            //BULLET - REMOVE
-            foreach (var (physicsTriggerOutputComponent, entity) 
-                     in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-                         WithEntityAccess().WithAll<EnemyTag, EnemyWasHitThisFrameTag>())
-            {
-                ecb.RemoveComponent<EnemyWasHitThisFrameTag>(entity);
-            }
-
-            
-            //BULLET - ADD
-			foreach (var (physicsTriggerOutputComponent, entity)
-					 in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
-						 WithEntityAccess().WithAll<EnemyTag>().WithNone<EnemyWasHitThisFrameTag>())
-			{
-                if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-                    physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
-                {
-                    ecb.AddComponent<EnemyWasHitThisFrameTag>(entity);
-                }
-            }
-		}
+  //       [BurstCompile]
+  //       public void OnUpdate(ref SystemState state)
+  //       {
+  //           var ecb = SystemAPI.
+  //               GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
+  //               CreateCommandBuffer(state.WorldUnmanaged);
+  //           
+  //           
+  //           //////////////////////////////////////
+  //           //GEM - REMOVE
+  //           foreach (var (physicsTriggerOutputComponent, entity) 
+  //                    in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+  //                        WithEntityAccess().WithAll<GemTag, GemWasHitThisFrameTag>())
+  //           {
+  //               ecb.RemoveComponent<GemWasHitThisFrameTag>(entity);
+  //           }
+  //
+  //           
+  //           //GEM - ADD
+  //           foreach (var (physicsTriggerOutputComponent, entity) 
+  //                    in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+  //                        WithEntityAccess().WithAll<GemTag>().WithNone<GemWasHitThisFrameTag>())
+  //           {
+  //               if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
+  //                   physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
+  //               {
+  //                   ecb.AddComponent<GemWasHitThisFrameTag>(entity);
+  //               }
+  //           }
+  //
+  //
+  //           //////////////////////////////////////
+  //           //BULLET - REMOVE
+  //           foreach (var (physicsTriggerOutputComponent, entity) 
+  //                    in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+  //                        WithEntityAccess().WithAll<BulletTag, BulletWasHitThisFrameTag>())
+  //           {
+  //               ecb.RemoveComponent<BulletWasHitThisFrameTag>(entity);
+  //           }
+  //
+  //           
+  //           //BULLET - ADD
+  //           foreach (var (physicsTriggerOutputComponent, entity) 
+  //                    in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+  //                        WithEntityAccess().WithAll<BulletTag>().WithNone<BulletWasHitThisFrameTag>())
+  //           {
+  //               if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
+  //                   physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
+  //               {
+  //                   ecb.AddComponent<BulletWasHitThisFrameTag>(entity);
+  //               }
+  //           }
+  //
+  //           //////////////////////////////////////
+  //           //BULLET - REMOVE
+  //           foreach (var (physicsTriggerOutputComponent, entity) 
+  //                    in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+  //                        WithEntityAccess().WithAll<EnemyTag, EnemyWasHitThisFrameTag>())
+  //           {
+  //               ecb.RemoveComponent<EnemyWasHitThisFrameTag>(entity);
+  //           }
+  //
+  //           
+  //           //BULLET - ADD
+		// 	foreach (var (physicsTriggerOutputComponent, entity)
+		// 			 in SystemAPI.Query<RefRO<PhysicsTriggerOutputComponent>>().
+		// 				 WithEntityAccess().WithAll<EnemyTag>().WithNone<EnemyWasHitThisFrameTag>())
+		// 	{
+  //               if (physicsTriggerOutputComponent.ValueRO.PhysicsTriggerType == PhysicsTriggerType.Enter &&
+  //                   physicsTriggerOutputComponent.ValueRO.TimeFrameCountForLastCollision == Time.frameCount)
+  //               {
+  //                   ecb.AddComponent<EnemyWasHitThisFrameTag>(entity);
+  //               }
+  //           }
+		// }
     }
 }

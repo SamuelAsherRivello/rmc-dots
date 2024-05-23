@@ -292,4 +292,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a444254202384e4ea55b4fe97742fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _physicsBodyAuthoring: {fileID: 1512763140236668464}
+  _physicsShapeAuthoring: {fileID: -5080817339707508760}
   CalculateDetails: 0

@@ -29,10 +29,6 @@ namespace RMC.DOTS.Toys.Fountain
             state.RequireForUpdate<PhysicsVelocityImpulseSystemAuthoring.PhysicsVelocityImpulseSystemIsEnabledTag>();
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             
-            //These are OPTIONAL...
-            //NOTE: Don't require PhysicsVelocityImpulseComponent
-            //NOTE: Don't require PhysicsTriggerOutputComponent
-
             _statefulEntityQuery = state.GetEntityQuery(
                 typeof(StatefulCollisionEvent), typeof(PhysicsVelocity));
         }

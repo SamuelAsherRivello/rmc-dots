@@ -1441,6 +1441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71242163ba188c04b8b904b94ff79242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _physicsBodyAuthoring: {fileID: 1829895569}
+  _physicsShapeAuthoring: {fileID: 1829895570}
 --- !u!23 &1829895572
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1564,9 +1566,9 @@ GameObject:
   - component: {fileID: 2025006380}
   - component: {fileID: 2025006379}
   - component: {fileID: 2025006378}
-  - component: {fileID: 2025006377}
   - component: {fileID: 2025006376}
   - component: {fileID: 2025006375}
+  - component: {fileID: 2025006377}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -1780,6 +1782,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71242163ba188c04b8b904b94ff79242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _physicsBodyAuthoring: {fileID: 2025006375}
+  _physicsShapeAuthoring: {fileID: 2025006376}
 --- !u!23 &2025006378
 MeshRenderer:
   m_ObjectHideFlags: 0

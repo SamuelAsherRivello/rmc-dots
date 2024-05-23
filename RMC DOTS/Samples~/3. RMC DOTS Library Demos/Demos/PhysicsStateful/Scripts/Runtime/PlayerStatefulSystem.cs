@@ -1,6 +1,7 @@
 using Unity.Collections;
 using Unity.Entities;
 
+//TODO: FixPhysics - do without query - test result
 namespace Unity.Physics.PhysicsStateful
 {
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]

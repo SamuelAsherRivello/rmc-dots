@@ -3,6 +3,7 @@ using Unity.Entities;
 using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
+//TODO: FixPhysics - GOOD AS IS. Copy from here
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
