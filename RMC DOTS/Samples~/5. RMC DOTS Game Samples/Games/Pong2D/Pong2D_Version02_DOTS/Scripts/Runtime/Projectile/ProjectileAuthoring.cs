@@ -1,16 +1,12 @@
-﻿using RMC.DOTS.Systems.PhysicsTrigger;
-using RMC.DOTS.Systems.PhysicsVelocityImpulse;
+﻿using RMC.DOTS.Systems.PhysicsVelocityImpulse;
 using Unity.Entities;
 using UnityEngine;
 
+//TODO: FixPhysics
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
     public class ProjectileAuthoring : MonoBehaviour
     {
-        [Header("PhysicsTrigger System")]
-        public LayerMask MemberOfLayerMask;
-        public LayerMask CollidesWithLayerMask;
-        
         [Header("ApplyLinearImpulse System")]
         public bool CanBeNegative = true;
         public Vector3 MinForce = new Vector3(1,1, 0);
@@ -30,13 +26,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
                     CanBeNegative = authoring.CanBeNegative,
                     MinForce = authoring.MinForce,
                     MaxForce = authoring.MaxForce
-                });
-
-            AddComponent<PhysicsTriggerComponent>(entity,
-                new PhysicsTriggerComponent
-                {
-                    MemberOfLayerMask = authoring.MemberOfLayerMask,
-                    CollidesWithLayerMask = authoring.CollidesWithLayerMask
                 });
         }
     }

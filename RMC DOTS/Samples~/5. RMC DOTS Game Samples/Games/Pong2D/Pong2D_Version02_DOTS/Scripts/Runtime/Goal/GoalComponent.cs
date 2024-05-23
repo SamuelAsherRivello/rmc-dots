@@ -1,6 +1,4 @@
-﻿using RMC.DOTS.Systems.PhysicsTrigger;
-using Unity.Entities;
-using UnityEngine;
+﻿using Unity.Entities;
 
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {

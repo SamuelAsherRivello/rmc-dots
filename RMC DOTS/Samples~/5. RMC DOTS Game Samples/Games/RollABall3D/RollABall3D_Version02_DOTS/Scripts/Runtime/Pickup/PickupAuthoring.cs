@@ -1,5 +1,4 @@
-﻿using RMC.DOTS.Systems.PhysicsTrigger;
-using Unity.Entities;
+﻿using Unity.Entities;
 using UnityEngine;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS

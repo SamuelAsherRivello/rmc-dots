@@ -10,7 +10,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
     /// <summary>
     /// This system moves the player in 3D space.
     /// </summary>
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerFaceSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

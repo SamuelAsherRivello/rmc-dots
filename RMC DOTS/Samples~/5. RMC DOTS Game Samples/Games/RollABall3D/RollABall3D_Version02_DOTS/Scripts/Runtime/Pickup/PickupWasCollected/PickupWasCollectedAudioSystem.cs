@@ -4,7 +4,7 @@ using Unity.Entities;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct PickupWasCollectedAudioSystem : ISystem
     {

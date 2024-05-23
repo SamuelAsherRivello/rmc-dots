@@ -5,7 +5,7 @@ using Unity.Entities;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct PickupWasCollectedScoreSystem : ISystem
     {

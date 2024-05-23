@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PickupRotationSystem : ISystem
     {
         [BurstCompile]

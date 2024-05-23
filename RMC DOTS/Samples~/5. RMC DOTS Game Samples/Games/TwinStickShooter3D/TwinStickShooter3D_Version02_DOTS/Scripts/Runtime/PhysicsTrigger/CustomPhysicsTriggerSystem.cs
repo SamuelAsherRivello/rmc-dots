@@ -1,8 +1,8 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.GameState;
-using RMC.DOTS.Systems.PhysicsTrigger;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
 //TODO: FixPhysics
@@ -17,13 +17,12 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
     /// 2. Separately the <see cref="WasHitSystem"/> will 'listen' for these tags
     /// 
     /// </summary>
-    [UpdateInGroup(typeof(UnpauseableSystemGroup))]
+    [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
     public partial struct CustomPhysicsTriggerSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<CustomPhysicsTriggerSystemAuthoring.CustomPhysicsTriggerSystemIsEnabledTag>();
-            state.RequireForUpdate<PhysicsTriggerSystemAuthoring.PhysicsTriggerSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<GameStateComponent>();
         }

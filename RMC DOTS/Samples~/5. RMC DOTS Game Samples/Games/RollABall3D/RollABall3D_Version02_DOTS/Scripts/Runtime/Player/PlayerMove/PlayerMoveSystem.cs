@@ -12,7 +12,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
     /// <summary>
     /// This system moves the player in 3D space.
     /// </summary>
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct PlayerMoveSystem : ISystem
     {
         public void OnCreate(ref SystemState state)

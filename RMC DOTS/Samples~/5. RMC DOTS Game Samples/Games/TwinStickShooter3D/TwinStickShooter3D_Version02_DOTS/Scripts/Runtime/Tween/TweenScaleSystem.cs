@@ -9,7 +9,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
     public struct TweenScaleHasStartedTag : IComponentData {}
     public struct TweenScaleHasFinishedTag : IComponentData {}
     
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial struct TweenScaleSystem : ISystem
     {

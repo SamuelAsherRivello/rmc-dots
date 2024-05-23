@@ -6,7 +6,7 @@ using Unity.Transforms;
 
 namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     public partial struct RotateSystem : ISystem
     {
         [BurstCompile]

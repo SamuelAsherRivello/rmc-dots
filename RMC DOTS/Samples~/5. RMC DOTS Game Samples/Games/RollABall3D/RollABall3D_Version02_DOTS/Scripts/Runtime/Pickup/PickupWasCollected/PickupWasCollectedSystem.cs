@@ -1,14 +1,14 @@
 ﻿using RMC.DOTS.SystemGroups;
 using RMC.DOTS.Systems.DestroyEntity;
-using RMC.DOTS.Systems.PhysicsTrigger;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
 //TODO: FixPhysics
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [RequireMatchingQueriesForUpdate]
     public partial struct PickupWasCollectedSystem : ISystem
     {
@@ -16,7 +16,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         {
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
         }
-
+        
         //NEW SYNTAX
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
@@ -41,7 +41,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 }
             }
         }
-        
+
         // [BurstCompile]
         // public void OnUpdate(ref SystemState state)
         // {

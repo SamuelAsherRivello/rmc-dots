@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseableSystemGroup))]
+    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
     [BurstCompile]
     public partial struct EnemyMoveSystem : ISystem
     {

@@ -17,12 +17,12 @@ MonoBehaviour:
   - Goal
   - Floor
   - Droplet
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pickup
+  - Projectile
+  - Enemy
+  - Bullet
+  - Gem
+  - Wall
   - 
   - 
   - 

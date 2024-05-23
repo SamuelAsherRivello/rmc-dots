@@ -1,5 +1,4 @@
-﻿using RMC.DOTS.Systems.PhysicsTrigger;
-using Unity.Entities;
+﻿using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
 

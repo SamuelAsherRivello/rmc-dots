@@ -1,17 +1,14 @@
-﻿using RMC.DOTS.Systems.DestroyEntity;
-using RMC.DOTS.Systems.PhysicsTrigger;
-using Unity.Burst;
+﻿using Unity.Burst;
 using Unity.Entities;
-using Unity.Physics.Systems;
+using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
 //TODO: FixPhysics
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
     [BurstCompile]
-    [UpdateInGroup(typeof(PhysicsSystemGroup))]
-    [UpdateAfter(typeof(PhysicsSimulationGroup))]
-    [UpdateBefore(typeof(ExportPhysicsWorld))]
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    [UpdateAfter(typeof(StatefulTriggerEventSystem))] 
     [RequireMatchingQueriesForUpdate]
     public partial struct ProjectileHasHitGoalSystem : ISystem
     {
@@ -19,11 +16,10 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<ProjectileHasHitGoalSystemAuthoring.ProjectileHasHitGoalSystemIsEnabled>();
-            state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             _goalComponentLookup = state.GetComponentLookup<GoalComponent>();
         }
-
         
         //NEW SYNTAX
         [BurstCompile]
@@ -35,22 +31,26 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             
             foreach (var (statefulTriggerEventBuffers, entity) in 
                      SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>>().
+                         WithAll<ProjectileTag>().
                          WithEntityAccess())
             {
-                
+
                 for (int bufferIndex = 0; bufferIndex < statefulTriggerEventBuffers.Length; bufferIndex++)
                 {
                     var collisionEvent = statefulTriggerEventBuffers[bufferIndex];
                     if (collisionEvent.State == StatefulEventState.Enter)
                     {
                         //DO SOMETHING
+                        var goalComponent = _goalComponentLookup.GetRefRO(collisionEvent.GetOtherEntity(entity));
+                        Debug.LogError("goalComponent: " + goalComponent.ValueRO.PlayerType);
+                        ecb.AddComponent<ProjectileHasHitGoalComponent>(entity, 
+                            new ProjectileHasHitGoalComponent { PlayerType = goalComponent.ValueRO.PlayerType});
                         break;
                     }
                 }
             }
         }
-        
-        
+
         // [BurstCompile]
         // public void OnUpdate(ref SystemState state)
         // {
