@@ -35,7 +35,6 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
             var randomComponentAspect = SystemAPI.GetAspect<RandomComponentAspect>(randomComponentEntity);
             
             
-            Debug.Log("1");
             foreach (var (velocity, mass, physicsVelocityImpulseComponent, entity) in 
                      SystemAPI.Query<
                          RefRW<PhysicsVelocity>, 
@@ -43,7 +42,6 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
                          RefRO<PhysicsVelocityImpulseComponent>>().WithEntityAccess())
             {
                 
-                Debug.Log("2");
                 var forceVector3 = randomComponentAspect.NextFloat3(
                     ConversionUtility.ToNumericsVector3(physicsVelocityImpulseComponent.ValueRO.MinForce),
                     ConversionUtility.ToNumericsVector3(physicsVelocityImpulseComponent.ValueRO.MaxForce),

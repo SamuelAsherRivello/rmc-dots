@@ -5,7 +5,6 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
 {
     public class PhysicsVelocityImpulseComponentAuthoring : MonoBehaviour
     {
-        
         public bool IsRandomForce = false;
         
         // Not Random
@@ -24,30 +23,24 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
 
                 if (authoring.IsRandomForce)
                 {
-                    //Pass along data for a random choice later
+                    //RANDOM: Pass along data for a random choice later
                     AddComponent<PhysicsVelocityImpulseComponent>(entity,
-                        new PhysicsVelocityImpulseComponent
-                        {
-                            CanBeNegative = authoring.RandomCanBeNegative,
-                            MinForce = authoring.RandomMinForce,
-                            MaxForce = authoring.RandomMaxForce
-                        });
+                        PhysicsVelocityImpulseComponent.FromRandomForce(
+                            authoring.RandomMinForce,
+                            authoring.RandomMaxForce,
+                            authoring.RandomCanBeNegative
+                        ));
 
                 }
                 else
                 {
                     
-                    //Pass along non-random values for a specific choice now
+                    //SPECIFIC: Pass along non-random values for a specific choice now
                     AddComponent<PhysicsVelocityImpulseComponent>(entity,
-                        new PhysicsVelocityImpulseComponent
-                        {
-                            CanBeNegative = false,
-                            MinForce = authoring.Force,
-                            MaxForce = authoring.Force
-                        });
-
+                        PhysicsVelocityImpulseComponent.FromForce(
+                            authoring.Force
+                        ));
                 }
-    
             }
         }
     }
