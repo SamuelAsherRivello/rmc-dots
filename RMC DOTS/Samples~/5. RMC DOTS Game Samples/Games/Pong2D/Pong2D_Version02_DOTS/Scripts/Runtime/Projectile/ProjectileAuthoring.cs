@@ -2,7 +2,6 @@
 using Unity.Entities;
 using UnityEngine;
 
-//TODO: FixPhysics
 namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
 {
     public class ProjectileAuthoring : MonoBehaviour
@@ -21,12 +20,12 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
             AddComponent<ProjectileTag>(entity);
 
             AddComponent<PhysicsVelocityImpulseComponent>(entity,
-                new PhysicsVelocityImpulseComponent
-                {
-                    CanBeNegative = authoring.CanBeNegative,
-                    MinForce = authoring.MinForce,
-                    MaxForce = authoring.MaxForce
-                });
+                PhysicsVelocityImpulseComponent.FromRandomForce
+                    (
+                        authoring.MinForce,
+                        authoring.MaxForce,
+                        authoring.CanBeNegative
+                    ));
         }
     }
 }

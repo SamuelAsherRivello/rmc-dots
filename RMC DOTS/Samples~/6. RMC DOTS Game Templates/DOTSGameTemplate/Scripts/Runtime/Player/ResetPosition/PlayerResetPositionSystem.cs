@@ -23,7 +23,6 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
             state.RequireForUpdate<PlayerTag>();
         }
 
-        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.

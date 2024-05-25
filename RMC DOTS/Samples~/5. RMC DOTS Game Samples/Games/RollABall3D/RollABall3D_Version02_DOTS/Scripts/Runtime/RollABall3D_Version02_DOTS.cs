@@ -60,11 +60,6 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
         protected async void Start()
         {
                         
-            // The Unity Project Must Have These Layers
-            // LayerMaskUtility Shows Errors If Anything Is Missing
-            LayerMaskUtility.AssertLayerMask("Player", 6);
-            LayerMaskUtility.AssertLayerMask("Pickup", 7);
-            
             // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 

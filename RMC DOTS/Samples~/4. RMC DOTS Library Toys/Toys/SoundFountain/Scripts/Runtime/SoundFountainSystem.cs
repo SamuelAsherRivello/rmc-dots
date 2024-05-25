@@ -60,32 +60,28 @@ namespace RMC.DOTS.Toys.Fountain
             }
 
             
+            
             // 2) Detect when something bounces, and play a sound
-            foreach (var entity in 
-                     _statefulEntityQuery.ToEntityArray(Allocator.Temp))
+            foreach (var (physicsVelocity, statefulEventBuffers, entity) in 
+                     SystemAPI.Query<RefRO<PhysicsVelocity>, DynamicBuffer<StatefulCollisionEvent>>().
+                         WithEntityAccess())
             {
                 
-               // Debug.Log("Found1");
-                var buffer = state.EntityManager.GetBuffer<StatefulCollisionEvent>(entity);
-                var physicsVelocity = state.EntityManager.GetComponentData<PhysicsVelocity>(entity);
-                
-                for (int bufferIndex = 0; bufferIndex < buffer.Length; bufferIndex++)
+                for (int bufferIndex = 0; bufferIndex < statefulEventBuffers.Length; bufferIndex++)
                 {
-                    var collisionEvent = buffer[bufferIndex];
-
-                    switch (collisionEvent.State) 
-                    {  
-                        case StatefulEventState.Enter:
-                            var pitch2 = 0.5f + math.abs(physicsVelocity.Linear.y) / 10;
-                            var volume2 = AudioConstants.VolumeDefault;
+                    var statefulEvent = statefulEventBuffers[bufferIndex];
+                    if (statefulEvent.State == StatefulEventState.Enter)
+                    {
+                        //DO SOMETHING
+                        var pitch2 = 0.5f + math.abs(physicsVelocity.ValueRO.Linear.y) / 10;
+                        var volume2 = AudioConstants.VolumeDefault;
                             
-                            ecb.AddComponent<AudioComponent>(entity, 
-                                new AudioComponent(
-                                    "Bounce01", 
-                                    volume2,
-                                    pitch2));
-                        
-                            break;
+                        ecb.AddComponent<AudioComponent>(entity, 
+                            new AudioComponent(
+                                "Bounce01", 
+                                volume2,
+                                pitch2));
+                        break;
                     }
                 }
             }

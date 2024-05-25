@@ -65,11 +65,13 @@ namespace Unity.Physics.PhysicsStateful
             }
             
             string errorPrefix = $"DOTS Bake Error on GameObject '{gameObject.name}'{locationDetails}. More...\n\n";
-            string errorSuffix = $"before baking.";
-            string belongsToError =       $"{errorPrefix} Set 'BelongsTo' value to something (Not Everything, Not Nothing) {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
-            string collidesWithError =    $"{errorPrefix} Set 'CollidesWith' value to something (Not Everything, Not Nothing) {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
-            string collisionResponseError = $"{errorPrefix} Set 'CollisionResponse' value to something (Not Collide, Not None) {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
-            
+            string errorSuffix = $"before baking.\n\n";
+            string belongsToError =       $"{errorPrefix} Set 'BelongsTo' value to something (Not Everything, Not Nothing) on {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
+            string collidesWithError =    $"{errorPrefix} Set 'CollidesWith' value to something (Not Everything, Not Nothing) on {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
+            string collisionResponseErrorForCollision = $"{errorPrefix} Set 'CollisionResponse' to '{CollisionResponsePolicy.CollideRaiseCollisionEvents}' on {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
+            string collisionResponseErrorForTrigger = $"{errorPrefix} Set 'CollisionResponse' to '{CollisionResponsePolicy.RaiseTriggerEvents}' on {nameof(PhysicsShapeAuthoring)} Component {errorSuffix}";
+
+
             // Validation: Enough Components?
             if (_physicsShapeAuthoring == null)
             {
@@ -99,13 +101,21 @@ namespace Unity.Physics.PhysicsStateful
                 Debug.LogError(collidesWithError);
             }
             
-            // Validation: Enough Response?
-            if (_physicsShapeAuthoring.CollisionResponse == CollisionResponsePolicy.None ||
-                _physicsShapeAuthoring.CollisionResponse == CollisionResponsePolicy.Collide)
+            if (authoring is StatefulCollisionEventAuthoring)
             {
-                Debug.LogError(collisionResponseError);
+                if (_physicsShapeAuthoring.CollisionResponse != CollisionResponsePolicy.CollideRaiseCollisionEvents)
+                {
+                    Debug.LogError(collisionResponseErrorForCollision);
+                }
             }
-            
+            else if (authoring is StatefulTriggerEventAuthoring)
+            {
+                if (_physicsShapeAuthoring.CollisionResponse != CollisionResponsePolicy.RaiseTriggerEvents)
+                {
+                    Debug.LogError(collisionResponseErrorForTrigger);
+                }
+            }
+
         }
     }
 }

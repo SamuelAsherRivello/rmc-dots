@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 using UnityEngine;
 
-namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
+namespace RMC.DOTS.Systems.Tween
 {
     public class TweenScaleSystemAuthoring : MonoBehaviour
     {

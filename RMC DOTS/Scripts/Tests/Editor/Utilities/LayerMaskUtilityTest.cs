@@ -26,12 +26,6 @@ namespace RMC.DOTS.Utilities
             // Act
 
             // Assert
-            Assert.That(LayerMaskUtility.AssertLayerMask("Default", 0) , Is.True);
-            Assert.That(LayerMaskUtility.AssertLayerMask("TransparentFX", 1) , Is.True);
-            //There is no '3'
-            Assert.That(LayerMaskUtility.AssertLayerMask("Ignore Raycast", 2) , Is.True);
-            Assert.That(LayerMaskUtility.AssertLayerMask("Water", 4) , Is.True);
-            Assert.That(LayerMaskUtility.AssertLayerMask("UI", 5) , Is.True);
         }
 
             

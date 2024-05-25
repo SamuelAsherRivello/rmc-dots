@@ -62,11 +62,6 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version02_DOTS
         protected async void Start()
         {
                                     
-            // The Unity Project Must Have These Layers
-            // LayerMaskUtility Shows Errors If Anything Is Missing
-            LayerMaskUtility.AssertLayerMask("Projectile", 8);
-            LayerMaskUtility.AssertLayerMask("Goal", 9);
-            
             // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 

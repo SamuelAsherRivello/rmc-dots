@@ -10,10 +10,6 @@ namespace RMC.DOTS.Toys.Fountain
         {
             Debug.Log("SoundFountain Demo. Watch the spawning.");
             
-            // The Unity Project Must Have These Layers
-            // LayerMaskUtility Shows Errors If Anything Is Missing
-            LayerMaskUtility.AssertLayerMask("Floor", 15);
-            LayerMaskUtility.AssertLayerMask("Droplet", 16);
         }
     }
 }

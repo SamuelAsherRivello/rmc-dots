@@ -34,7 +34,6 @@ namespace RMC.DOTS.Systems.PhysicsVelocityImpulse
             var randomComponentEntity = SystemAPI.GetSingletonEntity<RandomComponent>();
             var randomComponentAspect = SystemAPI.GetAspect<RandomComponentAspect>(randomComponentEntity);
             
-            
             foreach (var (velocity, mass, physicsVelocityImpulseComponent, entity) in 
                      SystemAPI.Query<
                          RefRW<PhysicsVelocity>, 

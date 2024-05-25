@@ -77,14 +77,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
         //  Unity Methods  --------------------------------
         protected async void Start()
         {
-            // The Unity Project Must Have These Layers
-            // LayerMaskUtility Shows Errors If Anything Is Missing
-            LayerMaskUtility.AssertLayerMask("Player", 6);
-            LayerMaskUtility.AssertLayerMask("Enemy", 11);
-            LayerMaskUtility.AssertLayerMask("Bullet", 12);
-            LayerMaskUtility.AssertLayerMask("Gem", 13);
-            LayerMaskUtility.AssertLayerMask("Wall", 14);
-      
             
             // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);

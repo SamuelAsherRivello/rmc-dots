@@ -1,12 +1,12 @@
 ﻿using RMC.DOTS.SystemGroups;
-using RMC.DOTS.Systems.Audio;
+using RMC.DOTS.Systems.DestroyEntity;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
     [UpdateInGroup(typeof(UnpauseablePresentationSystemGroup))]
-    [UpdateBefore(typeof(PickupWasCollectedDestroySystem))] 
-    public partial struct PickupWasCollectedAudioSystem : ISystem
+    public partial struct PickupWasCollectedDestroySystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
@@ -15,6 +15,7 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
             state.RequireForUpdate<PickupWasCollectedTag>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = SystemAPI.
@@ -25,13 +26,8 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                      in SystemAPI.Query<PickupTag, PickupWasCollectedTag>().
                          WithEntityAccess())
             {
-                //Debug.Log("Play this sound: " + entity.Index + " fc: " + Time.frameCount);
-                Entity audioEntity = ecb.CreateEntity();
-                ecb.AddComponent<AudioComponent>(audioEntity,
-                    new AudioComponent
-                    (
-                        "Pickup01"
-                    ));
+                ecb.RemoveComponent<PickupWasCollectedTag>(entity);
+                ecb.AddComponent<DestroyEntityComponent>(entity);
             }
         }
     }
