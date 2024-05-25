@@ -68,11 +68,6 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
         protected async void Start()
         {
             
-            // The Unity Project Must Have These Layers
-            // LayerMaskUtility Shows Errors If Anything Is Missing
-            LayerMaskUtility.AssertLayerMask("Player", 6);
-            LayerMaskUtility.AssertLayerMask("Goal", 9);
-            
             // ECS
             _ecsWorld = await DOTSUtility.GetWorldAsync(_subScene);
 

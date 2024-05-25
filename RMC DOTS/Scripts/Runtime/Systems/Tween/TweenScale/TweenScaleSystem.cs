@@ -4,7 +4,7 @@ using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
+namespace RMC.DOTS.Systems.Tween
 {
     public struct TweenScaleHasStartedTag : IComponentData {}
     public struct TweenScaleHasFinishedTag : IComponentData {}
@@ -48,20 +48,24 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             
             // Scale to end scale
             foreach (var (localTransform, teenScaleComponent, entity) in
-                     SystemAPI.Query<RefRW<LocalTransform>, RefRO<TweenScaleComponent>>().
+                     SystemAPI.Query<RefRW<LocalTransform>, RefRW<TweenScaleComponent>>().
                          WithNone<TweenScaleHasFinishedTag>().
                          WithAll<TweenScaleHasStartedTag>().
                          WithEntityAccess())
             {
+                teenScaleComponent.ValueRW._ElapsedTimeInSeconds += deltaTime;
+                var percentage = teenScaleComponent.ValueRO._ElapsedTimeInSeconds / 
+                                 teenScaleComponent.ValueRO.DurationInSeconds;
                 
                 localTransform.ValueRW.Scale = 
                     math.lerp(localTransform.ValueRW.Scale, 
                         teenScaleComponent.ValueRO.To, 
-                        deltaTime * teenScaleComponent.ValueRO.Speed);
+                        percentage);
                 
-                if (math.distance(localTransform.ValueRW.Scale, teenScaleComponent.ValueRO.To) < 0.0001f)
+                if (percentage >= 1f)
                 {
                     // Add at most ONE thing
+                    localTransform.ValueRW.Scale = teenScaleComponent.ValueRO.To;
                     ecb.AddComponent<TweenScaleHasFinishedTag>(entity);
                 }
             }

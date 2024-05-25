@@ -3,7 +3,6 @@ using Unity.Entities;
 using Unity.Physics.PhysicsStateful;
 using UnityEngine;
 
-//TODO: FixPhysics - GOOD AS IS. Copy from here
 namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
 {
     [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
@@ -23,18 +22,17 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (statefulTriggerEventBuffers, entity) in 
+            foreach (var (statefulEventBuffers, entity) in 
                      SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>>().
                          WithAll<PlayerTag>().
                          WithNone<GoalWasReachedExecuteOnceTag>().
                          WithEntityAccess())
             {
 
-                
-                for (int bufferIndex = 0; bufferIndex < statefulTriggerEventBuffers.Length; bufferIndex++)
+                for (int bufferIndex = 0; bufferIndex < statefulEventBuffers.Length; bufferIndex++)
                 {
-                    var collisionEvent = statefulTriggerEventBuffers[bufferIndex];
-                    if (collisionEvent.State == StatefulEventState.Enter)
+                    var statefulEvent = statefulEventBuffers[bufferIndex];
+                    if (statefulEvent.State == StatefulEventState.Enter)
                     {
                         ecb.AddComponent<GoalWasReachedExecuteOnceTag>(entity);
                         break;

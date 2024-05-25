@@ -1,6 +1,4 @@
-﻿using RMC.DOTS.SystemGroups;
-using RMC.DOTS.Systems.DestroyEntity;
-using Unity.Burst;
+﻿using Unity.Burst;
 using Unity.Entities;
 using Unity.Physics.PhysicsStateful;
 using UnityEngine;
@@ -8,13 +6,14 @@ using UnityEngine;
 //TODO: FixPhysics
 namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
 {
-    [UpdateInGroup(typeof(PauseablePresentationSystemGroup))]
-    [RequireMatchingQueriesForUpdate]
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    [UpdateAfter(typeof(StatefulTriggerEventSystem))] 
     public partial struct PickupWasCollectedSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
+            state.RequireForUpdate<PickupTag>();
         }
         
         //NEW SYNTAX
@@ -25,49 +24,28 @@ namespace RMC.DOTS.Samples.RollABall3D.RollABall3D_Version02_DOTS
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (statefulTriggerEventBuffers, entity) in 
+            
+            // ADD NEW TAG
+            foreach (var (statefulEventBuffers, entity) in 
                      SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>>().
+                         WithNone<PickupWasCollectedTag>().
+                         WithAll<PickupTag>().
                          WithEntityAccess())
             {
                 
-                for (int bufferIndex = 0; bufferIndex < statefulTriggerEventBuffers.Length; bufferIndex++)
+                for (int bufferIndex = 0; bufferIndex < statefulEventBuffers.Length; bufferIndex++)
                 {
-                    var collisionEvent = statefulTriggerEventBuffers[bufferIndex];
-                    if (collisionEvent.State == StatefulEventState.Enter)
+                    var statefulEvent = statefulEventBuffers[bufferIndex];
+                    if (statefulEvent.State == StatefulEventState.Enter)
                     {
                         //DO SOMETHING
+                        //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
+                        ecb.AddComponent<PickupWasCollectedTag>(entity);
+                      
                         break;
                     }
                 }
             }
         }
-
-        // [BurstCompile]
-        // public void OnUpdate(ref SystemState state)
-        // {
-        //     var ecb = SystemAPI.
-        //         GetSingleton<EndInitializationEntityCommandBufferSystem.Singleton>().
-        //         CreateCommandBuffer(state.WorldUnmanaged);
-        //     
-        //     
-        //     //Remove any existing tags
-        //     foreach (var (pickupTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PickupTag, PickupWasCollectedTag>().WithEntityAccess())
-        //     {
-        //         //Debug.Log($"GamePickup ({entity.Index}) Set To REMOVE on TimeFrameCount: {Time.frameCount}");
-        //         ecb.RemoveComponent<PickupWasCollectedTag>(entity);
-        //     }
-        //     
-        //     foreach (var (pickupTag, physicsTriggerOutputTag, entity) in SystemAPI.Query<PickupTag, PhysicsTriggerOutputComponent>().WithEntityAccess())
-        //     {
-        //         if (physicsTriggerOutputTag.PhysicsTriggerType == PhysicsTriggerType.Enter &&
-        //             physicsTriggerOutputTag.TimeFrameCountForLastCollision <= Time.frameCount - PhysicsTriggerOutputComponent.FramesToWait)
-        //         { 
-        //             //Debug.Log($"GamePickup ({entity.Index}) Set To Enter on TimeFrameCount: {Time.frameCount}");
-        //             ecb.AddComponent<PickupWasCollectedTag>(entity);
-        //             ecb.AddComponent<DestroyEntityComponent>(entity);
-        //           
-        //         }
-        //     }
-        // }
     }
 }

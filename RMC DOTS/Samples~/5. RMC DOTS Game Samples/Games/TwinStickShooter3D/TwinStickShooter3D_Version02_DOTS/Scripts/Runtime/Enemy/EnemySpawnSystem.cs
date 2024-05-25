@@ -8,6 +8,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using RMC.DOTS.Systems.Player;
 using RMC.DOTS.Systems.Random;
+using RMC.DOTS.Systems.Tween;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -122,7 +123,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                 //Debug.Log("set: " + enemySpawnComponent.ValueRO.SpawnIntervalInSecondsCurrent);
                 
                 ecb.AddComponent<TweenScaleComponent>(enemyEntity, 
-                    new TweenScaleComponent(0.1f, 1, 8)); 
+                    new TweenScaleComponent(0.1f, 1, 1)); 
                 
                 ecb.AddComponent<AudioComponent>(enemyEntity, new AudioComponent
                 (

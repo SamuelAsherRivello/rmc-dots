@@ -4,10 +4,12 @@ using RMC.DOTS.Systems.GameState;
 using RMC.DOTS.Systems.Input;
 using RMC.DOTS.Systems.PhysicsVelocityImpulse;
 using RMC.DOTS.Systems.Player;
+using RMC.DOTS.Systems.Tween;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02_DOTS
 {
@@ -33,8 +35,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             {
                 return;
             }
-            
-            
             var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
@@ -47,7 +47,6 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
             {
                 return;
             }
-
             foreach (var playerShootAspect 
                      in SystemAPI.Query<PlayerShootAspect>().WithAll<PlayerTag>())
             {
@@ -75,7 +74,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
                     });
 
                     ecb.AddComponent<TweenScaleComponent>(bulletEntity, 
-                        new TweenScaleComponent(0.1f, 1, 8)); 
+                        new TweenScaleComponent(0.1f, 1, 1)); 
                     
                     // Play sound
                     ecb.AddComponent<AudioComponent>(bulletEntity, new AudioComponent
