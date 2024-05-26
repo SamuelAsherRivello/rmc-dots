@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Samples/RMC%20DOTS/1.5.3/1.%20RMC%20DOTS%20Lessons/Lessons/Lesson05_UI/Demo01_UIToolkit/Settings/UIToolkit/Uss/UIToolkitDemo01_Styles.uss?fileID=7433441132597879392&amp;guid=c7b40c389820a23468d888aeef9a740f&amp;type=3#UIToolkitDemo01_Styles" />
+    <ui:VisualElement name="Screen" class="screen">
+        <ui:VisualElement name="Content" class="content">
+            <ui:VisualElement name="Score" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0;">
+                <ui:Label tabindex="-1" text="Score" display-tooltip-when-elided="true" name="ScoreLabel" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Status" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); right: 0; top: 0; position: absolute;">
+                <ui:Label tabindex="-1" text="Status" display-tooltip-when-elided="true" name="StatusLabel" style="-unity-text-align: upper-right;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Buttons" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); right: 0; position: absolute; bottom: 0;">
+                <ui:Button text="Increment Score" display-tooltip-when-elided="true" name="IncrementScoreButton" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
