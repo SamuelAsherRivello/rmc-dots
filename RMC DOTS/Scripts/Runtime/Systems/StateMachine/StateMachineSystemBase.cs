@@ -1,24 +1,31 @@
 using Unity.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
-using UnityEngine;
 
 namespace RMC.DOTS.Systems.StateMachine
 {
+    /// <summary>
+    /// Heavily updated and modified from source.
+    /// 
+    /// Inspiration: See <see cref="https://github.com/PhilSA/PolymorphicStructs"/>
+    /// 
+    /// </summary>
     public abstract partial class StateMachineSystemBase : SystemBase
     {
-        EntityQuery _stateQuery;
-        List<State> stateProcessors = new List<State>();
-        EntityCommandBufferSystem commandBufferSystem;
-
-        protected EntityCommandBuffer Commands { get; private set; }
-        int stateIdCounter = 1;
+        private EntityQuery _stateEntityQuery;
+        private readonly List<State> _stateProcessors = new List<State>();
+        private EntityCommandBufferSystem _entityCommandBufferSystem;
+        private int _stateIdCounter = 1;
+        private bool _commandsInitializedEarly = false;
+        
+        protected EntityCommandBuffer EntityCommandBuffer { get; private set; }
+        
 
         protected override void OnCreate()
         {
             base.OnCreate();
-            commandBufferSystem = InitializeEntityCommandBufferSystem();
-            _stateQuery = GetStateEntityQuery();
+            _entityCommandBufferSystem = InitializeEntityCommandBufferSystem();
+            _stateEntityQuery = GetStateEntityQuery();
         }
 
         protected abstract EntityQuery GetStateEntityQuery();
@@ -28,28 +35,28 @@ namespace RMC.DOTS.Systems.StateMachine
             return World.GetExistingSystemManaged<EntityCommandBufferSystem>();
         }
 
-        bool commandsInitializedEarly = false;
-
-        protected void InitilizeCommandsEarly()
+        /// <summary>
+        /// TODO: Why does this exist as an option? 
+        /// </summary>
+        protected void InitializeCommandsEarly()
         {
-            if(commandsInitializedEarly)
+            if(_commandsInitializedEarly)
             {
                 return;
             }
-            Commands = commandBufferSystem.CreateCommandBuffer();
-            commandsInitializedEarly = true;
+            EntityCommandBuffer = _entityCommandBufferSystem.CreateCommandBuffer();
+            _commandsInitializedEarly = true;
         }
 
         protected override void OnUpdate()
         {
-       
-            if(commandsInitializedEarly == false)
+            if(_commandsInitializedEarly == false)
             {
-                Commands = commandBufferSystem.CreateCommandBuffer();
+                EntityCommandBuffer = _entityCommandBufferSystem.CreateCommandBuffer();
             }
             else
             {
-                commandsInitializedEarly = false;
+                _commandsInitializedEarly = false;
             }    
             
             updateStates();
@@ -58,13 +65,13 @@ namespace RMC.DOTS.Systems.StateMachine
         void updateStates()
         {
        
-            for (int i = 0; i < stateProcessors.Count; i++)
+            for (int i = 0; i < _stateProcessors.Count; i++)
             {
-                var state = stateProcessors[i];
+                var state = _stateProcessors[i];
                 state.OnBeforeUpdate();
             }
 
-            using(var chunks = _stateQuery.ToArchetypeChunkArray(Allocator.Temp))
+            using(var chunks = _stateEntityQuery.ToArchetypeChunkArray(Allocator.Temp))
             {
                 // EXIT
                 foreach (var chunk in chunks)
@@ -77,9 +84,9 @@ namespace RMC.DOTS.Systems.StateMachine
                         var entity = entities[i];
                         var stateId = stateIds[i];
 
-                        for (int j = 0; j < stateProcessors.Count; j++)
+                        for (int j = 0; j < _stateProcessors.Count; j++)
                         {
-                            var stateProcessor = stateProcessors[j];
+                            var stateProcessor = _stateProcessors[j];
 
                             if (stateId.StateIdToSwitch == stateId.currentStateID)
                             {
@@ -112,9 +119,9 @@ namespace RMC.DOTS.Systems.StateMachine
                         var entity = entities[c];
                         var stateId = stateIds[c];
 
-                        for (int i = 0; i < stateProcessors.Count; i++)
+                        for (int i = 0; i < _stateProcessors.Count; i++)
                         {
-                            var state = stateProcessors[i];
+                            var state = _stateProcessors[i];
 
                             if (stateId.StateIdToSwitch == stateId.currentStateID)
                             {
@@ -146,9 +153,9 @@ namespace RMC.DOTS.Systems.StateMachine
                         var entity = entities[c];
                         var stateId = stateIds[c];
 
-                        for (int i = 0; i < stateProcessors.Count; i++)
+                        for (int i = 0; i < _stateProcessors.Count; i++)
                         {
-                            var state = stateProcessors[i];
+                            var state = _stateProcessors[i];
 
                             if (stateId.currentStateID != state.ID || stateId.stateIdToSwitch != state.ID)
                             {
@@ -161,16 +168,16 @@ namespace RMC.DOTS.Systems.StateMachine
                 }
             }
 
-            for (int i = 0; i < stateProcessors.Count; i++)
+            for (int i = 0; i < _stateProcessors.Count; i++)
             {
-                var state = stateProcessors[i];
+                var state = _stateProcessors[i];
                 state.OnAfterUpdate();
             }
         }
 
         private int GetStateIndex<T>() where T : State
         {
-            foreach (var state in stateProcessors)
+            foreach (var state in _stateProcessors)
             {
                 if (state is T)
                 {
@@ -193,32 +200,32 @@ namespace RMC.DOTS.Systems.StateMachine
 
             bool replaced = false;
 
-            for (int i = 0; i < stateProcessors.Count; i++)
+            for (int i = 0; i < _stateProcessors.Count; i++)
             {
-                var otherState = stateProcessors[i];
+                var otherState = _stateProcessors[i];
                 var otherType = otherState.GetType();
 
                 if (stateType.IsSubclassOf(otherType))
                 {
-                    stateProcessors[i] = state;
+                    _stateProcessors[i] = state;
                     replaced = true;
                 }
             }
             if (replaced == false)
             {
-                stateProcessors.Add(state);
+                _stateProcessors.Add(state);
             }
 
-            state.ID = stateIdCounter;
-            stateIdCounter++;
+            state.ID = _stateIdCounter;
+            _stateIdCounter++;
             state.Initialize(this);
         }
 
 		public bool IsInState<T>(Entity e) where T : State
         {
-            if (HasComponent<StateID>(e) == false)
+            if (SystemAPI.HasComponent<StateID>(e) == false)
                 return false;
-            var stateId = GetComponent<StateID>(e);
+            var stateId = SystemAPI.GetComponent<StateID>(e);
             var stateIndex = GetStateIndex<T>();
             return stateIndex == stateId.currentStateID;
         }
@@ -231,26 +238,26 @@ namespace RMC.DOTS.Systems.StateMachine
             {
                 throw new System.InvalidOperationException($"No registered state found with type {typeof(T).Name}");
             }
-            var stateId = GetComponent<StateID>(entity);
+            var stateId = SystemAPI.GetComponent<StateID>(entity);
             stateId.RequestSwitchToState(id);
-            SetComponent(entity, stateId);
+            SystemAPI.SetComponent(entity, stateId);
         }
 
         public class State
         {
             internal int ID;
 
-            public StateMachineSystemBase System { get; protected set; }
+            public StateMachineSystemBase StateMachineSystemBase { get; protected set; }
             protected EntityCommandBuffer Commands;
             protected EntityManager EntityManager;
             protected World World;
 
             
-            public virtual void Initialize(StateMachineSystemBase system)
+            public virtual void Initialize(StateMachineSystemBase smSystemBase)
             {
-                System = system;
-                EntityManager = System.EntityManager;
-                World = System.World;
+                StateMachineSystemBase = smSystemBase;
+                EntityManager = StateMachineSystemBase.EntityManager;
+                World = StateMachineSystemBase.World;
             }
 
             public bool IsPendingStateChange(Entity entity)
@@ -261,57 +268,57 @@ namespace RMC.DOTS.Systems.StateMachine
 
             public bool Exists(Entity entity)
             {
-                return System.EntityManager.Exists(entity);
+                return StateMachineSystemBase.EntityManager.Exists(entity);
             }
 
             public bool HasComponent<T>(Entity entity) where T : unmanaged, IComponentData
             {
-                return System.HasComponent<T>(entity);
+                return StateMachineSystemBase.HasComponent<T>(entity);
             }
 
             public bool HasBuffer<T>(Entity entity) where T : unmanaged, IBufferElementData
             {
-                return System.HasBuffer<T>(entity);
+                return StateMachineSystemBase.HasBuffer<T>(entity);
             }
 
             public T GetComponent<T>(Entity entity) where T : unmanaged, IComponentData
             {
-                return System.GetComponent<T>(entity);
+                return StateMachineSystemBase.GetComponent<T>(entity);
             }
 
             public DynamicBuffer<T> GetBuffer<T>(Entity entity) where T : unmanaged, IBufferElementData
             {
-                return System.GetBuffer<T>(entity);
+                return StateMachineSystemBase.GetBuffer<T>(entity);
             }
 
             public T GetComponentObject<T>(Entity entity)
             {
-                return System.EntityManager.GetComponentObject<T>(entity);
+                return StateMachineSystemBase.EntityManager.GetComponentObject<T>(entity);
             }
 
             public void SetComponent<T>(Entity entity, T data) where T : unmanaged, IComponentData
             {
-                System.SetComponent<T>(entity, data);
+                StateMachineSystemBase.SetComponent<T>(entity, data);
             }
 
             protected EntityQuery GetEntityQuery(params ComponentType[] types)
             {
-                return System.GetEntityQuery(types);
+                return StateMachineSystemBase.GetEntityQuery(types);
             }
 
             public bool IsInState<K>(Entity e) where K : State
             {
-                return System.IsInState<K>(e);
+                return StateMachineSystemBase.IsInState<K>(e);
             }
 
             public void RequestStateChange<K>(Entity entity) where K : State
             {
-                System.RequestStateChange<K>(entity);
+                StateMachineSystemBase.RequestStateChange<K>(entity);
             }
 
             public virtual void OnBeforeUpdate()
             {
-                Commands = System.Commands;
+                Commands = StateMachineSystemBase.EntityCommandBuffer;
             }
 
             public virtual void OnAfterUpdate()
@@ -332,6 +339,10 @@ namespace RMC.DOTS.Systems.StateMachine
         }
     }
 
+    /// <summary>
+    /// Create a new State Machine that is keyed on one particular component type of "S".
+    /// </summary>
+    /// <typeparam name="S"></typeparam>
     public partial class StateMachineSystem<S> : StateMachineSystemBase where S : struct, IComponentData
     {
         protected override EntityQuery GetStateEntityQuery()
