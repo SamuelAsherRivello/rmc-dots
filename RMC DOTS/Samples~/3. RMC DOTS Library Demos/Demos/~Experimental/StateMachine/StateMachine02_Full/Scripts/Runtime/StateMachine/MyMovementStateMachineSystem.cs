@@ -1,4 +1,5 @@
 using RMC.DOTS.Systems.StateMachine;
+using System;
 
 namespace RMC.DOTS.Demos.StateMachine.Full
 {
@@ -14,5 +15,6 @@ namespace RMC.DOTS.Demos.StateMachine.Full
             RegisterState<MyMovementTranslationState>();
             RegisterState<MyMovementRotationState>();
         }
-    }
+
+	}
 }

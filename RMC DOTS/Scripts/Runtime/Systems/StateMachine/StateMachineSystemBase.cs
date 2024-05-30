@@ -248,7 +248,7 @@ namespace RMC.DOTS.Systems.StateMachine
             internal int ID;
 
             public StateMachineSystemBase StateMachineSystemBase { get; protected set; }
-            protected EntityCommandBuffer Commands;
+            protected EntityCommandBuffer EntityCommandBuffer;
             protected EntityManager EntityManager;
             protected World World;
 
@@ -301,7 +301,17 @@ namespace RMC.DOTS.Systems.StateMachine
                 StateMachineSystemBase.SetComponent<T>(entity, data);
             }
 
-            protected EntityQuery GetEntityQuery(params ComponentType[] types)
+			public T GetSingleton<T>() where T : unmanaged, IComponentData
+			{
+				return StateMachineSystemBase.GetSingleton<T>();
+			}
+
+			public void GetSingleton<T>(T value) where T : unmanaged, IComponentData
+			{
+				StateMachineSystemBase.SetSingleton<T>(value);
+			}
+
+			protected EntityQuery GetEntityQuery(params ComponentType[] types)
             {
                 return StateMachineSystemBase.GetEntityQuery(types);
             }
@@ -318,7 +328,7 @@ namespace RMC.DOTS.Systems.StateMachine
 
             public virtual void OnBeforeUpdate()
             {
-                Commands = StateMachineSystemBase.EntityCommandBuffer;
+                EntityCommandBuffer = StateMachineSystemBase.EntityCommandBuffer;
             }
 
             public virtual void OnAfterUpdate()
@@ -349,5 +359,19 @@ namespace RMC.DOTS.Systems.StateMachine
         {
             return GetEntityQuery(typeof(StateID), ComponentType.ReadOnly<S>());
         }
-    }
+
+        /// <summary>
+        /// Srivello added. 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+		public void RequestStateChangeForAllEntities<T>() where T : State
+		{
+			var query = GetStateEntityQuery();
+			var entities = query.ToEntityArray(Allocator.Temp);
+			foreach (Entity entity in entities)
+			{
+				RequestStateChange<T>(entity);
+			}
+		}
+	}
 }
