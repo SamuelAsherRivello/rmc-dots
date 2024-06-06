@@ -6,9 +6,6 @@ namespace RMC.Core.Utilities
     public static class LayerMaskUtility
     {
         //  Methods ---------------------------------------
-        
-        
-        [Obsolete("Remember to use 'Physics Category Names List' instead of this. Keep this source. But never call this source.")]
         public static bool AssertLayerMask(string layerName, int layerIndex)
         {
             //Make sure the project has layers set properly
