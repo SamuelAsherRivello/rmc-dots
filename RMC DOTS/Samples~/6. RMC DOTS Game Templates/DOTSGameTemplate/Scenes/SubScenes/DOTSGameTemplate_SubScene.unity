@@ -357,12 +357,15 @@ MonoBehaviour:
   DrawColliders: 0
   DrawColliderEdges: 0
   DrawColliderAabbs: 0
-  DrawBroadphase: 0
   DrawMassProperties: 0
+  DrawBroadphase: 0
   DrawContacts: 0
   DrawCollisionEvents: 1
   DrawTriggerEvents: 1
   DrawJoints: 0
+  ColliderDisplayMode: 0
+  ColliderEdgesDisplayMode: 0
+  ColliderAabbDisplayMode: 0
 --- !u!4 &482505352
 Transform:
   m_ObjectHideFlags: 0
@@ -434,6 +437,7 @@ GameObject:
   - component: {fileID: 1221972186}
   - component: {fileID: 1221972185}
   - component: {fileID: 1221972184}
+  - component: {fileID: 1221972189}
   - component: {fileID: 1221972188}
   - component: {fileID: 1221972187}
   m_Layer: 0
@@ -608,7 +612,7 @@ MonoBehaviour:
     m_Template: {fileID: 0}
     m_CollisionResponse:
       m_Override: 0
-      m_Value: 3
+      m_Value: 1
     m_Friction:
       m_Override: 0
       m_Value:
@@ -702,6 +706,18 @@ MonoBehaviour:
         Tag07: 0
     m_SerializedVersion: 1
   m_SerializedVersion: 1
+--- !u!114 &1221972189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221972181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7871e549ba4464dabc3d8407306cbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1231068289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,9 +1714,9 @@ GameObject:
   - component: {fileID: 2141468196}
   - component: {fileID: 2141468204}
   - component: {fileID: 2141468203}
-  - component: {fileID: 2141468205}
   - component: {fileID: 2141468202}
   - component: {fileID: 2141468200}
+  - component: {fileID: 2141468205}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2001,11 +2017,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141468193}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71242163ba188c04b8b904b94ff79242, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a444254202384e4ea55b4fe97742fbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _physicsBodyAuthoring: {fileID: 2141468204}
   _physicsShapeAuthoring: {fileID: 2141468203}
+  CalculateDetails: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

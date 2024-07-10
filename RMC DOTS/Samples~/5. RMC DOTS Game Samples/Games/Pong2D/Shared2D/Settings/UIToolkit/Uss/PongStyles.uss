@@ -42,7 +42,7 @@
     color: rgb(255, 255, 255);
     -unity-font-style: normal;
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Games/Playground2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
+    -unity-font: url("project://database/Assets/Samples/RMC DOTS/1.5.7/5. RMC DOTS Game Samples/Games/Pong2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
     -unity-text-align: middle-center;
 }
 
@@ -54,7 +54,7 @@
     font-size: 50px;
     transition-duration: 0.1s;
     -unity-font-definition: initial;
-    -unity-font: url("project://database/Assets/Games/Playground2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
+    -unity-font: url("project://database/Assets/Samples/RMC DOTS/1.5.7/5. RMC DOTS Game Samples/Games/Pong2D/Shared2D/Art/Fonts/Bit%205x5.ttf?fileID=12800000&guid=c2c2b93810c4cbb4f930f6ac618cc796&type=3#Bit 5x5");
     -unity-text-align: middle-center;
 }
 

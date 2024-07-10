@@ -32,6 +32,7 @@ namespace RMC.DOTS.Samples.Games.TwinStickShooter3D.TwinStickShooter3D_Version02
 		protected override void OnCreate()
         {
             RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
+            RequireForUpdate<CustomPhysicsTriggerSystemAuthoring.CustomPhysicsTriggerSystemIsEnabledTag>();
             RequireForUpdate<GameStateComponent>();
             
             _destroyEntityComponentLookup = GetComponentLookup<DestroyEntityComponent>();

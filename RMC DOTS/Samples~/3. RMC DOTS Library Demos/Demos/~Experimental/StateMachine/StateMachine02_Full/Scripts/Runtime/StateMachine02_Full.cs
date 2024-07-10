@@ -9,8 +9,8 @@ namespace RMC.DOTS.Demos.StateMachine.Full
     ///
     /// There are multiple demos
     ///
-    /// * <see cref="StateMachine01_Light"/> - More logic outside the StateMachine itself
-    /// * <see cref="StateMachine02_Full"/>  - More logic inside the StateMachine itself
+    /// * <see cref="StateMachine01_Light"/> - More logic OUTSIDE the StateMachine itself
+    /// * <see cref="StateMachine02_Full"/>  - More logic INSIDE the StateMachine itself
     /// 
     /// </summary>
     public class StateMachine02_Full : MonoBehaviour
@@ -19,6 +19,9 @@ namespace RMC.DOTS.Demos.StateMachine.Full
         protected void Start()
         {
             Debug.Log("StateMachine02_Full Demo. Watch the console.");
+            
+            //TODO: Not sure why, but...
+            Debug.LogWarning("NOTE: Before playing, Open SubScene (via checkbox) in Scene Hierarchy Window.");
 
             SetupStateMachines();
         }

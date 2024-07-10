@@ -9,11 +9,15 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
     [UpdateAfter(typeof(StatefulTriggerEventSystem))] 
     public partial struct GoalWasReachedSystem : ISystem
     {
+        private ComponentLookup<GoalTag> _goalTagComponentLookup;
+        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<GoalWasReachedSystemAuthoring.GoalWasReachedSystemIsEnabledTag>();
             state.RequireForUpdate<BeginPresentationEntityCommandBufferSystem.Singleton>();
             state.RequireForUpdate<PlayerTag>();
+
+            _goalTagComponentLookup = state.GetComponentLookup<GoalTag>();
         }
 
         public void OnUpdate(ref SystemState state)
@@ -22,8 +26,10 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                 GetSingleton<BeginPresentationEntityCommandBufferSystem.Singleton>().
                 CreateCommandBuffer(state.WorldUnmanaged);
             
-            foreach (var (statefulEventBuffers, entity) in 
-                     SystemAPI.Query<DynamicBuffer<StatefulTriggerEvent>>().
+            _goalTagComponentLookup.Update(ref state);
+            
+            foreach (var (statefulEventBuffers, playerEntity) in 
+                     SystemAPI.Query<DynamicBuffer<StatefulCollisionEvent>>().
                          WithAll<PlayerTag>().
                          WithNone<GoalWasReachedExecuteOnceTag>().
                          WithEntityAccess())
@@ -34,7 +40,13 @@ namespace RMC.DOTS.Samples.Templates.DOTSGameTemplate
                     var statefulEvent = statefulEventBuffers[bufferIndex];
                     if (statefulEvent.State == StatefulEventState.Enter)
                     {
-                        ecb.AddComponent<GoalWasReachedExecuteOnceTag>(entity);
+                        var otherEntity = statefulEvent.GetOtherEntity(playerEntity);
+                        if (_goalTagComponentLookup.HasComponent(otherEntity))
+                        {
+                            ecb.AddComponent<GoalWasReachedExecuteOnceTag>(playerEntity);
+                            break;
+                        }
+                     
                         break;
                     }
                 }

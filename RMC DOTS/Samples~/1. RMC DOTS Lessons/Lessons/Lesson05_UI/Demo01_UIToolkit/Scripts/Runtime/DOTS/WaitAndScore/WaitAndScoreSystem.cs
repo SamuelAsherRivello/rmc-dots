@@ -14,9 +14,8 @@ namespace RMC.DOTS.Lessons.UI.UIToolkit
             state.RequireForUpdate<EndInitializationEntityCommandBufferSystem.Singleton>();
             
             // Wait and score
-            Debug.Log("WaitAndScoreSystem will reward points after 1 second. Then it will stop.");
             var entity = state.EntityManager.CreateEntity();
-            state.EntityManager.AddComponentData<WaitAndScoreComponent>(entity, new WaitAndScoreComponent
+            state.EntityManager.AddComponentData(entity, new WaitAndScoreComponent
             {
                 WaitForSeconds = 1,
                 ScoreDelta = 3
@@ -41,7 +40,7 @@ namespace RMC.DOTS.Lessons.UI.UIToolkit
                     // Update the score
                     var simpleScoreComponent = SystemAPI.GetSingleton<SimpleScoreComponent>();
                     simpleScoreComponent.Score += waitAndScoreComponent.ValueRW.ScoreDelta;
-                    SystemAPI.SetSingleton<SimpleScoreComponent>(simpleScoreComponent);
+                    SystemAPI.SetSingleton(simpleScoreComponent);
                     
                     // And stop
                     Debug.Log("WaitAndScoreSystem just rewarded points after 1 second. Now it will stop.");

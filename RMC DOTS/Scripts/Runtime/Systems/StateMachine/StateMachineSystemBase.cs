@@ -2,12 +2,13 @@ using Unity.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 namespace RMC.DOTS.Systems.StateMachine
 {
     /// <summary>
     /// Heavily updated and modified from source.
     /// 
-    /// Inspiration: See <see cref="https://github.com/PhilSA/PolymorphicStructs"/>
+    /// Inspiration: See <see cref="http://github.com/PhilSA/PolymorphicStructs"/>
     /// 
     /// </summary>
     public abstract partial class StateMachineSystemBase : SystemBase
@@ -283,11 +284,13 @@ namespace RMC.DOTS.Systems.StateMachine
 
             public T GetComponent<T>(Entity entity) where T : unmanaged, IComponentData
             {
+
                 return StateMachineSystemBase.GetComponent<T>(entity);
             }
 
             public DynamicBuffer<T> GetBuffer<T>(Entity entity) where T : unmanaged, IBufferElementData
             {
+
                 return StateMachineSystemBase.GetBuffer<T>(entity);
             }
 

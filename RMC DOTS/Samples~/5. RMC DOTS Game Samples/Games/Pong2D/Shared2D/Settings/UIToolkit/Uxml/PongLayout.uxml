@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/Games/Playground2D/Shared2D/Settings/UIToolkit/Uss/PongStyles.uss?fileID=7433441132597879392&amp;guid=0260f67d91efe5a4db368621aeeb029d&amp;type=3#PongStyles" />
+    <Style src="project://database/Assets/Samples/RMC%20DOTS/1.5.7/5.%20RMC%20DOTS%20Game%20Samples/Games/Pong2D/Shared2D/Settings/UIToolkit/Uss/PongStyles.uss?fileID=7433441132597879392&amp;guid=9a3df6c81ca75944fbc520515710fc6d&amp;type=3#PongStyles" />
     <ui:VisualElement name="Screen" class="screen">
         <ui:VisualElement name="Content" class="content">
             <ui:VisualElement name="Status" style="flex-grow: 0.5;">
