@@ -8,9 +8,15 @@ namespace RMC.DOTS.Demos.StateMachine.Full
     {
         protected float StateElapsedTimeInSeconds { get; private set; }
         
+        ///////////////////////////////////////////////////
+        // StateMachine Comment #07 of 07: Both states
+        // extend this class. Handle transitions here from
+        // one state to another state
+        ///////////////////////////////////////////////////
         protected virtual void RequestStateChangePerTransitions(Entity entity)
         {
-            // Toggle 
+            // Here is a simple toggle (From a to b, from b to a)
+            // In your game you may have much more complex logic
             if (IsInState<MyMovementRotationState>(entity))
             {
                 RequestStateChange<MyMovementTranslationState>(entity);

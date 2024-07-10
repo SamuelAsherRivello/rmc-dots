@@ -218,10 +218,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4e5338815354847884da02ef9d0889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationDelta: {x: 0, y: 1, z: 0}
-  RotationDurationInSeconds: 1
-  TranslationDelta: {x: 0, y: 0.5, z: 0}
-  TranslationDurationInSeconds: 1
+  RotationDelta: {x: 0, y: 0.5, z: 0}
+  RotationDurationInSeconds: 3
+  TranslationDelta: {x: 0, y: 0.25, z: 0}
+  TranslationDurationInSeconds: 3
 --- !u!1 &954058987
 GameObject:
   m_ObjectHideFlags: 0

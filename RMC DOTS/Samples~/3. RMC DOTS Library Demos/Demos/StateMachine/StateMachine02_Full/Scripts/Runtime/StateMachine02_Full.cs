@@ -29,6 +29,11 @@ namespace RMC.DOTS.Demos.StateMachine.Full
 		//  Methods ----------------------------------------
 		private void SetupStateMachines()
 		{
+			
+			/////////////////////////////////////////////
+			// StateMachine Comment #01: Setup
+			/////////////////////////////////////////////
+			
 			// Get StateMachine
 			MyMovementStateMachineSystem stateMachine = 
                 World.DefaultGameObjectInjectionWorld.CreateSystemManaged<MyMovementStateMachineSystem>();
@@ -38,3 +43,14 @@ namespace RMC.DOTS.Demos.StateMachine.Full
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+

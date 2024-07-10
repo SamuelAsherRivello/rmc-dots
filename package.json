@@ -1,7 +1,7 @@
 {
   "name": "com.rmc.rmc-dots",
   "displayName": "RMC DOTS",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "unity": "2022.3",
   "description": "DOTS library for Unity Development by Rivello Multimedia Consulting",
   "keywords": [

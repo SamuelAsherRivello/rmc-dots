@@ -5,6 +5,12 @@ namespace RMC.DOTS.Demos.StateMachine.Full
 {
     public class MyMovementTranslationState : MyMovementBaseState
     {
+        ///////////////////////////////////////////////////
+        // StateMachine Comment #04: Note that the API
+        // language here feels a bit different from a typical
+        // DOTS foreach loop. This is because we are using
+        // the StateMachineSystemBase API.
+        ///////////////////////////////////////////////////
         public override void OnUpdate(Entity entity)
         {
             base.OnUpdate(entity);
@@ -24,10 +30,17 @@ namespace RMC.DOTS.Demos.StateMachine.Full
             // Consider Transition
             if (StateElapsedTimeInSeconds >= myMovementDataComponent.TranslationDurationInSeconds)
             {
+                ///////////////////////////////////////////////////
+                // StateMachine Comment #06: Do transition here
+                ///////////////////////////////////////////////////
                 RequestStateChangePerTransitions(entity);
             }
             else
             {
+                ///////////////////////////////////////////////////
+                // StateMachine Comment #05: Do state logic here
+                ///////////////////////////////////////////////////
+
                 // Update Component
                 localTransform.Position += myMovementDataComponent.TranslationDelta * deltaTime;
                 
