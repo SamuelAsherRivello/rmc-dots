@@ -58,11 +58,7 @@ Contact
 - LinkedIn - <a href="https://Linkedin.com/in/SamuelAsherRivello">Linkedin.com/in/SamuelAsherRivello</a> <--- Say Hello! :)
 
 
-License
-=============
+**License**
 
-Provided as-is under MIT License | Copyright © 2024 Rivello Multimedia Consulting, LLC
-
-
-
+Provided as-is under <a href="./LICENSE">MIT License</a> | Copyright ™ & © 2006 - 2024 Rivello Multimedia Consulting, LLC
 
