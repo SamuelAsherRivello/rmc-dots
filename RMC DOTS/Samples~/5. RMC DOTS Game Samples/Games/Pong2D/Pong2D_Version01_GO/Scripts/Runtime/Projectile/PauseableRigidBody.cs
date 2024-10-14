@@ -23,7 +23,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
                 _isPaused = value;
                 if (_isPaused)
                 {
-                    _pausedVelocity = _rigidBody.velocity;
+                    _pausedVelocity = _rigidBody.linearVelocity;
                     _pausedAngularVelocity = _rigidBody.angularVelocity;
                     
                     //Do last
@@ -34,7 +34,7 @@ namespace RMC.DOTS.Samples.Pong2D.Pong2D_Version01_GO
                     //Do first
                     _rigidBody.isKinematic = _isPaused;
                     
-                    _rigidBody.velocity = _pausedVelocity;
+                    _rigidBody.linearVelocity = _pausedVelocity;
                     _rigidBody.angularVelocity = _pausedAngularVelocity;
                 }
             }
